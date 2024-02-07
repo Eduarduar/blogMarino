@@ -1,4 +1,4 @@
-ErrorDocument 404 # [URL]
+# ErrorDocument 404 # [URL]
 
 RewriteEngine on
 

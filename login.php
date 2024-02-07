@@ -17,7 +17,7 @@ if(isset($_POST["log_in"])) {
   <head>
     <meta charset="UTF-8">
     <title>Log In</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style_login.css">
     <style>
       /* Estilo para el botón */
       .boton-personalizado {
