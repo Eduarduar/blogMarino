@@ -12,3 +12,7 @@ $(function() {
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+
+$('.log-in_container').on('click', function() {
+    location.href = 'login';
+});

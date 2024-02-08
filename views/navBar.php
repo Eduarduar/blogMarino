@@ -19,16 +19,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="#services">Home</a>
+                        <a class="page-scroll" href="#home">Home</a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="#portfolio">Multimedia</a>
+                        <a class="page-scroll" href="#multimedia">Multimedia</a>
                     </li>
                     <li class="">
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="#team">Developers</a>
+                        <a class="page-scroll" href="#developers">Developers</a>
+                    </li>
+                    <li class="log-in_container">
+                        <a class="page-scroll log-in" href="#developers">Login</a>
                     </li>
                 </ul>
             </div>

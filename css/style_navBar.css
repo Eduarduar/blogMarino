@@ -222,3 +222,14 @@ img::selection {
 img::-moz-selection {
   background: 0 0;
 }
+
+.log-in{
+  background-color: #1ee2e7;
+  border-radius: 20px;
+  color: #383838 !important;
+  transition: .3s all;
+}
+
+.log-in:hover, .log-in:active, .log-in:focus{
+  background-color: #f0c503!important;
+}
