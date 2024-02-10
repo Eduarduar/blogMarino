@@ -4,9 +4,13 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
- body {
+body {
   overflow-x: hidden;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .text-muted {
