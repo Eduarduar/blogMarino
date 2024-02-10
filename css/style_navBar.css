@@ -171,36 +171,6 @@ fieldset[disabled] .btn-primary.active {
   background-color: #17d0d5;
 }
 
-@media (min-width: 768px) {
-  .navbar-default {
-    padding: 25px 0;
-    border: 0;
-    background-color: transparent;
-    -webkit-transition: padding 0.3s;
-    -moz-transition: padding 0.3s;
-    transition: padding 0.3s;
-  }
-
-  .navbar-default .navbar-brand {
-    font-size: 2em;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-  }
-
-  .navbar-default .navbar-nav > .active > a {
-    border-radius: 3px;
-  }
-
-  .navbar-default.navbar-shrink {
-    padding: 10px 0;
-    background-color: #222;
-  }
-
-  .navbar-default.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
-  }
-}
 
 .btn:focus,
 .btn:active,
@@ -232,8 +202,81 @@ img::-moz-selection {
   border-radius: 20px;
   color: #383838 !important;
   transition: .3s all;
+  margin-left: 3rem;
 }
 
 .log-in:hover, .log-in:active, .log-in:focus{
-  background-color: #f0c503!important;
+  background-color: #00000000!important;
+  color: #1ee2e7 !important;
+}
+
+
+.log-out{
+  background-color: #d00202;
+  border-radius: 20px;
+  color: #000000 !important;
+  transition: .3s all;
+  margin-left: 3rem;
+}
+
+.log-out:hover, .log-out:active, .log-out:focus{
+  background-color: #00000000!important;
+  color: #d00202 !important;
+}
+
+
+.manage{
+  background-color: #f0c503;
+  border-radius: 20px;
+  color: #000000 !important;
+  transition: .3s all;
+  margin-left: 3rem;
+}
+
+.manage:hover, .manage:active, .manage:focus{
+  background-color: #00000000!important;
+  color: #f0c503 !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-default {
+    padding: 25px 0;
+    border: 0;
+    background-color: transparent;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+
+  .navbar-default .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .navbar-default .navbar-nav > .active > a {
+    border-radius: 3px;
+  }
+
+  .navbar-default.navbar-shrink {
+    padding: 10px 0;
+    background-color: #222;
+  }
+
+  .navbar-default.navbar-shrink .navbar-brand {
+    font-size: 1.5em;
+  }
+
+}
+.log-in-container, .log-out-container, .manage-container {
+  margin: 0 auto;
+  float: left;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.log-in-container a, .log-out-container a, .manage-container a{
+  margin-left: 1rem;
 }

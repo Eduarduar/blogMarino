@@ -76,7 +76,9 @@ html {
     letter-spacing: 4px
   }
   
-  .login-box i:hover {
+  .login-box i:hover,
+  .login-box i:active,
+  .login-box i:focus{
     background: #03e9f4;
     color: #fff;
     border-radius: 5px;
@@ -182,7 +184,8 @@ html {
   display: none;
 }
 
-.error-box.entrada {
+.error-box.entrada,
+.access-box.entrada {
   animation: start-anim .3s linear ;
 }
 
@@ -200,6 +203,22 @@ html {
   color: #fff;
   text-align: center;
 }
+
+.access-box.active {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(2, 136, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+}
+
 
 .timeout {
   animation: timeout-anim .3s linear ;

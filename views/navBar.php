@@ -22,7 +22,7 @@
                         <a class="page-scroll" href="#home">Home</a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="#multimedia">Multimedia</a>
+                        <a class="page-scroll" href="#multimedia">Blog</a>
                     </li>
                     <li class="">
                         <a class="page-scroll" href="#about">About</a>
@@ -30,9 +30,23 @@
                     <li class="">
                         <a class="page-scroll" href="#developers">Developers</a>
                     </li>
-                    <li class="log-in_container">
-                        <a class="page-scroll log-in" href="#developers">Login</a>
-                    </li>
+                    <?php
+                    
+                        if (isset($_SESSION['idUser'])) {
+                            echo '<li class="manage-container">
+                                    <a class="page-scroll manage" href="#">Manage</a>
+                                </li>
+                                <li class="log-out-container">
+                                    <a class="page-scroll log-out" href="./db/logout.php">Logout</a>
+                                </li>';
+                        } else {
+                            echo '<li class="log-in-container">
+                                    <a class="page-scroll log-in" href="./login">Login</a>
+                                </li>';
+                        }
+
+                    ?>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -1,3 +1,10 @@
+<?php
+
+    session_start();
+
+    include("db/peticiones/index.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

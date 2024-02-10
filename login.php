@@ -1,17 +1,18 @@
 <?php
 session_start();
-include("db/Contacto.php");
+include("db/peticiones/login.php");
 $error = 0;
+$access = 0;
 
 if(isset($_POST["log_in"])) {
   $usuario = $_POST['usuario'];
   $contra = $_POST['contra'];
 
   $obj = new Contacto();
-  $log = $obj->log_in($usuario, $contra); 
-  if ($log) {
-    $_SESSION['usuario'] = $usuario;
-    header("Location: ./index.php");
+  $log = $obj->log_in($usuario, $contra); // Si el usuario y contraseña son correctos, regresa el id del usuario
+  if ($log != false) {
+    $_SESSION['idUser'] = $log;
+    $access = 1;
   } else {
     $error = 1;
   }
@@ -23,12 +24,12 @@ if(isset($_POST["log_in"])) {
   <head>
     <meta charset="UTF-8">
     <title>Log In</title>
-    <link rel="stylesheet" href="./css/style_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style_login.css">
   </head>
   <body>
 
-    <div class="login-box">
+    <div class="login-box <?php if ($access == 1) echo "timeout"; ?>">
       <div class="exit-container">
         <a href="./">
           <b class="fas fa-times"></b>
@@ -55,10 +56,17 @@ if(isset($_POST["log_in"])) {
         </i>
       </form>
     </div>  
+    <div class="access-box <?php if ($access == 1)echo "active entrada";?>">
+      <?php
+      if ($access == 1) {
+        echo "You have successfully logged in";
+      }
+      ?>
+    </div>
     <div class="error-box <?php if ($error==1)echo "active entrada";?>">
       <?php
       if ($error == 1) {
-        echo "Usuario o contraseña incorrectos";
+        echo "Incorrect username or password";
       }
       ?>
     </div>
@@ -79,9 +87,33 @@ if(isset($_POST["log_in"])) {
             setTimeout(function() {
               document.querySelector('.error-box').classList.remove('active');
               document.querySelector('.error-box').classList.remove('timeout');
-              document.querySelector('.error-box').innerHTML = '';
-            }, 3300);";
+              document.querySelector('.error-box').classList.add('display-none');
+            }, 3250);";
           }
+
+            if ($access == 1) {
+              echo "
+              setTimeout(function() {
+                document.querySelector('.access-box').classList.remove('entrada');
+                document.querySelector('.login-box').classList.add('display-none');
+              }, 300);
+
+              setTimeout(function() {
+                document.querySelector('.access-box').classList.add('timeout');
+              }, 3000);
+              
+              setTimeout(function() {
+                document.querySelector('.access-box').classList.remove('active');
+                document.querySelector('.access-box').classList.remove('timeout');
+                document.querySelector('.access-box').innerHTML = '';
+              }, 3300);
+              
+              setTimeout(function() {
+                window.location.href = './';
+              }, 3250);
+              
+              ";
+            }
         ?>
     </script>
     <script src="./js/login.js"></script>
