@@ -10,7 +10,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
 }
 
 .text-muted {
@@ -249,7 +248,53 @@ img::-moz-selection {
   margin-left: 2rem !important;
 }
 
+.log-in-container, .log-out-container, .manage-container {
+  margin: 0 auto;
+  float: left;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.log-in-container a, .log-out-container a, .manage-container a{
+  margin-left: 1rem;
+}
+
+header {
+  max-height: 65px;
+  height: 100%;
+
+}
+
 @media (min-width: 768px) {
+
+  @media screen and (max-width: 1030px){
+    nav .container {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    .navbar-header a {
+      padding-left: 1.8rem;
+    }
+    .nav {
+      padding-right:3rem ;
+    }
+  }
+
+  
+  @media screen and (max-width: 807px){
+    a.page-scroll {
+      padding-left: 1 !important;
+      padding-right: 1rem !important;
+    }
+  }
+  
+  nav{
+    display: inline-block !important;
+    max-height: 65px;
+  }
+
   .navbar-default {
     padding: 25px 0;
     border: 0;
@@ -279,15 +324,4 @@ img::-moz-selection {
     font-size: 1.5em;
   }
 
-}
-.log-in-container, .log-out-container, .manage-container {
-  margin: 0 auto;
-  float: left;
-  width: 150px;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.log-in-container a, .log-out-container a, .manage-container a{
-  margin-left: 1rem;
 }

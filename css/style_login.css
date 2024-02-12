@@ -6,6 +6,7 @@ html {
     padding:0;
     font-family: sans-serif;
     background: linear-gradient(#004173, #7bdaf8);
+    transition: .5s all;
   }
   
   .login-box {
@@ -19,6 +20,7 @@ html {
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
+    transition: .5s all;
   }
   
   .login-box h2 {
@@ -181,7 +183,11 @@ html {
 }
 
 .display-none {
-  display: none;
+  display: none !important;
+}
+
+.display-block {
+  display: block;
 }
 
 .error-box.entrada,
@@ -259,4 +265,71 @@ html {
 
 .exit-container a:hover {
   color: #03e9f4;
+}
+@media screen and (max-width: 768px){
+  
+  .height-108 {
+    height: 108px !important;
+  }
+
+  body {
+    background: #12303f !important;
+  }
+
+  body.error{
+    background: rgb(101, 7, 7) !important;
+  }
+
+  body.access{
+    background: rgba(2, 136, 0, 0.5) !important;
+  }
+
+  body.error .login-box {
+    background: rgba(255, 255, 255, 0);
+    transition: .5s all;
+  }
+
+  h2 {
+    margin-bottom: 5rem !important;
+    font-size: 30pt !important;
+  }
+
+  label {
+    font-size: 20px !important;
+  }
+  
+  .login-box {
+    background: #12303f00;
+    box-shadow: none;
+    transition: .5s all;
+  }
+
+  .container-button{
+    display: flex;
+    justify-content: center;
+  }
+
+  .boton-personalizado{
+    width: 10rem;
+    height: 3rem;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -27px;
+    font-size: 15px !important;
+  }
+
+  .error-box.active {
+    background: rgba(0, 0, 0, 0);
+    top: 68%;
+    box-shadow: none;
+    font-size: 15pt;
+  }
+
+  .access-box.active {
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0);
+    font-size: 15pt;
+  }
 }

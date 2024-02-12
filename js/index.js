@@ -1,8 +1,6 @@
 let liImg = document.querySelectorAll('.carousel-inner div')
 let liIndicator = document.querySelectorAll('.carousel-indicators li')
 
-console.log(liImg)
-
 $('#next').on('click', ()=> {
     let active = 0
     let next = 0

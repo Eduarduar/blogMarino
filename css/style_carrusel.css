@@ -7,13 +7,13 @@
         .item,
         .active.left,
         .active.right {
-            opacity: 0;
+            animation: out-img .5s forwards;
         }
 
         .active,
         .next.left,
         .prev.right {
-            opacity: 1;
+            animation: in-img .5s forwards;
         }
 
         .next,
@@ -30,6 +30,23 @@
     }
 }
 
+@keyframes out-img {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes in-img {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 
 html, 
@@ -37,22 +54,11 @@ body,
 .carousel, 
 .carousel-inner, 
 .carousel-inner .item {
-    height: 100%;
-}
-
-.item:nth-child(1) {
-    background: #74C390;
-}
-
-.item:nth-child(2) {
-    background: #51BCE8;
-}
-
-.item:nth-child(3) {
-    background: #E46653;
+    height: 100%;;
 }
 
 .carousel-inner div img {
+    transition: .5 all;
     margin: 0 auto;
     align-items: center;
 }

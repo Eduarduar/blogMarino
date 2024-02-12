@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (isset($_SESSION['idUser'])) {
+  header('Location: ./');
+}
+
 include("db/peticiones/login.php");
 $error = 0;
 $access = 0;
@@ -24,7 +29,7 @@ if(isset($_POST["log_in"])) {
   <head>
     <meta charset="UTF-8">
     <title>Log In</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style_login.css">
   </head>
   <body>
@@ -45,77 +50,110 @@ if(isset($_POST["log_in"])) {
           <input type="password" class="pass" name="contra" required="">
           <label>Password</label>
         </div>
-        <i class="log" href="">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <button class="boton-personalizado" name="log_in">
-            Submit
-          </button> 
-        </i>
+        <div class="container-button">
+          <i class="log" href="">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <button class="boton-personalizado" name="log_in">
+              Submit
+            </button> 
+          </i>
+        </div>
       </form>
     </div>  
-    <div class="access-box <?php if ($access == 1)echo "active entrada";?>">
-      <?php
-      if ($access == 1) {
-        echo "You have successfully logged in";
-      }
-      ?>
+    <div class="access-box display-none">
+        You have successfully logged in
     </div>
-    <div class="error-box <?php if ($error==1)echo "active entrada";?>">
-      <?php
-      if ($error == 1) {
-        echo "Incorrect username or password";
-      }
-      ?>
+    <div class="error-box display-none">
+        Incorrect username or password
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/login.js"></script>
     <script>
         <?php
           if ($error == 1) {
-            echo "
-            setTimeout(function() {
-              document.querySelector('.error-box').classList.remove('entrada');
-            }, 300);
-
-            setTimeout(function() {
-              document.querySelector('.error-box').classList.add('timeout');
-            }, 3000);
+            echo '
             
-            setTimeout(function() {
-              document.querySelector('.error-box').classList.remove('active');
-              document.querySelector('.error-box').classList.remove('timeout');
-              document.querySelector('.error-box').classList.add('display-none');
-            }, 3250);";
-          }
+            $(".error-box").removeClass("display-none");
+            $(".error-box").addClass("active");
 
-            if ($access == 1) {
-              echo "
+            if (window.matchMedia("(max-width: 768px)").matches){
+              $("body").addClass("error");
+              $(".error-box").addClass("display-block active");
+
+
+              $(".log").addClass("display-none");
+              $(".container-button").addClass("height-108");
+
               setTimeout(function() {
-                document.querySelector('.access-box').classList.remove('entrada');
-                document.querySelector('.login-box').classList.add('display-none');
+                $(".error-box").removeClass("active");
+                $(".error-box").addClass("display-none");
+                $("body").removeClass("error");
+                $(".container-button").removeClass("display-none");
+                $(".log").removeClass("display-none");
+                $(".container-button").removeClass("height-108");
+              }, 3500);
+            }else{
+
+              $(".error-box").addClass("entrada");
+
+              setTimeout(function() {
+                $(".error-box").removeClass("entrada");
               }, 300);
 
               setTimeout(function() {
-                document.querySelector('.access-box').classList.add('timeout');
+                $(".error-box").addClass("timeout");
               }, 3000);
-              
+
               setTimeout(function() {
-                document.querySelector('.access-box').classList.remove('active');
-                document.querySelector('.access-box').classList.remove('timeout');
-                document.querySelector('.access-box').innerHTML = '';
-              }, 3300);
-              
-              setTimeout(function() {
-                window.location.href = './';
+                $(".error-box").removeClass("active timeout");
+                $(".error-box").addClass("display-none");
               }, 3250);
               
-              ";
             }
+            ';
+          }
+
+          if ($access == 1) {
+            echo '
+
+            $(".access-box").removeClass("display-none");
+            $(".access-box").addClass("active");
+            
+            if (window.matchMedia("(max-width: 768px)").matches){
+              $("body").addClass("access");
+              $(".access-box").addClass("display-block");
+              $(".login-box").addClass("display-none");
+            } else {
+
+              $(".access-box").addClass("entrada");
+
+              setTimeout(function() {
+                $(".access-box").removeClass("entrada");
+                $(".login-box").addClass("display-none");
+              }, 300);
+
+              setTimeout(function() {
+                $(".access-box").addClass("timeout");
+              }, 3000);
+
+              setTimeout(function() {
+                $(".access-box").removeClass("active");
+                $(".access-box").removeClass("timeout");
+                $(".access-box").html("");
+              }, 3300);
+
+            }
+            
+            setTimeout(function() {
+              window.location.href = "./";
+            }, 3250);
+            ';
+          }
         ?>
     </script>
-    <script src="./js/login.js"></script>
   </body>
 </html>
