@@ -21,8 +21,12 @@
 </head>
 <body id="page-top">
 
-    <!-- Navigation -->
-    <?php include 'views/navBar.php'; ?>
+    <header>
+
+        <!-- Navigation -->
+        <?php include 'views/navBar.php'; ?>
+
+    </header>
 
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">

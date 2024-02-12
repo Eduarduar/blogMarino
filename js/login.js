@@ -3,3 +3,6 @@ $('.log').click(function() {
         form.sumit();
     }
 });
+if (window.matchMedia("(max-width: 768px)").matches) 
+    $('body').addClass('responsive');
+
