@@ -238,6 +238,17 @@ img::-moz-selection {
   color: #f0c503 !important;
 }
 
+.log-in, .log-out, .manage {
+  margin-top: .5rem;
+  padding: 1rem .5rem !important;
+  width: 12rem;
+}
+
+.manage-container, .log-in-container, .log-out-container {
+  width: 12rem !important;
+  margin-left: 2rem !important;
+}
+
 @media (min-width: 768px) {
   .navbar-default {
     padding: 25px 0;
