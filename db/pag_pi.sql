@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-02-2024 a las 16:50:06
+-- Tiempo de generación: 12-02-2024 a las 20:50:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,18 +37,43 @@ CREATE TABLE `categorias` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `images`
+--
+
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `position` int(11) NOT NULL,
+  `idCodePost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `publicaciones`
 --
 
 CREATE TABLE `publicaciones` (
-  `idPost` int(11) NOT NULL,
-  `idUser` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `idCodeUser` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `creationDate` datetime NOT NULL,
   `editionDate` datetime DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
-  `editionUser` int(11) DEFAULT NULL,
-  `idCategory` int(11) NOT NULL
+  `editionCodeUser` int(11) DEFAULT NULL,
+  `idCodeCategory` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `texts`
+--
+
+CREATE TABLE `texts` (
+  `id` int(11) NOT NULL,
+  `text` varchar(1000) NOT NULL,
+  `position` int(11) NOT NULL,
+  `idCodePost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,13 +111,27 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idCodePost` (`idCodePost`);
+
+--
 -- Indices de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  ADD PRIMARY KEY (`idPost`),
-  ADD KEY `edit_user` (`editionUser`),
-  ADD KEY `id_user` (`idUser`),
-  ADD KEY `id_categoria` (`idCategory`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `edit_user` (`editionCodeUser`),
+  ADD KEY `id_user` (`idCodeUser`),
+  ADD KEY `id_categoria` (`idCodeCategory`);
+
+--
+-- Indices de la tabla `texts`
+--
+ALTER TABLE `texts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idCodePost` (`idCodePost`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -111,10 +150,22 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `idPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `texts`
+--
+ALTER TABLE `texts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -127,12 +178,24 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Filtros para la tabla `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`idCodePost`) REFERENCES `publicaciones` (`id`) ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  ADD CONSTRAINT `publicaciones_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categorias` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `publicaciones_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `publicaciones_ibfk_3` FOREIGN KEY (`editionUser`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `publicaciones_ibfk_1` FOREIGN KEY (`idCodeCategory`) REFERENCES `categorias` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `publicaciones_ibfk_2` FOREIGN KEY (`idCodeUser`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `publicaciones_ibfk_3` FOREIGN KEY (`editionCodeUser`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `texts`
+--
+ALTER TABLE `texts`
+  ADD CONSTRAINT `texts_ibfk_1` FOREIGN KEY (`idCodePost`) REFERENCES `publicaciones` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
