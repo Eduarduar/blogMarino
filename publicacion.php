@@ -23,7 +23,11 @@
         include './db/peticiones/publicaciones.php';
 
         $contacto = new Contacto();
-        $idPost = $_GET["post"];
+        if (isset($_GET["post"])) {
+            $idPost = $_GET["post"];
+        } else {
+            $idPost = 0;
+        }
     ?>
 
     <div style="text-align: center;">
