@@ -20,10 +20,10 @@
     </header> <br><br><br>
 
     <?php
-        include './db/peticiones/publicaciones.php'; // Asegúrate de incluir el archivo donde definiste la clase Contacto
+        include './db/peticiones/publicaciones.php';
 
         $contacto = new Contacto();
-        $idPost = 6; // Asegúrate de obtener el ID de la publicación de forma dinámica según sea necesario
+        $idPost = $_GET["post"];
     ?>
 
     <div style="text-align: center;">
