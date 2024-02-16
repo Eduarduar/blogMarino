@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style_navBar.css">
-    <link rel="stylesheet" href="./css/style_carrusel.css">
     <link rel="stylesheet" href="./css/style_footer.css">
     <title>Publicaciones</title>
 </head>
@@ -21,7 +20,7 @@
     </header> <br><br><br>
 
     <?php
-        include 'db/contacto.php'; // Asegúrate de incluir el archivo donde definiste la clase Contacto
+        include './db/peticiones/publicaciones.php'; // Asegúrate de incluir el archivo donde definiste la clase Contacto
 
         $contacto = new Contacto();
         $idPost = 6; // Asegúrate de obtener el ID de la publicación de forma dinámica según sea necesario
@@ -62,7 +61,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/navBar.js"></script>
-    <script src="./js/index.js"></script>
 
 </body>
 </html>
