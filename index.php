@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style_navBar.css">
     <link rel="stylesheet" href="./css/style_carrusel.css">
+    <link rel="stylesheet" href="./css/style_default.css">
+    <link rel="stylesheet" href="./css/style_publicacion.css">
     <link rel="stylesheet" href="./css/style_footer.css">
     <title>Document</title>
 </head>
@@ -39,7 +41,7 @@
         </ol>
         <!-- Carousel items -->
         <div class="carousel-inner">
-            <div class="item active"><img src="./source/img/imagen1.jpg" alt=""></div>
+            <div class="item active"><img src="./source/img/vidamarina.jpg" alt=""></div>
             <div class="item"><img src="./source/img/imagen2.jpg" alt=""></div>
             <div class="item"><img src="./source/img/imagen3.jpg" alt=""></div>
             <div class="item"><img src="./source/img/imagen4.jpg" alt=""></div>
@@ -51,6 +53,12 @@
         <a class="carousel-control right" href="#carousel" id="next" data-slide="next">&rsaquo;</a>
     </div>
 
+
+    <?php
+    
+        include './views/publicacion.php';
+    
+    ?>
 
     <!-- Footer -->
 

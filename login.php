@@ -30,6 +30,7 @@ if(isset($_POST["log_in"])) {
     <meta charset="UTF-8">
     <title>Log In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/997c58a28f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style_login.css">
   </head>
   <body>

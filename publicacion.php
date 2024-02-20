@@ -1,3 +1,10 @@
+<?php
+
+    include './db/peticiones/publicacion.php';
+
+?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +14,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style_navBar.css">
+    <link rel="stylesheet" href="./css/style_default.css">
+    <link rel="stylesheet" href="./css/style_publicacion.css">
     <link rel="stylesheet" href="./css/style_footer.css">
     <title>Publicaciones</title>
 </head>
@@ -20,43 +29,10 @@
     </header> <br><br><br>
 
     <?php
-        include './db/peticiones/publicaciones.php';
-
-        $contacto = new Contacto();
-        if (isset($_GET["post"])) {
-            $idPost = $_GET["post"];
-        } else {
-            $idPost = 0;
-        }
+    
+        include './views/publicacion.php';
+    
     ?>
-
-    <div style="text-align: center;">
-        <?php
-            // Obtener el título de la publicación y mostrarlo
-            $titulo = $contacto->obtenerTituloPublicacion($idPost);
-            if ($titulo !== null) {
-                echo "<h1>" . htmlspecialchars($titulo) . "</h1>";
-            } else {
-                echo "<h1>Publicación no encontrada</h1>";
-            }
-
-            // Obtener y mostrar el contenido de la publicación (textos e imágenes)
-            $resultado = $contacto->obtenerContenidoPublicacion($idPost);
-            if ($resultado->num_rows > 0) {
-                while($fila = $resultado->fetch_assoc()) {
-                    if ($fila["tipo"] == "texto") {
-                        // Mostrar texto
-                        echo "<p>" . htmlspecialchars($fila["contenido"]) . "</p>";
-                    } elseif ($fila["tipo"] == "imagen") {
-                        // Mostrar imagen
-                        echo "<img src='" . htmlspecialchars($fila["contenido"]) . "'/>";
-                    }
-                }
-            } else {
-                echo "<p>No hay contenido adicional para mostrar.</p>";
-            }
-        ?>
-    </div>
 
     <!-- Footer -->
 
