@@ -32,7 +32,7 @@
     </header>
 
     <!-- Carousel -->
-    <section>
+    <section class="container-carousel">
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -55,6 +55,10 @@
             <a class="carousel-control left" href="#carousel" id="prev" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#carousel" id="next" data-slide="next">&rsaquo;</a>
         </div>
+        <div class="container-titleCarousel">
+            <h2 class="titleCarousel">DEEP OCEAN</h2>
+            <p class="subtitleCarousel">The best place to know about the ocean</p>
+        </div>
     </section>
     
 
@@ -68,6 +72,31 @@
             include './views/publicacion.php';
     
         ?>
+    </section>
+
+
+    <!-- Cards -->
+    <section class="cards">
+
+        <div class="basic-card basic-card-light">
+            <div class="card-content">
+                <span class="card-title"><!-- Titulo --></span>
+                <p class="card-text">
+                    <!-- Texto -->
+                </p>
+            </div>
+
+            <div class="card-link">
+                <a href="<!-- Link -->" title="Read Full"><span>Read Full</span></a>
+            </div>
+        </div>
+        
+        <div class="basic-card basic-card-light see-more">
+            <a class="card-content">
+                <span class="card-title">See more<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </div>
+
     </section>
 
     <!-- Footer -->
