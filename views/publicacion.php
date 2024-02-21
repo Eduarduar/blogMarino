@@ -20,7 +20,7 @@
             } else {
                 echo "<h1>Publicación no encontrada</h1>";
             }
-
+            
             // Obtener y mostrar el contenido de la publicación (textos e imágenes)
             if (basename($_SERVER['PHP_SELF']) == 'index.php') {            
                 $resultado = $contacto->obtenerContenidoUltimaPublicacion();
@@ -40,5 +40,5 @@
             } else {
                 echo "<p>No hay contenido adicional para mostrar.</p>";
             }
-        ?>
+            ?>
     </div>
