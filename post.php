@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     include './db/peticiones/publicacion.php';
 
 ?>
@@ -28,11 +30,13 @@
 
     </header> <br><br><br>
 
-    <?php
-    
-        include './views/publicacion.php';
-    
-    ?>
+    <section>
+        <?php
+
+            include './views/publicacion.php';
+
+        ?>
+    </section>
 
     <!-- Footer -->
 

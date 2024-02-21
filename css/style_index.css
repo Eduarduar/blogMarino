@@ -1,0 +1,8 @@
+.lastestPost {
+    margin: 0;
+    padding: 20px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}

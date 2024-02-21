@@ -110,6 +110,10 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .navbar-default {
+  font-weight: bold; 
+}
+
+.navbar-default {
   border-color: transparent;
   background-color: #222;
 }
@@ -150,6 +154,7 @@ fieldset[disabled] .btn-primary.active {
   font-weight: 400;
   letter-spacing: 1px;
   color: #fff;
+  transition: all .3s;
 }
 
 .navbar-default .nav li a:hover,
@@ -160,14 +165,15 @@ fieldset[disabled] .btn-primary.active {
 
 .navbar-default .navbar-nav > .active > a {
   border-radius: 0;
-  color: #fff;
+  color: #000000;
   background-color: #1ee2e7;
+  transition: all .3s;
 }
 
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: #17d0d5;
+  color: #1ee2e7;
+  background-color: #00000000;
 }
 
 
