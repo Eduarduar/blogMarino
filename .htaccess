@@ -1,5 +1,5 @@
 # dirección completa hasta la pagina 404.html
-ErrorDocument 404 /pruebas/blogMarino/404.html 
+ErrorDocument 404 /pruebas/blogMarino/404.php
 
 RewriteEngine on
 

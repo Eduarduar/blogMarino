@@ -1,0 +1,27 @@
+.container_not-fount {
+    min-height: 100vh;
+}
+
+.container-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.container-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.color {
+    color: aqua;
+}
+
+.container-404 p,
+.text-shadow {
+    font-size: 40pt !important;
+    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+}
