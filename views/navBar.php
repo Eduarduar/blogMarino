@@ -24,14 +24,14 @@
                     <li class=" <?php if ($pagina_actual == "index.php"){ echo'active'; } ?>">
                         <a class="page-scroll" href="./">Home</a>
                     </li>
-                    <li class="">
+                    <li class=" <?php if ($pagina_actual == "blog.php"){ echo'active'; } ?>">
                         <a class="page-scroll" href="#multimedia">Blog</a>
                     </li>
-                    <li class="">
-                        <a class="page-scroll" href="#about">About</a>
+                    <li class=" <?php if ($pagina_actual == "about.php"){ echo'active'; } ?>">
+                        <a class="page-scroll" href="./about.php">About</a>
                     </li>
-                    <li class="">
-                        <a class="page-scroll" href="#developers">Developers</a>
+                    <li class=" <?php if ($pagina_actual == "developers.php"){ echo'active'; } ?>">
+                        <a class="page-scroll" href="./developers.php">Developers</a>
                     </li>
                     <?php
                     
