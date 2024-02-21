@@ -22,23 +22,47 @@
             }
             
             // Obtener y mostrar el contenido de la publicación (textos e imágenes)
-            if (basename($_SERVER['PHP_SELF']) == 'index.php') {            
-                $resultado = $contacto->obtenerContenidoUltimaPublicacion();
+            $contenido;
+            if (basename($_SERVER['PHP_SELF']) == 'index.php') {        
+                $textos = $contacto->obtenerTextoUltimaPublicacion();
+                $imagenes = $contacto->obtenerImagenUltimaPublicacion();   
             }else{
-                $resultado = $contacto->obtenerContenidoPublicacion($idPost);
+                $textos = $contacto->obtenerTextoPublicacion($idPost);
+                $imagenes = $contacto->obtenerImagenPublicacion($idPost);                    
             }
-            if ($resultado->num_rows > 0) {
-                while($fila = $resultado->fetch_assoc()) {
-                    if ($fila["tipo"] == "texto") {
-                        // Mostrar texto
-                        echo "<p class='text-public'>" . htmlspecialchars($fila["contenido"]) . "</p>";
-                    } elseif ($fila["tipo"] == "imagen") {
-                        // Mostrar imagen
-                        echo "<img src='" . htmlspecialchars($fila["contenido"]) . "'/>";
+
+            if ($textos != false) {
+                $contenido = []; // Initialize an empty array
+
+                foreach ($textos as $contenidoTextos) {
+                    $contenido['modulo' . $contenidoTextos['positionText']] = [
+                        'tipo' => 'texto',
+                        'contenido' => '' . $contenidoTextos['text'],
+                        'position' => '' . $contenidoTextos['positionText']
+                    ];
+                }
+
+                if ($imagenes != false) {
+                    foreach ($imagenes as $contenidoImagenes) {
+                        $contenido['modulo' . $contenidoImagenes['positionImagen']] = [
+                            'tipo' => 'imagen',
+                            'contenido' => '' . $contenidoImagenes['imagen'],
+                            'position' => '' . $contenidoImagenes['positionImagen']
+                        ];
                     }
                 }
+
+                foreach ($contenido as $modulo) {
+                    if ($modulo['tipo'] == 'texto') {
+                        echo "<p class='text-public'>" . htmlspecialchars($modulo['contenido']) . "</p>";
+                    }else {
+                        echo "<img src='" . htmlspecialchars($modulo['contenido']) . "'/>";
+                    }
+                }
+                
             } else {
                 echo "<p>No hay contenido adicional para mostrar.</p>";
             }
+
             ?>
     </div>

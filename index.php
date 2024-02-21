@@ -80,66 +80,14 @@
 
         <div class="basic-card basic-card-light">
             <div class="card-content">
-                <span class="card-title">Card Title</span>
+                <span class="card-title"><!-- Titulo --></span>
                 <p class="card-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                    <!-- Texto -->
                 </p>
             </div>
 
             <div class="card-link">
-                <a href="#" title="Read Full"><span>Read Full</span></a>
-            </div>
-        </div>
-        
-        <div class="basic-card basic-card-light">
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p class="card-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-            </div>
-
-            <div class="card-link">
-                <a href="#" title="Read Full"><span>Read Full</span></a>
-            </div>
-        </div>
-        
-        <div class="basic-card basic-card-light">
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p class="card-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-            </div>
-
-            <div class="card-link">
-                <a href="#" title="Read Full"><span>Read Full</span></a>
-            </div>
-        </div>
-        
-        <div class="basic-card basic-card-light">
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p class="card-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-            </div>
-
-            <div class="card-link">
-                <a href="#" title="Read Full"><span>Read Full</span></a>
-            </div>
-        </div>
-        
-        <div class="basic-card basic-card-light">
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p class="card-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-            </div>
-
-            <div class="card-link">
-                <a href="#" title="Read Full"><span>Read Full</span></a>
+                <a href="<!-- Link -->" title="Read Full"><span>Read Full</span></a>
             </div>
         </div>
         

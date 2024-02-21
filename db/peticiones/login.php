@@ -5,16 +5,14 @@ include ("./db/Conexion.php");
 
 class Contacto extends Conexion {
     public function log_in($usuario, $contra) {
-        $this->sentencia = "SELECT id, password FROM usuarios WHERE userName = '$usuario'";
-        $bandera = $this->ejecutar_sentencia();
-
-        if ($bandera->num_rows > 0) {
-            $usuarioEncontrado = $bandera->fetch_assoc();
-            $hashContra = $usuarioEncontrado['password'];
-            if ($contra == $hashContra) { 
-                // La contraseña es correcta, el usuario puede iniciar sesión
-
-                return $usuarioEncontrado['id'];
+        $query = $this->connect()->query("SELECT eCodeUsuarios, tPasswordUsuarios FROM usuarios WHERE tUserNameUsuarios = '$usuario'");
+        $query->execute();
+        if ($query->rowCount()) {
+            foreach ($query as $user) {
+                $md5 = md5($contra);
+                if (password_verify($md5, $user['tPasswordUsuarios'])) {
+                    return $user['eCodeUsuarios'];
+                }
             }
         }
         return false;

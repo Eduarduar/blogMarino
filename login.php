@@ -12,7 +12,6 @@ $access = 0;
 if(isset($_POST["log_in"])) {
   $usuario = $_POST['usuario'];
   $contra = $_POST['contra'];
-
   $obj = new Contacto();
   $log = $obj->log_in($usuario, $contra); // Si el usuario y contraseña son correctos, regresa el id del usuario
   if ($log != false) {
@@ -22,6 +21,7 @@ if(isset($_POST["log_in"])) {
     $error = 1;
   }
 }
+
 ?>
 
 <!DOCTYPE html>
