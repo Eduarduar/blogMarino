@@ -4,6 +4,8 @@
 
     include './db/peticiones/publicacion.php';
 
+    $contacto = new Contacto();
+
 ?>
 
 

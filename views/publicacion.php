@@ -1,5 +1,4 @@
 <?php
-        $contacto = new Contacto();
         if (isset($_GET["post"])) {
             $idPost = $_GET["post"];
         } else {
@@ -28,7 +27,9 @@
                 $imagenes = $contacto->obtenerImagenUltimaPublicacion();   
             }else{
                 $textos = $contacto->obtenerTextoPublicacion($idPost);
-                $imagenes = $contacto->obtenerImagenPublicacion($idPost);                    
+                $imagenes = $contacto->obtenerImagenPublicacion($idPost);          
+                // var_dump($textos);
+                // var_dump($imagenes);
             }
 
             if ($textos != false) {
@@ -51,6 +52,9 @@
                         ];
                     }
                 }
+
+                // Sort the array by the position of each module
+                ksort($contenido);
 
                 foreach ($contenido as $modulo) {
                     if ($modulo['tipo'] == 'texto') {

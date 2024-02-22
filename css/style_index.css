@@ -26,19 +26,20 @@
     justify-content: center;
 }
 
-.see-more {
+.more {
     max-height: 95px;
     user-select: none;
     cursor: pointer;
+    min-height: 100px;
 }
 
-.see-more .card-content {
+.more .card-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.see-more a {
+.more a {
     position: absolute !important;
     text-decoration: none;
     color: #636363;
@@ -47,11 +48,11 @@
     left: 0;
 }
 
-.see-more a:hover {
+.more a:hover {
     animation: left-move 0.3s infinite alternate;
 }
 
-.see-more i {
+.more i {
     margin-left: 1.5rem;
     font-size: 25px;
     color: #636363;
@@ -123,6 +124,11 @@
 
 .basic-card-light .card-text {
     color: #7b7b7b;
+    min-height: 90px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .basic-card-light .card-link {

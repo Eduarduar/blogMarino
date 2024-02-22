@@ -4,6 +4,8 @@
 
     include("db/peticiones/index.php");
 
+    $contacto = new Contacto();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,22 +80,37 @@
     <!-- Cards -->
     <section class="cards">
 
-        <div class="basic-card basic-card-light">
-            <div class="card-content">
-                <span class="card-title"><!-- Titulo --></span>
-                <p class="card-text">
-                    <!-- Texto -->
-                </p>
-            </div>
-
-            <div class="card-link">
-                <a href="<!-- Link -->" title="Read Full"><span>Read Full</span></a>
-            </div>
-        </div>
+        <?php
         
-        <div class="basic-card basic-card-light see-more">
+            $publicaciones = $contacto->obtenerUltimasPublicaciones();
+
+            if ($publicaciones != false){
+                foreach ($publicaciones as $publicacion) {
+                    ?>
+                    
+                                <div class="basic-card basic-card-light">
+                                    <div class="card-content">
+                                        <span class="card-title"> <?php echo $publicacion['tTitlePublicaciones']; ?> </span>
+                                        <p class="card-text">
+                                            <?php echo $publicacion['tContenidoTexts']; ?>
+                                        </p>
+                                    </div>
+
+                                    <div class="card-link">
+                                        <a href="<?php echo "post?post=" . $publicacion['eCodePublicaciones'] ?>" title="Read Full"><span>Read Full</span></a>
+                                    </div>
+                                </div>
+                    
+                    <?php
+                }
+            }
+            
+        
+        ?>
+        
+        <div class="basic-card basic-card-light more">
             <a class="card-content">
-                <span class="card-title">See more<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                <span class="card-title">More<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
             </a>
         </div>
 
