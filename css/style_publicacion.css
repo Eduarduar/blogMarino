@@ -1,5 +1,6 @@
 img {
-    max-width: 100vw;
+    max-width: 1140px;
+    margin-top: 3rem;
 }
 
 .text-public {
@@ -17,3 +18,4 @@ img {
     font-size: 30pt;
     font-weight: bold;
 }
+

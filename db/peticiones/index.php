@@ -29,13 +29,13 @@ class Contacto extends Conexion {
         $query->execute();
     
         if ($query->rowCount()) {
+            $count = 1;
             foreach ($query as $contenido) {
-                $datos = [
-                    'text' => [
-                        'text' => $contenido['tContenidoTexts'],
-                        'positionText' => $contenido['ePosicionTexts']
-                    ]
+                $datos['text' . $count] = [
+                    'text' => $contenido['tContenidoTexts'],
+                    'positionText' => $contenido['ePosicionTexts']
                 ];
+                $count++;
             }
             return $datos;
         } else {
@@ -51,13 +51,13 @@ class Contacto extends Conexion {
         $query->execute();
 
         if ($query->rowCount()) {
+            $count = 1;
             foreach ($query as $contenido) {
-                $datos = [
-                    'imagen' => [
-                        'imagen' => $contenido['tLugarImages'],
-                        'positionImagen' => $contenido['ePosicionImages']
-                    ]
+                $datos['imagen' . $count] = [
+                    'imagen' => $contenido['tLugarImages'],
+                    'positionImagen' => $contenido['ePosicionImages']
                 ];
+                $count++;
             }
             return $datos;
         } else {
@@ -65,50 +65,32 @@ class Contacto extends Conexion {
         }
     }
 
-    // public function obtenerTituloUltimaPublicacion() {
-    //     $query = $this->connect()->query("SELECT title FROM publicaciones WHERE id = (SELECT MAX(id) FROM publicaciones)");
-    //     $query->execute();
+    public function obtenerUltimasPublicaciones(){
+        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
+        FROM publicaciones p
+        INNER JOIN texts t ON t.epublicacionTexts = p.eCodePublicaciones
+        WHERE t.ePosicionTexts = 1
+        ORDER BY p.eCodePublicaciones DESC
+        LIMIT 5 OFFSET 1;
+        ");
+        $query->execute();
 
-    //     if ($query->rowCount()) {
-    //         foreach ($query as $titulo) {
-    //             $datos = $titulo['title'];
-    //             return $datos;
-    //         }
-    //     } else {
-    //         return null; // Or handle it differently if the title is not found
-    //     }
-    // }
+        if ($query->rowCount()) {
+            $count = 1;
+            foreach ($query as $contenido) {
+                $datos['publicacion' . $count] = [
+                    'eCodePublicaciones' => $contenido['eCodePublicaciones'],
+                    'tTitlePublicaciones' => $contenido['tTitlePublicaciones'],
+                    'tContenidoTexts' => $contenido['tContenidoTexts']
+                ];
+                $count++;
+            }
+            return $datos;
+        } else {
+            return false; // Or handle it differently if the content is not found
+        }
+    }
 
-    // public function obtenerContenidoUltimaPublicacion(){
-    //     $query = $this->connect()->query("SELECT content FROM publicaciones WHERE id = (SELECT MAX(id) FROM publicaciones)");
-    //     $query->execute();
-
-    //     if ($query->rowCount()) {
-    //         foreach ($query as $contenido) {
-    //             $datos = $contenido['content'];
-    //             return $datos;
-    //         }
-    //     } else {
-    //         return null; // Or handle it differently if the content is not found
-    //     }
-    // }
-
-    // public function obtenerVistas() { // se obtendran las ultimas 5 publicaciones
-    //     $query = $this->connect()->query("SELECT title, content FROM publicaciones ORDER BY id DESC LIMIT 5");
-    //     $query->execute();
-
-    //     if ($query->rowCount()) {
-    //         foreach ($query as $publicacion) {
-    //             $datos = [
-    //                 'title' => $publicacion['title'],
-    //                 'content' => $publicacion['content']
-    //             ];
-    //         }
-    //         return $datos;
-    //     } else {
-    //         return null; // Or handle it differently if the content is not found
-    //     }
-    // }
 }
 
 

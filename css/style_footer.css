@@ -7,7 +7,7 @@
 .footer{
     margin-top: auto;
     width: 100%;
-    padding: 100px 15%;
+    padding: 2.5rem 15%;
     background: #004173;
     color: #efefef;
     display: flex;
@@ -44,6 +44,5 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    
 }
 
