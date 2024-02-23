@@ -19,3 +19,23 @@ img {
     font-weight: bold;
 }
 
+@media screen and (max-width: 1140px){
+    img {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text-public {
+        padding: 2rem;
+    }
+    .title-public {
+        font-size: 20pt;
+    }
+
+    img {
+        max-width: 100%;
+    }
+    
+
+}
