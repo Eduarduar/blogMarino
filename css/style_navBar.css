@@ -218,10 +218,10 @@ img::-moz-selection {
 
 .log-out{
   background-color: #d00202;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #000000 !important;
   transition: .3s all;
-  margin-left: 3rem;
+  max-width: 15rem;
 }
 
 .log-out:hover, .log-out:active, .log-out:focus{
@@ -232,10 +232,9 @@ img::-moz-selection {
 
 .manage{
   background-color: #f0c503;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #000000 !important;
   transition: .3s all;
-  margin-left: 3rem;
 }
 
 .manage:hover, .manage:active, .manage:focus{
@@ -246,11 +245,9 @@ img::-moz-selection {
 .log-in, .log-out, .manage {
   margin-top: .5rem;
   padding: 1rem .5rem !important;
-  width: 12rem;
 }
 
 .manage-container, .log-in-container, .log-out-container {
-  width: 12rem !important;
   margin-left: 2rem !important;
 }
 
@@ -269,10 +266,16 @@ img::-moz-selection {
 header {
   max-height: 65px;
   height: 100%;
-
 }
 
+
 @media (min-width: 768px) {
+
+  @media screen and (max-width: 1032px){
+    .navbar-brand {
+      display: none;
+    }
+  }
 
   @media screen and (max-width: 1030px){
     nav .container {
