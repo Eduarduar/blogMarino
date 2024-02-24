@@ -5,7 +5,7 @@ if (isset($_SESSION['idUser'])) {
   header('Location: ./');
 }
 
-include("db/peticiones/login.php");
+include("db/login.php");
 $error = 0;
 $access = 0;
 

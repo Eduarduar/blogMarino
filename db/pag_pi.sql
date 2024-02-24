@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 19:00:37
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 25-02-2024 a las 00:44:42
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -86,8 +86,8 @@ CREATE TABLE `publicaciones` (
 
 INSERT INTO `publicaciones` (`eCodePublicaciones`, `eUserPublicaciones`, `tTitlePublicaciones`, `fCreationPublicaciones`, `fUpdatePublicaciones`, `eUpdatePublicaciones`, `eCategoriaPublicaciones`) VALUES
 (3, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2),
-(4, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2),
-(5, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2),
+(4, 1, 'skibiritoiloet', '2024-02-16 21:32:05', NULL, NULL, 2),
+(5, 1, 'etesetch', '2024-02-16 21:32:05', NULL, NULL, 2),
 (6, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2);
 
 -- --------------------------------------------------------

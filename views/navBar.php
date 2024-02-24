@@ -25,7 +25,7 @@
                         <a class="page-scroll" href="./">Home</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "blog.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="#multimedia">Blog</a>
+                        <a class="page-scroll" href="./blog.php">Blog</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "about.php"){ echo'active'; } ?>">
                         <a class="page-scroll" href="./about.php">About</a>
