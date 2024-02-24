@@ -68,7 +68,7 @@ class Contacto extends Conexion {
     public function obtenerUltimasPublicaciones(){
         $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
         FROM publicaciones p
-        INNER JOIN texts t ON t.epublicacionTexts = p.eCodePublicaciones
+        INNER JOIN texts t ON t.ePublicacionTexts = p.eCodePublicaciones
         WHERE t.ePosicionTexts = 1
         ORDER BY p.eCodePublicaciones DESC
         LIMIT 5 OFFSET 1;
