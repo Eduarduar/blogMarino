@@ -204,7 +204,7 @@ img::-moz-selection {
 
 .log-in{
   background-color: #1ee2e7;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #383838 !important;
   transition: .3s all;
   margin-left: 3rem;
