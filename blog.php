@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="./css/style_default.css">
         <link rel="stylesheet" href="./css/style_blog.css">
         <link rel="stylesheet" href="./css/style_footer.css">
-        <title>About - DEEP OCEAN</title>
+        <title>Blog - DEEP OCEAN</title>
     </head>
     <body>
 

@@ -9,8 +9,8 @@
                 Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p> -->
             <!-- <br>
                 <br> <br> -->
-                <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-                    <a href="#">Scanfcode</a>.
+                <p class="copyright-text">Copyright &copy; 0000 All Rights Reserved by 
+                    <a href="#">[NAME]</a>.
                 </p>
 <!--         
     

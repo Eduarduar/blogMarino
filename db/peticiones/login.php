@@ -5,6 +5,9 @@ include ("./db/Conexion.php");
 
 class Contacto extends Conexion {
     public function log_in($usuario, $contra) {
+        $usuario = preg_replace('/[^a-zA-Z0-9\s]/', '', $usuario);
+        $contra = preg_replace('/[^a-zA-Z0-9\s]/', '', $contra);
+        
         $query = $this->connect()->query("SELECT eCodeUsuarios, tPasswordUsuarios FROM usuarios WHERE tUserNameUsuarios = '$usuario'");
         $query->execute();
         if ($query->rowCount()) {
