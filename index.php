@@ -109,7 +109,7 @@
         ?>
         
         <div class="basic-card basic-card-light more">
-            <a class="card-content">
+            <a class="card-content" href="./blog.php" >
                 <span class="card-title">More<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
             </a>
         </div>
