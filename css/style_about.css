@@ -56,7 +56,7 @@ section {
 .about-image{
     flex: 1;
     margin-right: 40px;
-    overflow: hidden;
+    overflow: visible;
 }
 .about-image img{
     height: auto;
