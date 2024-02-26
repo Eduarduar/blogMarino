@@ -5,12 +5,24 @@ include ("./db/Conexion.php");
 
 class Contacto extends Conexion {
     public function obtenerTituloPublicacion($idPost) {
-        $query = $this->connect()->query("SELECT tTitlePublicaciones FROM publicaciones WHERE eCodePublicaciones = $idPost");
+        $query = $this->connect()->query("SELECT p.tTitlePublicaciones, fCreationPublicaciones, fUpdatePublicaciones, u.tUserNameUsuarios
+        FROM publicaciones p
+        INNER JOIN usuarios u ON p.eUserPublicaciones = u.eCodeUsuarios
+        WHERE eCodePublicaciones = $idPost");
         $query->execute();
 
         if ($query->rowCount()) {
             foreach ($query as $titulo) {
-                $datos = $titulo['tTitlePublicaciones'];
+                if ($titulo['fUpdatePublicaciones'] != null) {
+                    $fecha = $titulo['fUpdatePublicaciones'];
+                } else {
+                    $fecha = $titulo['fCreationPublicaciones'];
+                }
+                $datos = [
+                    'titulo' => $titulo['tTitlePublicaciones'],
+                    'autor' => $titulo['tUserNameUsuarios'],
+                    'fecha' => $fecha
+                ];
                 return $datos;
             }
         } else {
