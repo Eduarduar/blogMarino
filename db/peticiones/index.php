@@ -6,7 +6,7 @@ include ("./db/Conexion.php");
 class Contacto extends Conexion {
 
     public function obtenerTituloUltimaPublicacion() {
-        $query = $this->connect()->query("SELECT p.tTitlePublicaciones, fCreationPublicaciones, fUpdatePublicaciones, u.tUserNameUsuarios
+        $query = $this->connect()->query("SELECT p.tTitlePublicaciones, p.fCreationPublicaciones, p.fUpdatePublicaciones, u.tNameUsuarios, u.tLastNameUsuarios
         FROM publicaciones p
         INNER JOIN usuarios u ON p.eUserPublicaciones = u.eCodeUsuarios
         WHERE eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones)");
@@ -21,7 +21,7 @@ class Contacto extends Conexion {
                 }
                 $datos = [
                     'titulo' => $titulo['tTitlePublicaciones'],
-                    'autor' => $titulo['tUserNameUsuarios'],
+                    'autor' => $titulo['tNameUsuarios'] . ' ' . $titulo['tLastNameUsuarios'],
                     'fecha' => $fecha
                 ];
                 return $datos;
