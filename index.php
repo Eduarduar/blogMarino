@@ -38,24 +38,26 @@
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
+                <!-- <li data-target="#carousel" data-slide-to="1"></li>
                 <li data-target="#carousel" data-slide-to="2"></li>
                 <li data-target="#carousel" data-slide-to="3"></li>
                 <li data-target="#carousel" data-slide-to="4"></li>
-                <li data-target="#carousel" data-slide-to="5"></li>
+                <li data-target="#carousel" data-slide-to="5"></li> -->
             </ol>
             <!-- Carousel items -->
             <div class="carousel-inner">
-                <div class="item active"><img src="./source/img/vidamarina.jpg" alt=""></div>
-                <div class="item"><img src="./source/img/imagen2.jpg" alt=""></div>
+                    <div class="video-overlay"></div>
+                    <video src="./source/video/video_carrusel.mp4" autoplay muted loop></video>
+                </div>
+                <!-- <div class="item"><img src="./source/img/vidamarina.jpg" alt=""></div>
                 <div class="item"><img src="./source/img/imagen3.jpg" alt=""></div>
                 <div class="item"><img src="./source/img/imagen4.jpg" alt=""></div>
                 <div class="item"><img src="./source/img/imagen5.jpg" alt=""></div>
-                <div class="item"><img src="./source/img/imagen6.webp" alt=""></div>
+                <div class="item"><img src="./source/img/imagen6.webp" alt=""></div> -->
             </div>
             <!-- Carousel nav -->
-            <a class="carousel-control left" href="#carousel" id="prev" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#carousel" id="next" data-slide="next">&rsaquo;</a>
+            <!-- <a class="carousel-control left" href="#carousel" id="prev" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#carousel" id="next" data-slide="next">&rsaquo;</a> -->
         </div>
         <div class="container-titleCarousel">
             <h2 class="titleCarousel">DEEP OCEAN</h2>
@@ -124,6 +126,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/navBar.js"></script>
     <script src="./js/index.js"></script>
+    
 
 </body>
 </html>
