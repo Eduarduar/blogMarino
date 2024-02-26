@@ -30,28 +30,19 @@
         <section>
             <div class="heading">
                 <h1>About</h1>
-                <p>Bienvenidos a DEEP OCEAN - Explorando las produndidades Marinas</p>
+                <p>Welcome to DEEP OCEAN - Exploring the deep sea</p>
             </div>
-            <div class="container">
-                <section class="About">
+            <div class="container-about">
+                <div class="About">
                     <div class="about-image">
                         <img src="source/img/ocean.jpg"> <br>
                     </div>
                     <div class="about-content">
-                        <br><br><h2>Nuestra Misión</h2>
-                        <p>En un mundo donde la conexión con la naturaleza a menudo se pierde en la rutina 
-                        diaria, DEEP OCEAN  busca inspirar un amor más profundo por los océanos.
-                        Creemos que al compartir historias cautivadoras, imágenes impresionantes y
-                        conocimientos científicos, podemos contribuir a despertar conciencia sobre la
-                        importancia de preservar nuestros ecosistemas marinos.
-                        La vida submarina es un universo misterioso y hermoso que merece ser explorado
-                        y comprendido. Estamos emocionados de tenerte a bordo mientras exploramos juntos
-                        las maravillas que el océano tiene para ofrecer. Acompáñanos en este viaje hacia lo
-                        desconocido, donde cada publicación es un buceo en la riqueza de la vida submarina.
-                        ¡Sumérgete con DEEP OCEAN y descubre un mundo de maravillas bajo la superficie!</p>
-                        <br><a href="https://www.un.org/sustainabledevelopment/es/oceans/" target="_blank" class="read-more">Read More</a>
+                        <br><br><h2>Our mission</h2>
+                        <p>In a world where connection to nature is often lost in the daily routine, DEEP OCEAN seeks to inspire a deeper love for the oceans. We believe that by sharing captivating stories, stunning images and scientific knowledge, we can help raise awareness about the importance of preserving our marine ecosystems. Underwater life is a mysterious and beautiful universe that deserves to be explored and understood. We are excited to have you on board as we explore together the wonders the ocean has to offer. Join us on this journey into the unknown, where each publication is a dive into the richness of underwater life. Dive with DEEP OCEAN and discover a world of wonders beneath the surface!</p>
+                        <br><a href="https://www.un.org/sustainabledevelopment/es/oceans/" target="_blank" class="btn btn-info">Read More</a>
                     </div>
-                </section>
+                </div>
             </div>
         </section>
         <!-- Footer -->
