@@ -15,7 +15,11 @@
                 $titulo = $contacto->obtenerTituloPublicacion($idPost);
             }
             if ($titulo !== null) {
-                echo "<h1 class='title-public'>" . htmlspecialchars($titulo) . "</h1>";
+                echo "<h1 class='title-public'>" . htmlspecialchars($titulo['titulo']) . "</h1>";
+                echo "
+                <div class='heading'>
+                    <p>" . htmlspecialchars($titulo['autor']) . " - " . htmlspecialchars($titulo['fecha']) . "</p>
+                </div>";
             } else {
                 echo "<h1>Publicación no encontrada</h1>";
             }
