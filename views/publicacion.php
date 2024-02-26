@@ -2,7 +2,7 @@
         if (isset($_GET["post"])) {
             $idPost = $_GET["post"];
         } else {
-            $idPost = 0;
+            $idPost = -1;
         }
     ?>
 
