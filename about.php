@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="./css/style_navBar.css">
         <link rel="stylesheet" href="./css/style_default.css">
         <link rel="stylesheet" href="./css/style_footer.css">
+        <link rel="stylesheet" href="./css/style_about.css">
         <title>About - DEEP OCEAN</title>
     </head>
     <body>
@@ -27,11 +28,32 @@
 
         <!-- About -->
         <section>
-
-
-            
+            <div class="heading">
+                <h1>About</h1>
+                <p>Bienvenidos a DEEP OCEAN - Explorando las produndidades Marinas</p>
+            </div>
+            <div class="container">
+                <section class="About">
+                    <div class="about-image">
+                        <img src="source/img/ocean.jpg"> <br>
+                    </div>
+                    <div class="about-content">
+                        <br><br><h2>Nuestra Misión</h2>
+                        <p>En un mundo donde la conexión con la naturaleza a menudo se pierde en la rutina 
+                        diaria, DEEP OCEAN  busca inspirar un amor más profundo por los océanos.
+                        Creemos que al compartir historias cautivadoras, imágenes impresionantes y
+                        conocimientos científicos, podemos contribuir a despertar conciencia sobre la
+                        importancia de preservar nuestros ecosistemas marinos.
+                        La vida submarina es un universo misterioso y hermoso que merece ser explorado
+                        y comprendido. Estamos emocionados de tenerte a bordo mientras exploramos juntos
+                        las maravillas que el océano tiene para ofrecer. Acompáñanos en este viaje hacia lo
+                        desconocido, donde cada publicación es un buceo en la riqueza de la vida submarina.
+                        ¡Sumérgete con DEEP OCEAN y descubre un mundo de maravillas bajo la superficie!</p>
+                        <br><a href="https://www.un.org/sustainabledevelopment/es/oceans/" target="_blank" class="read-more">Read More</a>
+                    </div>
+                </section>
+            </div>
         </section>
-
         <!-- Footer -->
 
         <?php include 'views/footer.php'; ?>
