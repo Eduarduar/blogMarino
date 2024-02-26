@@ -29,35 +29,35 @@
         <section>
             <br><br><br>
             <div style="text-align: center;">
-                <h1>Desarrolladores</h1><br>
-                <p>DEEP OCEAN es un proyecto desarrollado por estudiantes de la Universidad de Colima de la carrera de Ingenieria de Software.</p>
-                <p>Los desarrolladores son:</p>
+                <h1>Developers</h1><br>
+                <p>DEEP OCEAN is a project developed by students from the University of Colima, majoring in Software Engineering.</p>
+                <p>The developers are:</p>
 
                 <div class="row">
                     <div class="col-lg-4">
                         <img src=".\source\img\eduardo.png" alt="Developer 1" style="width: 200px; height: 200px; border-radius: 50%;">
                         <h2>ARCEGA RODRIGUEZ EDUARDO</h2>
-                        <p>Estudiante de Ingenieria de Software en la Universidad de Colima.</p>
+                        <p>Software Engineering student at the University of Colima.</p>
                     </div>
                     <div class="col-lg-4">
                         <img src=".\source\img\jaz.png" alt="Developer 2" style="width: 200px; height: 200px; border-radius: 50%;">
                         <h2>DOMINGUEZ MARCOS JAZMIN</h2>
-                        <p>Estudiante de Ingenieria de Software en la Universidad de Colima.</p>
+                        <p>Software Engineering student at the University of Colima.</p>
                     </div>
                     <div class="col-lg-4">
                         <img src=".\source\img\gera.png" alt="Developer 3" style="width: 200px; height: 200px; border-radius: 50%;">
                         <h2>GUTIERREZ RUA GERARDO ADONAI</h2>
-                        <p>Estudiante de Ingenieria de Software en la Universidad de Colima.</p>
+                        <p>Software Engineering student at the University of Colima.</p>
                     </div>
                     <div class="col-lg-6">
                         <img src=".\source\img\jan.png" alt="Developer 4" style="width: 200px; height: 200px; border-radius: 50%;">
                         <h2>HIDALGO ROSAS JAN CARLO</h2>
-                        <p>Estudiante de Ingenieria de Software en la Universidad de Colima.</p>
+                        <p>Software Engineering student at the University of Colima.</p>
                     </div>
                     <div class="col-lg-6">
                         <img src=".\source\img\rafa.png" alt="Developer 5" style="width: 200px; height: 200px; border-radius: 50%;">
                         <h2>VUELVAS PÉREZ RAFAEL ALEXANDRO</h2>
-                        <p>Estudiante de Ingenieria de Software en la Universidad de Colima.</p>
+                        <p>Software Engineering student at the University of Colima.</p>
                     </div>
                 </div>
             </div>            
