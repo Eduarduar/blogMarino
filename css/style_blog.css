@@ -2,7 +2,8 @@
 .container-search {
     margin: 0 auto;
     margin-top: 10rem;
-    width: 1000px;
+    max-width: 1140px;
+    width: 100%;
 }
 
 .cards {

@@ -37,7 +37,7 @@
                     
                         if (isset($_SESSION['idUser'])) {
                             echo '<li class="manage-container">
-                                    <a class="page-scroll manage" href="./manage">Manage</a>
+                                    <a class="page-scroll manage" href="./manage/">Manage</a>
                                 </li>
                                 <li class="log-out-container">
                                     <a class="page-scroll log-out" href="./db/logout">Logout</a>

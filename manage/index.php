@@ -33,25 +33,25 @@
         <div class="sidebar-layout">
           <div class="sidebar-header">
             <div class="pro-sidebar-logo">
-              <div>P</div>
+              <div>DO</div>
               <h5><?php echo $UserName['nombre']; ?></h5>
             </div>
           </div>
           <div class="sidebar-content">
             <nav class="menu open-current-submenu">
               <ul>
-                <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
+                <li class="menu-header" style="padding-top: 20px"><span> GENERAL </span></li>
                 <li class="menu-item">
-                  <a href="#">
+                  <a href="#" class="dashboard-button">
                     <span class="menu-icon">
                       <i class="ri-book-2-fill"></i>
                     </span>
                     <span class="menu-title">Dashboard</span>
                   </a>
                 </li>
-                <li class="menu-header"><span> GENERAL </span></li>
+                <li class="menu-header"><span> CONTENIDO </span></li>
                 <li class="menu-item sub-menu">
-                  <a href="#">
+                  <a href="#" class="posts-button">
                     <span class="menu-icon">
                       <i class="ri-bar-chart-2-fill"></i>
                     </span>
@@ -73,9 +73,9 @@
                   </div>
                 </li>
                 <li class="menu-item sub-menu">
-                  <a href="#">
+                  <a href="#" class="categories-button">
                     <span class="menu-icon">
-                     <i class="ri-paint-brush-fill"></i>
+                      <i class="ri-paint-brush-fill"></i>
                     </span>
                     <span class="menu-title">Categories</span>
                   </a>
@@ -88,11 +88,20 @@
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">View Categories3</span>
+                          <span class="menu-title">View Categories</span>
                         </a>
                       </li>
                     </ul>
                   </div>
+                </li>
+                <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
+                <li class="menu-item">
+                  <a href="../" class="exit-button">
+                    <span class="menu-icon">
+                      <i class="ri-book-2-fill"></i>
+                    </span>
+                    <span class="menu-title">EXIT</span>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -108,59 +117,14 @@
             <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">
               <i class="ri-menu-line ri-xl"></i>
             </a>
-            <h1 style="margin-bottom: 0">Pro Sidebar</h1>
-            <span style="display: inline-block">
-              Responsive layout with advanced sidebar menu built with SCSS and vanilla Javascript
-            </span>
-            <br />
-            <span>
-              Full Code and documentation available on
-              <a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank"
-                >Github</a
-              >
-            </span>
-            <div style="margin-top: 10px">
-              <a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-                <img
-                  alt="GitHub stars"
-                  src="https://img.shields.io/github/stars/azouaoui-med/pro-sidebar-template?style=social"
-                />
-              </a>
-              <a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-                <img
-                  alt="GitHub forks"
-                  src="https://img.shields.io/github/forks/azouaoui-med/pro-sidebar-template?style=social"
-                />
-              </a>
-            </div>
           </div>
           <div>
-            <h2>Features</h2>
-            <ul>
-              <li>Fully responsive</li>
-              <li>Collapsable sidebar</li>
-              <li>Multi level menu</li>
-              <li>RTL support</li>
-              <li>Customizable</li>
-            </ul>
+            <!-- code -->
+
+            
           </div>
-          <div>
-            <h2>Resources</h2>
-            <ul>
-              <li>
-                <a target="_blank" href="https://github.com/azouaoui-med/css-pro-layout">
-                  Css Pro Layout</a
-                >
-              </li>
-              <li>
-                <a target="_blank" href="https://github.com/popperjs/popper-core"> Popper Core</a>
-              </li>
-              <li>
-                <a target="_blank" href="https://remixicon.com/"> Remix Icons</a>
-              </li>
-            </ul>
-          </div>
-          <footer class="footer">
+          <?php include '../views/footer.php'; ?>
+          <!-- <footer class="footer">
             <small style="margin-bottom: 20px; display: inline-block">
               © 2023 made with
               <span style="color: red; font-size: 18px">&#10084;</span> by -
@@ -181,7 +145,7 @@
                 <i class="ri-linkedin-box-fill ri-xl"></i>
               </a>
             </div>
-          </footer>
+          </footer> -->
         </main>
         <div class="overlay"></div>
       </div>

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="./css/style_navBar.css">
         <link rel="stylesheet" href="./css/style_default.css">
         <link rel="stylesheet" href="./css/style_footer.css">
+        <link rel="stylesheet" href="./css/style_developers.css">
         <title>Developers - DEEP OCEAN</title>
     </head>
     <body>
