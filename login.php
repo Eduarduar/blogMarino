@@ -34,7 +34,10 @@ if(isset($_POST["log_in"])) {
     <link rel="stylesheet" href="./css/style_login.css">
   </head>
   <body>
-
+    <div class="background">
+      <div class="video-overlay"></div>
+      <video src="./source/video/video_carrusel.mp4" class="" autoplay muted loop></video>
+    </div>
     <div class="login-box <?php if ($access == 1) echo "timeout"; ?>">
       <div class="exit-container">
         <a href="./">

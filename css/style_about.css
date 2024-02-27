@@ -59,6 +59,8 @@ section {
     overflow: visible;
 }
 .about-image img{
+    max-width: 1140px;
+    width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -98,6 +100,9 @@ section {
 
 }
 @media screen and (max-width: 768px){
+    .about-image:hover img{
+        transform: none;
+    }
     .heading{
         padding: 0px 20 px;
     }
