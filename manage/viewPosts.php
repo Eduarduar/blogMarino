@@ -1,16 +1,16 @@
 <?php
 
-  session_start();
+    session_start();
 
-  if (!isset($_SESSION['idUser'])) {
+    if (!isset($_SESSION['idUser'])) {
     header('Location: ../');
-  }
+    }
 
-  include '../db/peticiones/manage.php';
+    include '../db/peticiones/manage.php';
 
-  $contacto = new Contacto();
+    $contacto = new Contacto();
 
-  $UserName = $contacto->getUserName($_SESSION['idUser']);
+    $UserName = $contacto->getUserName($_SESSION['idUser']);
 
 ?>
 <!DOCTYPE html>
