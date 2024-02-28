@@ -48,7 +48,6 @@
             <div class="carousel-inner">
                     <div class="video-overlay"></div>
                     <video src="./source/video/video_carrusel.mp4" autoplay muted loop></video>
-                </div>
                 <!-- <div class="item"><img src="./source/img/vidamarina.jpg" alt=""></div>
                 <div class="item"><img src="./source/img/imagen3.jpg" alt=""></div>
                 <div class="item"><img src="./source/img/imagen4.jpg" alt=""></div>

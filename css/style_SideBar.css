@@ -786,18 +786,65 @@ a {
   }
 }
 
-.exit-button span {
+.exit-button:hover span,
+.exit-button.active span{
   color: red !important;
 }
 
-.dashboard-button span {
+.dashboard-button:hover span,
+.dashboard-button.active span {
   color: #00aeff !important;
 }
 
-.posts-button span{
+.categories-button + .sub-menu-list ul li.active a span {
+  color: #ff8000 !important;
+}
+.posts-button + .sub-menu-list ul li.active a span {
+  color: #ffbf00 !important;
+}
+.categories-button:hover span,
+.categories-button.open span,
+.categories-button.active span,
+.categories-button + .sub-menu-list ul li:hover a span{
   color: #ff8000 !important;
 }
 
-.categories-button span {
+
+.posts-button:hover span,
+.posts-button.open span,  
+.posts-button.active span,
+.posts-button + .sub-menu-list ul li:hover a span{
   color: #ffbf00 !important;
+}
+
+
+.posts-button + .sub-menu-list li.active a::before {
+  content: "";
+  position: relative;
+  left: -40px;
+  top: 0;
+  width: 3px;
+  height: 50px;
+  background-color: #ff8000;
+}
+
+
+.categories-button + .sub-menu-list li.active a::before {
+  content: "";
+  position: relative;
+  left: -40px;
+  top: 0;
+  width: 3px;
+  height: 50px;
+  background-color: #ffbf00;
+}
+
+.dashboard-button.active a::before {
+  content: "";
+  position: relative;
+  left: -20px;
+  top: 0;
+  width: 3px;
+  height: 50px;
+  background-color: #00aeff;
 }
