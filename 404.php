@@ -15,10 +15,14 @@
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/style_navBar.css">
-    <link rel="stylesheet" href="./css/style_default.css">
-    <link rel="stylesheet" href="./css/style_404.css">
-    <link rel="stylesheet" href="./css/style_footer.css">
+    <?php
+        $currentDir = dirname($_SERVER['PHP_SELF']);
+        $cssPath = $currentDir . '/css/';
+    ?>
+    <link rel="stylesheet" href="<?php echo $cssPath; ?>style_navBar.css">
+    <link rel="stylesheet" href="<?php echo $cssPath; ?>style_default.css">
+    <link rel="stylesheet" href="<?php echo $cssPath; ?>style_404.css">
+    <link rel="stylesheet" href="<?php echo $cssPath; ?>style_footer.css">
     <title>Publicaciones</title>
 </head>
 <body id="page-top">
