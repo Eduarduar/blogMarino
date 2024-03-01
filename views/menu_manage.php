@@ -30,7 +30,7 @@
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
-                        <li class="menu-header"><span> CONTENIDO </span></li>
+                        <li class="menu-header"><span> CONTENT </span></li>
                         <li class="menu-item sub-menu post-button-container <?php if ($pagina_actual == 'addPost.php' OR $pagina_actual == 'viewPosts.php'){ echo 'open';} ?>">
                             <a href="#" class="posts-button <?php if ($pagina_actual == 'addPost.php' OR $pagina_actual == 'viewPosts.php'){ echo 'active';} ?>">
                                 <span class="menu-icon">

@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include ("../Conexion.php");
+include ("../conexion.php");
 
 class Contacto extends Conexion {
     
