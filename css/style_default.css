@@ -1,9 +1,11 @@
-body::-webkit-scrollbar {
-    width: 10px;
-    background-color: #222222;
+body::-webkit-scrollbar,
+.scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+  background-color: #222222;
 }
 
-body::-webkit-scrollbar-thumb {
-    background: #1ee2e7;
-    border-radius: 5px;
+body::-webkit-scrollbar-thumb,
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #1ee2e7;
+  border-radius: 5px;
 }
