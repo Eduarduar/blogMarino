@@ -319,16 +319,16 @@ $(document).ready(function () {
         }
       } else {
         type = "image";
-        const fileInput = $(modules_form[i]).find("input");
-        const files = fileInput[0].files;
+        let fileInput = $(modules_form[i]).find("input");
+        let files = fileInput[0].files;
 
-        // Validar que solo se haya seleccionado un archivo
+        // Validar que solo se haya seleccionado un archivo por input
         if (files.length !== 1) {
           messageAlert("Please select only one file.", 1);
           return;
         }
 
-        const file = files[0];
+        let file = files[0];
 
         if (!file) {
           return;
@@ -346,20 +346,20 @@ $(document).ready(function () {
 
     // Validar las imágenes
     for (let i = 0; i < imageFiles.length; i++) {
-      const file = imageFiles[i];
-      const fileName = generateRandomFileName(file.name);
-      const filePath = `../source/public/img/${fileName}`;
+      let file = imageFiles[i];
+      let fileName = generateRandomFileName(file.name);
+      let filePath = `../source/public/img/${fileName}`;
 
       // Validar el tamaño del archivo
-      const maxSize = 10 * 1024 * 1024; // 10MB
+      let maxSize = 10 * 1024 * 1024; // 10MB
       if (file.size > maxSize) {
         messageAlert("Image size exceeds the maximum limit of 10MB.", 1);
         return;
       }
 
       // Validar la extensión del archivo
-      const allowedExtensions = ["png", "jpg", "jpeg"];
-      const fileExtension = file.name.split(".").pop().toLowerCase();
+      let allowedExtensions = ["png", "jpg", "jpeg"];
+      let fileExtension = file.name.split(".").pop().toLowerCase();
       if (!allowedExtensions.includes(fileExtension)) {
         messageAlert(
           "Invalid file format. Please select a PNG, JPG or JPEG file.",
@@ -386,7 +386,6 @@ $(document).ready(function () {
     }
 
     const formData = new FormData();
-    let code = "addPost";
     formData.append("title", title);
     formData.append("category", category);
     formData.append("modules", JSON.stringify(modules));
@@ -416,6 +415,11 @@ $(document).ready(function () {
     form.reset();
     // Eliminar los contenedores de texto
     for (let i = 1; i < modules_form.length; i++) {
+      if ($(modules_form[i]).hasClass("text-area-container")) {
+        currentScroll -= 286;
+      } else {
+        currentScroll -= 442;
+      }
       $(modules_form[i]).remove();
     }
     // Eliminar los contenedores de imagen
