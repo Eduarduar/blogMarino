@@ -1,5 +1,6 @@
 <?php
     $pagina_actual = basename($_SERVER['PHP_SELF']);
+    $currentDir = dirname($_SERVER['PHP_SELF']);
 ?>
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
@@ -22,29 +23,29 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "index.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="./">Home</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/">Home</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "blog.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="./blog.php">Blog</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/blog.php">Blog</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "about.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="./about.php">About</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/about.php">About</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "developers.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="./developers.php">Developers</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/developers.php">Developers</a>
                     </li>
                     <?php
                     
                         if (isset($_SESSION['idUser'])) {
                             echo '<li class="manage-container">
-                                    <a class="page-scroll manage" href="./manage/">Manage</a>
+                                    <a class="page-scroll manage" href="' . $currentDir . '/manage/">Manage</a>
                                 </li>
                                 <li class="log-out-container">
-                                    <a class="page-scroll log-out" href="./db/logout">Logout</a>
+                                    <a class="page-scroll log-out" href="' . $currentDir . '/db/logout">Logout</a>
                                 </li>';
                         } else {
                             echo '<li class="log-in-container">
-                                    <a class="page-scroll log-in" href="./login">Login</a>
+                                    <a class="page-scroll log-in" href="' . $currentDir . '/login">Login</a>
                                 </li>';
                         }
 

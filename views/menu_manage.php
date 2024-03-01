@@ -1,6 +1,7 @@
 <?php
 
     $pagina_actual = basename($_SERVER['PHP_SELF']);
+    $currentDir = dirname($_SERVER['PHP_SELF']);
 
 ?>
 
@@ -8,7 +9,7 @@
     <aside id="sidebar" class="sidebar break-point-sm has-bg-image">
         <a id="btn-collapse" class="sidebar-collapser"><i class="ri-arrow-left-s-line"></i></a>
         <div class="image-wrapper">
-            <img src="assets/images/sidebar-bg.jpg" alt="sidebar background" />
+            <img src="" alt="sidebar background" />
         </div>
         <div class="sidebar-layout">
             <div class="sidebar-header">
@@ -22,7 +23,7 @@
                     <ul>
                         <li class="menu-header" style="padding-top: 20px"><span> GENERAL </span></li>
                         <li class="menu-item dashboard-button <?php if ($pagina_actual == 'index.php'){ echo 'active';} ?>">
-                            <a href="./" class="">
+                            <a href="<?php echo $currentDir; ?>/" class="">
                                 <span class="menu-icon">
                                     <i class="ri-bar-chart-fill"></i>
                                 </span>
@@ -40,12 +41,12 @@
                             <div class="sub-menu-list">
                                 <ul>
                                     <li class="menu-item <?php if ($pagina_actual == 'addPost.php'){ echo 'active';} ?>">
-                                        <a href="./addPost" class="">
+                                        <a href="<?php echo $currentDir; ?>/addPost" class="">
                                             <span class="menu-title">Add Post</span>
                                         </a>
                                     </li>
                                     <li class="menu-item <?php if ($pagina_actual == 'viewPosts.php'){ echo 'active';} ?>">
-                                        <a href="./viewPosts" class="">
+                                        <a href="<?php echo $currentDir; ?>/viewPosts" class="">
                                             <span class="menu-title">View Posts</span>
                                         </a>
                                     </li>
@@ -62,12 +63,12 @@
                             <div class="sub-menu-list">
                                 <ul>
                                     <li class="menu-item <?php if ($pagina_actual == 'addCategory.php'){ echo 'active';} ?>">
-                                        <a href="./addCategory">
+                                        <a href="<?php echo $currentDir; ?>/addCategory">
                                             <span class="menu-title">Add Category</span>
                                         </a>
                                     </li>
                                     <li class="menu-item <?php if ($pagina_actual == 'viewCategories.php'){ echo 'active';} ?>">
-                                        <a href="./viewCategories.php">
+                                        <a href="<?php echo $currentDir; ?>/viewCategories.php">
                                             <span class="menu-title">View Categories</span>
                                         </a>
                                     </li>
@@ -91,7 +92,7 @@
         </div>
     </aside>
     <div id="overlay" class="overlay"></div>
-    <div class="layout">
+    <div class="layout scrollbar-custom">
         <main class="content">
             <div>
                 <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">
