@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 date_default_timezone_set("America/Mexico_City");
 ini_set('display_errors', 1); // Mostrar errores
 
-if (file_exists("../db/Conexion.php")) {
-    include("../db/Conexion.php");
+if (file_exists("../db/conexion.php")) {
+    include("../db/conexion.php");
 }else {
-    include("../Conexion.php");
+    include("../conexion.php");
 }
 
 class Contacto extends Conexion {
