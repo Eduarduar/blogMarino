@@ -59,10 +59,10 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`eCodeImages`, `tLugarImages`, `ePosicionImages`, `ePublicacionImages`) VALUES
-(1, './source/img/oceanoplastico.jpg', 2, 3),
-(2, './source/img/oceanoplastico.jpg', 2, 4),
-(3, './source/img/oceanoplastico.jpg', 2, 5),
-(4, './source/img/oceanoplastico.jpg', 2, 6);
+(1, './source/public/img/oceanoplastico.jpg', 2, 3),
+(2, './source/public/img/oceanoplastico.jpg', 2, 4),
+(3, './source/public/img/oceanoplastico.jpg', 2, 5),
+(4, './source/public/img/oceanoplastico.jpg', 2, 6);
 
 -- --------------------------------------------------------
 
