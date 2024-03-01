@@ -78,6 +78,32 @@ class Contacto extends Conexion {
 
         return true;
     }
+
+    public function getPosts(){
+        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
+        FROM publicaciones p
+        INNER JOIN texts t On t.ePublicacionTexts = p.eCodePublicaciones
+        WHERE t.ePosicionTexts = 1
+        ORDER BY p.eCodePublicaciones DESC;
+        ");
+        $query->execute();
+
+        if ($query->rowCount()){
+            $count = 1;
+
+            foreach ($query as $contenido) {
+                $datos['publicacion' . $count] = [
+                    'id'            =>  $contenido['eCodePublicaciones'],
+                    'title'        =>  $contenido['tTitlePublicaciones'],
+                    'content'     =>  $contenido['tContenidoTexts']
+                ];
+                $count++;
+            }
+            return $datos;
+        } else {
+            return false;
+        }
+    }
     
 }
 
