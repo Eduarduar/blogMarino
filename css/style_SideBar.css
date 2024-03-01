@@ -787,7 +787,7 @@ a {
 }
 
 .exit-button:hover span,
-.exit-button.active span{
+.exit-button.active span {
   color: red !important;
 }
 
@@ -805,18 +805,16 @@ a {
 .categories-button:hover span,
 .categories-button.open span,
 .categories-button.active span,
-.categories-button + .sub-menu-list ul li:hover a span{
+.categories-button + .sub-menu-list ul li:hover a span {
   color: #ff8000 !important;
 }
 
-
 .posts-button:hover span,
-.posts-button.open span,  
+.posts-button.open span,
 .posts-button.active span,
-.posts-button + .sub-menu-list ul li:hover a span{
+.posts-button + .sub-menu-list ul li:hover a span {
   color: #ffbf00 !important;
 }
-
 
 .posts-button + .sub-menu-list li.active a::before {
   content: "";
@@ -827,7 +825,6 @@ a {
   height: 50px;
   background-color: #ff8000;
 }
-
 
 .categories-button + .sub-menu-list li.active a::before {
   content: "";
@@ -847,4 +844,32 @@ a {
   width: 3px;
   height: 50px;
   background-color: #00aeff;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateX(-50%) translateY(-300%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateX(-50%) translateY(-50%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-300%);
+  }
+}
+
+.messageContainer.active {
+  /* activamos la animación slideDown y mantenemos el 100% de esta animación */
+  animation: slideDown 0.5s forwards !important;
+}
+
+.messageContainer.hide {
+  /* activamos la animación slideUp y mantenemos el 100% de esta animación */
+  animation: slideUp 0.5s forwards !important;
 }
