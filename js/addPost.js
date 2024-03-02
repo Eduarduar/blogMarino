@@ -47,7 +47,9 @@ function createDOMContent(counts) {
     .addClass(
       "p-2 mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm min-h-[200px] text-lg textarea"
     )
-    .attr("required", "");
+    .attr("required", "")
+    .attr("placeholder", "Write something...")
+    .attr("maxlength", "1000");
 
   // Crear un elemento botón de eliminar
   const deleteButton = $("<button>")
