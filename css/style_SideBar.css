@@ -873,3 +873,9 @@ a {
   /* activamos la animación slideUp y mantenemos el 100% de esta animación */
   animation: slideUp 0.5s forwards !important;
 }
+
+@media screen and (max-width: 768px) {
+  .padding-0-movile {
+    padding: 01rem !important;
+  }
+}

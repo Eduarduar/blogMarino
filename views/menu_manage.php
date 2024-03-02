@@ -92,8 +92,8 @@
         </div>
     </aside>
     <div id="overlay" class="overlay"></div>
-    <div class="layout scrollbar-custom">
-        <main class="content">
+    <div class="layout scrollbar-custom ">
+        <main class="content padding-0-movile">
             <div>
                 <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">
                     <i class="ri-menu-line ri-xl"></i>
