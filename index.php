@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/style_publicacion.css">
     <link rel="stylesheet" href="./css/style_footer.css">
     <link rel="stylesheet" href="./css/style_index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Home - DEEP OCEAN</title>
 </head>
 <body id="page-top">
@@ -98,7 +99,7 @@
                                     </div>
 
                                     <div class="card-link">
-                                        <a href="<?php echo "post?post=" . $publicacion['eCodePublicaciones'] ?>" title="Read Full"><span>Read Full</span></a>
+                                        <a href="<?php echo "post?post=" . $publicacion['eCodePublicaciones'] ?>" title="Read Full" class="hover:animate-pulse"><span>Read Full</span></a>
                                     </div>
                                 </div>
                     
