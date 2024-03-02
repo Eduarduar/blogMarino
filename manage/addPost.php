@@ -40,7 +40,7 @@
         <div class="flex flex-col md:flex-row">
             <div class="mb-4 w-full md:w-3/5 md:mb-0 md:mx-0">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-1 pl-2 min-h-10 border" required>
+                <input type="text" id="title" name="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-1 pl-2 min-h-10 border" maxlength="100" placeholder="Write a title" required>
             </div>
             <div class="mb-4 w-full md:w-2/5 md:ml-5">
                 <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
@@ -68,7 +68,7 @@
         </div>
         <div class="mt-5 text-area-container container-module">
             <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-            <textarea id="content0" name="content0" class="p-2 mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm min-h-[200px] text-lg textarea" required></textarea>
+            <textarea id="content0" name="content0" class="p-2 mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm min-h-[200px] text-lg textarea" maxlength="1000" placeholder="Write something..." required></textarea>
         </div>
     </form>
     <!-- barra de separación -->
@@ -94,8 +94,6 @@
     <?php include '../views/footer_manage.php'; ?>
 
             
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/sidebar.js"></script>  
