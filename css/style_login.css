@@ -231,6 +231,8 @@ body {
   border-radius: 10px;
   color: #fff;
   text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .timeout {
