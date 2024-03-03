@@ -105,11 +105,43 @@ function messageAlert(message, estado) {
 }
 
 $(document).ready(function () {
-  const name = $("#name"),
+  const modalFormPassword = $("#changePasswordModal"),
+    btnShowFormPassword = $("#showFormPassword"),
+    btnHideFormPassword = $("#hideFormPassword"),
+    name = $("#name"),
     lastName = $("#lastName"),
     userName = $("#userName"),
     email = $("#email"),
     validacion = new Validacion();
+
+  btnShowFormPassword.on("click", function () {
+    modalFormPassword.removeClass("hidden");
+    modalFormPassword.addClass("active");
+  });
+
+  btnHideFormPassword.on("click", function () {
+    modalFormPassword.removeClass("active");
+    modalFormPassword.addClass("hide");
+    setTimeout(function () {
+      modalFormPassword.addClass("hidden");
+      modalFormPassword.removeClass("hide");
+    }, 500);
+  });
+
+  $('button[data-togglePass="true"]').click(function () {
+    var input = $(this).prev();
+    if (input.attr("type") === "password") {
+      input.attr("type", "text");
+      $(this).html(
+        '<i class="ri-lock-unlock-line text-red-500 text-lg transition duration-300 mr-2"></i>'
+      );
+    } else {
+      input.attr("type", "password");
+      $(this).html(
+        '<i class="ri-lock-password-line text-green-500 text-lg transition duration-300 mr-2"></i>'
+      );
+    }
+  });
 
   const btnSubmit = $("#submit");
 
@@ -139,6 +171,7 @@ $(document).ready(function () {
         success: function (response) {
           if (response.code == 0) {
             validacion.changeClassValues(name, lastName, userName, email);
+            $("aside .pro-sidebar-logo h5").html(userName.val());
             // Mostrar el mensaje de éxito
             if (!messageAlert("changes were saved correctly", 0)) {
               setTimeout(() => {
@@ -159,7 +192,7 @@ $(document).ready(function () {
         },
       });
     } else {
-      messageAlert("make any changes before saving", 1);
+      messageAlert("you need to make changes before saving", 1);
     }
   });
 });

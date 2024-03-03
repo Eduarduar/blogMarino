@@ -5,23 +5,6 @@ if (isset($_SESSION['idUser'])) {
   header('Location: ./');
 }
 
-include("db/peticiones/login.php");
-$error = 0;
-$access = 0;
-
-if(isset($_POST["log_in"])) {
-  $usuario = $_POST['usuario'];
-  $contra = $_POST['contra'];
-  $obj = new Contacto();
-  $log = $obj->log_in($usuario, $contra); // Si el usuario y contraseña son correctos, regresa el id del usuario
-  if ($log != false) {
-    $_SESSION['idUser'] = $log;
-    $access = 1;
-  } else {
-    $error = 1;
-  }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +14,21 @@ if(isset($_POST["log_in"])) {
     <title>Log In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/997c58a28f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/style_login.css">
   </head>
-  <body>
+  <body class="overflow-y-hidden h-full">
     <div class="background">
       <div class="video-overlay"></div>
-      <video src="./source/video/video_carrusel.mp4" class="" autoplay muted loop></video>
+      <video src="./source/video/video_carrusel.mp4" class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop></video>
     </div>
-    <div class="login-box <?php if ($access == 1) echo "timeout"; ?>">
+    <div class="login-box">
       <div class="exit-container">
         <a href="./">
-          <b class="fas fa-times"></b>
+          <b class="fas fa-times sm:text-3xl md:text-2x1 "></b>
         </a>
       </div>
-      <h2>Login</h2>
+      <h2 class="text-[2.5rem]">Login</h2>
       <form method="POST" action="./login" class="form">
         <div class="user-box">
           <input type="text" class="user" name="usuario" required="">
@@ -53,6 +37,10 @@ if(isset($_POST["log_in"])) {
         <div class="user-box">
           <input type="password" class="pass" name="contra" required="">
           <label>Password</label>
+        </div>
+        <div class="mt-4">
+          <input type="checkbox" class="form-checkbox rounded-full appearance-none border-2 border-gray-300 w-5 h-5 transition-colors duration-300 ease-in-out ml-1" name="accept_terms" required="" style="position: relative; top: 3px;">
+            <label class="ml-2 text-white text-[1rem]">Accept <a target="_blank" href="#" class="underline">Terms and Conditions</a></label>
         </div>
         <div class="container-button">
           <i class="log" href="">
@@ -76,88 +64,5 @@ if(isset($_POST["log_in"])) {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/login.js"></script>
-    <script>
-        <?php
-          if ($error == 1) {
-            echo '
-            
-            $(".error-box").removeClass("display-none");
-            $(".error-box").addClass("active");
-
-            if (window.matchMedia("(max-width: 768px)").matches){
-              $("body").addClass("error");
-              $(".error-box").addClass("display-block active");
-
-
-              $(".log").addClass("display-none");
-              $(".container-button").addClass("height-108");
-
-              setTimeout(function() {
-                $(".error-box").removeClass("active");
-                $(".error-box").addClass("display-none");
-                $("body").removeClass("error");
-                $(".container-button").removeClass("display-none");
-                $(".log").removeClass("display-none");
-                $(".container-button").removeClass("height-108");
-              }, 3500);
-            }else{
-
-              $(".error-box").addClass("entrada");
-
-              setTimeout(function() {
-                $(".error-box").removeClass("entrada");
-              }, 300);
-
-              setTimeout(function() {
-                $(".error-box").addClass("timeout");
-              }, 3000);
-
-              setTimeout(function() {
-                $(".error-box").removeClass("active timeout");
-                $(".error-box").addClass("display-none");
-              }, 3250);
-              
-            }
-            ';
-          }
-
-          if ($access == 1) {
-            echo '
-
-            $(".access-box").removeClass("display-none");
-            $(".access-box").addClass("active");
-            
-            if (window.matchMedia("(max-width: 768px)").matches){
-              $("body").addClass("access");
-              $(".access-box").addClass("display-block");
-              $(".login-box").addClass("display-none");
-            } else {
-
-              $(".access-box").addClass("entrada");
-
-              setTimeout(function() {
-                $(".access-box").removeClass("entrada");
-                $(".login-box").addClass("display-none");
-              }, 300);
-
-              setTimeout(function() {
-                $(".access-box").addClass("timeout");
-              }, 3000);
-
-              setTimeout(function() {
-                $(".access-box").removeClass("active");
-                $(".access-box").removeClass("timeout");
-                $(".access-box").html("");
-              }, 3300);
-
-            }
-            
-            setTimeout(function() {
-              window.location.href = "./";
-            }, 3250);
-            ';
-          }
-        ?>
-    </script>
   </body>
 </html>
