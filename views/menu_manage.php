@@ -77,6 +77,14 @@
                         </li>
                         <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
                         <li class="menu-item">
+                            <a href="./editInfo" class="edit-button <?php if ($pagina_actual == 'editInfo.php'){ echo 'active';} ?>">
+                                <span class="menu-icon">
+                                    <i class="ri-user-settings-line"></i>
+                                </span>
+                                <span class="menu-title">My info</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a href="../" class="exit-button">
                                 <span class="menu-icon">
                                     <i class="ri-logout-box-line"></i>

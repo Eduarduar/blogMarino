@@ -104,12 +104,57 @@ class Contacto extends Conexion {
             return false;
         }
     }
+
+    public function getInfoUser($id) {
+        $query = $this->connect()->query("SELECT u.tNameUsuarios, u.tLastNameUsuarios, u.tUserNameUsuarios, u.tMailUsuarios
+        FROM usuarios u 
+        WHERE eCodeUsuarios = $id;
+        ");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $datos = [
+                    'name'      =>  $contenido['tNameUsuarios'],
+                    'lastName'  =>  $contenido['tLastNameUsuarios'],
+                    'userName'  =>  $contenido['tUserNameUsuarios'],
+                    'email'     =>  $contenido['tMailUsuarios']
+                ];
+            }
+            return $datos;
+        } else {
+            return false;
+        }
+    }
     
+    public function updateInfoUser($name, $lastName, $userName, $email){
+        $name = preg_replace('/[^a-zA-Z0-9\s]/', '', $name);
+        $lastName = preg_replace('/[^a-zA-Z0-9\s]/', '', $lastName);
+        $userName = preg_replace('/[^a-zA-Z0-9\s]/', '', $userName);
+        $email = preg_replace('/[^a-zA-Z0-9\s@\.]/', '', $email);
+        $id = $_SESSION['idUser'];
+        $query = $this->connect()->query("UPDATE usuarios 
+            SET tNameUsuarios = '$name', tLastNameUsuarios = '$lastName', tUserNameUsuarios = '$userName', tMailUsuarios = '$email' 
+            WHERE eCodeUsuarios = $id; 
+        ");
+        $query->execute();
+
+        return true;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contacto = new Contacto();
     session_start();
+
+    if (isset($_POST['myName']) && isset($_POST['myLastName']) && isset($_POST['myUserName']) && isset($_POST['myEmail'])){
+        if ($contacto->updateInfoUser($_POST['myName'], $_POST['myLastName'], $_POST['myUserName'], $_POST['myEmail'])){
+            $resp = array('code' => '0', 'message' => 'los cambios fueron guardados correctamente');
+        }else{
+            $resp = array('code' => '1', 'message' => 'ocurrio un error durante la ejecución');
+        }
+        echo json_encode($resp);
+    }
 
     if (isset($_POST['title']) && isset($_POST['category']) && isset($_POST['modules']) && isset($_SESSION['idUser'])){
         $title = $_POST['title'];

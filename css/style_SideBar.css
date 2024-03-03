@@ -791,6 +791,11 @@ a {
   color: red !important;
 }
 
+.edit-button:hover span,
+.edit-button.active span {
+  color: #01a440 !important;
+}
+
 .dashboard-button:hover span,
 .dashboard-button.active span {
   color: #00aeff !important;
