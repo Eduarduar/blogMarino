@@ -105,7 +105,7 @@ function messageAlert(message, estado) {
 }
 
 $(document).ready(function () {
-  let name = $("#name"),
+  const name = $("#name"),
     lastName = $("#lastName"),
     userName = $("#userName"),
     email = $("#email"),
