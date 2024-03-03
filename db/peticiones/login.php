@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include ("./db/conexion.php");
+include ("../conexion.php");
 
 class Contacto extends Conexion {
     public function log_in($usuario, $contra) {
@@ -14,11 +14,31 @@ class Contacto extends Conexion {
             foreach ($query as $user) {
                 $md5 = md5($contra);
                 if (password_verify($md5, $user['tPasswordUsuarios'])) {
-                    return $user['eCodeUsuarios'];
+                    return array('code' => '0', 'message' => 'You have successfully logged in', 'datos' => $user['eCodeUsuarios']);
                 }
             }
         }
-        return false;
+        return array('code' => '1', 'message' => 'Incorrect username or password');
     }
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    session_start();
+    $contacto = new Contacto();
+
+    if (isset($_POST['user']) && isset($_POST['pass'])) {
+        $usuario = $_POST['user'];
+        $contra = $_POST['pass'];
+        $resp = $contacto->log_in($usuario, $contra);
+        // comprobamos si existe dentro del array la clave 'datos'
+        if (array_key_exists('datos', $resp)) { // si existe, la eliminamos
+            $_SESSION['idUser'] = $resp['datos'];
+            unset($resp['datos']);
+        }
+        echo json_encode($resp);
+    }
+}
+
 ?>
+
