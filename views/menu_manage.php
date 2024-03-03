@@ -77,11 +77,11 @@
                         </li>
                         <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
                         <li class="menu-item">
-                            <a href="./editInfo" class="edit-button <?php if ($pagina_actual == 'editInfo.php'){ echo 'active';} ?>">
+                            <a href="./settings" class="edit-button <?php if ($pagina_actual == 'settings.php'){ echo 'active';} ?>">
                                 <span class="menu-icon">
-                                    <i class="ri-user-settings-line"></i>
+                                    <i class="ri-settings-line"></i>
                                 </span>
-                                <span class="menu-title">My info</span>
+                                <span class="menu-title">Settings</span>
                             </a>
                         </li>
                         <li class="menu-item">

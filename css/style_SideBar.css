@@ -851,7 +851,7 @@ a {
   background-color: #00aeff;
 }
 
-@keyframes slideDown {
+@keyframes slideDownMessage {
   0% {
     transform: translateX(-50%) translateY(-300%);
   }
@@ -860,23 +860,51 @@ a {
   }
 }
 
-@keyframes slideUp {
+@keyframes slideUpMessage {
   0% {
     transform: translateX(-50%) translateY(-50%);
   }
   100% {
     transform: translateX(-50%) translateY(-300%);
   }
+}
+
+@keyframes slideDownFormPass {
+  0% {
+    transform: translateX(-50%) translateY(-300%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(11%);
+  }
+}
+
+@keyframes slideUpFormPass {
+  0% {
+    transform: translateX(-50%) translateY(11%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-300%);
+  }
+}
+
+.modalContainerFormPassword.active {
+  /* activamos la animación slideDown y mantenemos el 100% de esta animación */
+  animation: slideDownFormPass 0.5s forwards !important;
+}
+
+.modalContainerFormPassword.hide {
+  /* activamos la animación slideUp y mantenemos el 100% de esta animación */
+  animation: slideUpFormPass 0.5s forwards !important;
 }
 
 .messageContainer.active {
   /* activamos la animación slideDown y mantenemos el 100% de esta animación */
-  animation: slideDown 0.5s forwards !important;
+  animation: slideDownMessage 0.5s forwards !important;
 }
 
 .messageContainer.hide {
   /* activamos la animación slideUp y mantenemos el 100% de esta animación */
-  animation: slideUp 0.5s forwards !important;
+  animation: slideUpMessage 0.5s forwards !important;
 }
 
 @media screen and (max-width: 768px) {
