@@ -46,19 +46,19 @@
         <form class="max-w-md mx-auto mt-8">
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                <input value="<?php echo $datos['name']; ?>" type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input value="<?php echo $datos['name']; ?>" type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  maxlength="100">
             </div>
             <div class="mb-4">
                 <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2">Last Name:</label>
-                <input value="<?php echo $datos['lastName']; ?>" type="text" id="lastName" name="lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input value="<?php echo $datos['lastName']; ?>" type="text" id="lastName" name="lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="100">
             </div>
             <div class="mb-4">
                 <label for="userName" class="block text-gray-700 text-sm font-bold mb-2">User Name:</label>
-                <input value="<?php echo $datos['userName']; ?>" type="text" id="userName" name="userName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input value="<?php echo $datos['userName']; ?>" type="text" id="userName" name="userName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="100">
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                <input value="<?php echo $datos['email']; ?>" type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input value="<?php echo $datos['email']; ?>" type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="100">
             </div>
             <div class="flex items-center justify-end">
                 <button id="showFormPassword" class="bg-transparent hover:bg-blue-500 text-blue-500 font-bold py-2 px-4 border border-blue-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300 mr-2" type="button">
@@ -80,7 +80,7 @@
                 <div class="mb-4">
                     <label for="newPassword" class="block text-gray-700 text-sm font-bold mb-2">New Password:</label>
                     <div class="relative">
-                        <input type="password" id="newPassword" name="newPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="password" id="newPassword" name="newPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="50">
                         <button data-togglePass="true" class="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 focus:outline-none" type="button">
                             <i class="ri-lock-password-line text-green-500 text-lg transition duration-300 mr-2"></i>
                         </button>
@@ -89,7 +89,7 @@
                 <div class="mb-4">
                     <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password:</label>
                     <div class="relative">
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="50">
                         <button data-togglePass="true" class="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 focus:outline-none" type="button">
                             <i class="ri-lock-password-line text-green-500 text-lg transition duration-300 mr-2"></i>
                         </button>
@@ -98,7 +98,7 @@
                 <div class="mb-4">
                     <label for="currentPassword" class="block text-gray-700 text-sm font-bold mb-2">Current Password:</label>
                     <div class="relative">
-                        <input type="password" id="currentPassword" name="currentPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="password" id="currentPassword" name="currentPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="50">
                         <button data-togglePass="true" class="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 focus:outline-none" type="button">
                             <i class="ri-lock-password-line text-green-500 text-lg transition duration-300 mr-2"></i>
                         </button>
@@ -108,7 +108,7 @@
                     <button id="hideFormPassword" class="bg-transparent hover:bg-red-500 text-red-500 font-bold py-2 px-4 border border-red-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300 mr-2" type="button">
                         Cancel
                     </button>
-                    <button class="bg-transparent hover:bg-green-500 text-green-500 font-bold py-2 px-4 border border-green-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300" type="button">
+                    <button id="savePassword" class="bg-transparent hover:bg-green-500 text-green-500 font-bold py-2 px-4 border border-green-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300" type="button">
                         Save
                     </button>
                 </div>
