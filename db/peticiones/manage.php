@@ -166,11 +166,54 @@ class Contacto extends Conexion {
             return ['code' => '0', 'message' => 'Se actualizó la información correctamente'];
         }
     }
+
+    public function confirmPass($pass, $id) {
+        $query = $this->connect()->query("SELECT tPasswordUsuarios FROM usuarios WHERE eCodeUsuarios = $id;");
+        $query->execute();
+        $hash;
+        if ($query->rowCount()) {
+            foreach ($query as $passU) {
+                $md5 = md5($pass);
+                $hash = $passU['tPasswordUsuarios'];
+                if (password_verify($md5, $passU['tPasswordUsuarios'])) {
+                    return array('code' => '0', 'message' => 'Contraseña correcta');
+                }
+            }
+        }
+        return array('code' => '1', 'message' => 'Incorrect password1');
+    }
+
+    public function updatePass($nPass, $cPass, $id) {
+        $nPass = preg_replace('/[^a-zA-Z0-9]/', '', $nPass);
+        $cPass = preg_replace('/[^a-zA-Z0-9]/', '', $cPass);
+        $validcPass = $this->confirmPass($cPass, $id);
+        $validnPass = $this->confirmPass($nPass, $id);
+        if ($validcPass['code'] == '1'){
+            return $validcPass;
+        }if ($validnPass['code'] != '0'){
+            $md5 = md5($nPass);
+            $passHash = password_hash($md5, PASSWORD_DEFAULT, ['cost' => 10]);
+            $query = $this->connect()->query("UPDATE usuarios 
+                SET tPasswordUsuarios = '$passHash' 
+                WHERE eCodeUsuarios = $id; 
+            ");
+            $query->execute();
+    
+            return ['code' => '0', 'message' => 'Se actualizó la contraseña correctamente'];
+        }else{
+            return ['code' => '1', 'message' => 'The new password must be different from the current one'];
+        }
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contacto = new Contacto();
     session_start();
+
+    if (isset($_POST['nPass']) && isset($_POST['cPass'])){
+        $resp = $contacto->updatePass($_POST['nPass'], $_POST['cPass'], $_SESSION['idUser']);
+        echo json_encode($resp);
+    }
 
     if (isset($_POST['myName']) && isset($_POST['myLastName']) && isset($_POST['myUserName']) && isset($_POST['myEmail'])){
         $update = $contacto->updateInfoUser($_POST['myName'], $_POST['myLastName'], $_POST['myUserName'], $_POST['myEmail']);
