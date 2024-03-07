@@ -49,7 +49,7 @@ if (isset($_SESSION['idUser'])) {
             <span></span>
             <span></span>
             <button class="boton-personalizado" name="log_in">
-              Submit
+              Login
             </button> 
           </i>
         </div>
