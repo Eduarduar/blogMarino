@@ -65,7 +65,7 @@
                     Change Password
                 </button>
                 <button id="submit" class="bg-transparent hover:bg-green-500 text-green-500 font-bold py-2 px-4 border border-green-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300" type="button">
-                    Submit
+                    Save
                 </button>
             </div>
         </form>

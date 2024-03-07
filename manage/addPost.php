@@ -84,7 +84,7 @@
         </div>
         <div class="cotainer-button-sumit mx-auto">
             <button id="submit" class="hover:bg-[#31b0d5] font-bold lg:py-4 lg:px-8 rounded border border-[#31b0d5] text-[#31b0d5] hover:text-white transition duration-300 mt-5 py-2 px-4 text-sm sumit-button" type="button">
-                Submit
+                Post
             </button>
         </div>
     </div>
