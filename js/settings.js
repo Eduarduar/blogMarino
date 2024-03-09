@@ -92,7 +92,6 @@ class Validacion {
   }
 
   #validarCampo(valorClase, valorInput, input) {
-    console.log(valorInput);
     if (valorInput.length > 100) {
       messageAlert(`The ${input} must have a maximum of 100 characters`, 1);
       return false;
