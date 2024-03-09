@@ -110,12 +110,7 @@ class Validacion {
     this.#status.lastName = this.#validarCampo(this.#lastName,lastName,"Last Name");
     this.#status.userName = this.#validarCampo(this.#userName, userName,"User Name");
     this.#status.email = this.#validarCampo(this.#email, email, "E-Mail");
-    if (
-      this.#status.name ||
-      this.#status.lastName ||
-      this.#status.userName ||
-      this.#status.email
-    ) {
+    if (this.#status.name || this.#status.lastName || this.#status.userName || this.#status.email) {
       return true;
     }
     return false;
@@ -295,7 +290,7 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           if (response.code == 0) {
-            validacion.changeClassValues(name, lastName, userName, email);
+            validacion.changeClassValues(name.val(), lastName.val(), userName.val(), email.val());
             $("aside .pro-sidebar-logo h5").html(userName.val());
             $("aside .pro-sidebar-logo div").html(userName.val()[0]);
             // Mostrar el mensaje de éxito
