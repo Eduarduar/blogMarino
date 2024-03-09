@@ -92,8 +92,12 @@ class Validacion {
   }
 
   #validarCampo(valorClase, valorInput, input) {
+    console.log(valorInput);
     if (valorInput.length > 100) {
       messageAlert(`The ${input} must have a maximum of 100 characters`, 1);
+      return false;
+    }else if (valorInput.length < 3) {
+      messageAlert(`The ${input} must have a minimum of 3 characters`, 1);
       return false;
     }
     if (valorClase == valorInput) {
@@ -104,13 +108,8 @@ class Validacion {
 
   validarCambios(name, lastName, userName, email) {
     this.#status.name = this.#validarCampo(this.#name, name, "Name");
-    this.#status.lastName = this.#validarCampo(
-      this.#lastName,
-      lastName,
-      "Last Name"
-    );
-    (this.#status.userName = this.#validarCampo(this.#userName, userName)),
-      "User Name";
+    this.#status.lastName = this.#validarCampo(this.#lastName,lastName,"Last Name");
+    this.#status.userName = this.#validarCampo(this.#userName, userName,"User Name");
     this.#status.email = this.#validarCampo(this.#email, email, "E-Mail");
     if (
       this.#status.name ||
@@ -205,7 +204,6 @@ $(document).ready(function () {
   });
 
   btnSavePassword.on("click", function () {
-    event.preventDefault(); // Cancela el evento del formulario
     if (validacionPass.validarCampos()) {
       const formData = new FormData();
       formData.append("nPass", inputConfirmPass.val());
