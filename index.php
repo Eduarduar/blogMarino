@@ -12,10 +12,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/997c58a28f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
+    <!-- //code.jquery.com/jquery-3.6.0.min.js -->
+    <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
+    <!--https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js-->
+    <script src="./source/library/bootstrap/bootstrap5.3.2.min.js"></script> 
+    <!-- //kit.fontawesome.com/997c58a28f.js -->
+    <script src="./source/library/fontawesome-free-5.15.4-web/js/all.min.js"></script> 
+    <!-- Ahora: https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css  original: //code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css -->
+    <link rel="stylesheet" href="./source/library/jquery/jquery-ui-1.13.2.min.css">
+    <!-- //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css --> 
+    <link rel="stylesheet" href="./source/library/bootstrap/bootstrap3.2.0.min.css"> 
+    <!-- //maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css -->
+    <link rel="stylesheet" href="./source/library/fontawesome-free-5.15.4-web/css/all.min.css"> 
     <link rel="stylesheet" href="./css/style_navBar.css">
     <link rel="stylesheet" href="./css/style_carrusel.css">
     <link rel="stylesheet" href="./css/style_default.css">
@@ -121,8 +129,6 @@
 
     <?php include 'views/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/navBar.js"></script>
     <script src="./js/index.js"></script>
     
