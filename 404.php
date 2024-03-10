@@ -4,6 +4,27 @@
 
     include './db/peticiones/publicacion.php';
 
+    $filePath = $_SERVER['REQUEST_URI'];
+    $folderFolder = basename(dirname($filePath));
+
+    $currentDir = dirname($_SERVER['PHP_SELF']);
+    $currentName = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+
+    
+    if ($folderFolder != 'blogMarino') {
+        header('Location: /pruebas/blogMarino/404');
+    } 
+
+    if ($currentName != '404.php') {
+        if ($currentName == '404' || $currentName == '404.php') {
+        }else {        
+            header('Location: /pruebas/blogMarino/404');
+        }
+    }elseif ($currentName != '404') {
+        header('Location: /pruebas/blogMarino/404');
+    }
+
 ?>
 
 
