@@ -18,13 +18,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../source/library/jquery/jquery-3.6.0.min.js"></script> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css"/>
+    <link rel="stylesheet" href="../source/library/datatables/datatables.min.css"/>
+    <script src="../source/library/datatables/datatables.min.js"></script>
+    <script src="../source/library/bootstrap/bootstrap5.3.2.min.js"></script>
+    <script src="../source/library/Tailwind/Tailwind.min.js"></script>
     <link rel="stylesheet" href="../css/style_pagetables.css">
     <link rel="stylesheet" href="../css/style_default.css">
     <link rel="stylesheet" href="../css/style_SideBar.css">
     <link rel="stylesheet" href="../css/style_fonts.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Manage - DEEP OCEAN</title>
 </head>
 <body>
@@ -79,9 +82,6 @@
 
     <?php include '../views/footer_manage.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/sidebar.js"></script>  
     <script>

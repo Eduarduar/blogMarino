@@ -13,8 +13,9 @@ if (isset($_SESSION['idUser'])) {
     <meta charset="UTF-8">
     <title>Log In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/997c58a28f.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
+    <script src="./source/library/fontawesome-free-5.15.4-web/js/all.min.js"></script>
+    <script src="./source/library/Tailwind/Tailwind.min.js"></script>
     <link rel="stylesheet" href="./css/style_login.css">
   </head>
   <body class="overflow-y-hidden h-full">
@@ -59,10 +60,8 @@ if (isset($_SESSION['idUser'])) {
         You have successfully logged in
     </div>
     <div class="error-box display-none">
-        Incorrect username or password
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/login.js"></script>
   </body>
 </html>

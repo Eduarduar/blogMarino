@@ -52,7 +52,8 @@
     animation: left-move 0.3s infinite alternate;
 }
 
-.more i {
+.more i,
+.more svg{
     margin-left: 1.5rem;
     font-size: 25px;
     color: #636363;
