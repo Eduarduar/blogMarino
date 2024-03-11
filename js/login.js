@@ -6,6 +6,29 @@ function toggleCheckboxStyle(checkbox) {
   }
 }
 
+function messageError(message) {
+  $(".error-box").removeClass("display-none");
+  $(".error-box").addClass("active");
+
+  $("body").addClass("error");
+  $(".error-box").addClass("display-block active");
+
+  $(".log").addClass("display-none");
+  $(".container-button").addClass("height-108");
+
+  $(".error-box").html(message);
+
+  setTimeout(function () {
+    $(".error-box").removeClass("active");
+    $(".error-box").addClass("display-none");
+    $("body").removeClass("error");
+    $(".container-button").removeClass("display-none");
+    $(".log").removeClass("display-none");
+    $(".container-button").removeClass("height-108");
+    $(".error-box").html('');
+  }, 3500);
+}
+
 $(document).ready(function () {
   const checkbox = $('input[name="accept_terms"]'),
     btnSumit = $(".log"),
@@ -59,29 +82,20 @@ $(document).ready(function () {
               window.location.href = "./";
             }, 3250);
           } else {
-            $(".error-box").removeClass("display-none");
-            $(".error-box").addClass("active");
-
-            $("body").addClass("error");
-            $(".error-box").addClass("display-block active");
-
-            $(".log").addClass("display-none");
-            $(".container-button").addClass("height-108");
-
-            setTimeout(function () {
-              $(".error-box").removeClass("active");
-              $(".error-box").addClass("display-none");
-              $("body").removeClass("error");
-              $(".container-button").removeClass("display-none");
-              $(".log").removeClass("display-none");
-              $(".container-button").removeClass("height-108");
-            }, 3500);
+            messageError(response.message);
           }
         },
         error: function (error) {
           console.error(error);
         },
       });
+    }else {
+      if (user.val() == "" || pass.val() == "") {
+        messageError("Fill in the missing fields");
+      }
+      if (!checkbox.is(":checked")) {
+        messageError("You must accept the terms and conditions");
+      }
     }
   });
 

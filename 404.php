@@ -4,17 +4,40 @@
 
     include './db/peticiones/publicacion.php';
 
+    $filePath = $_SERVER['REQUEST_URI'];
+    $folderFolder = basename(dirname($filePath));
+
+    $currentDir = dirname($_SERVER['PHP_SELF']);
+    $currentName = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+
+    
+    if ($folderFolder != 'blogMarino') {
+        header('Location: /pruebas/blogMarino/404');
+    } 
+
+    if ($currentName != '404.php') {
+        if ($currentName == '404' || $currentName == '404.php') {
+        }else {        
+            header('Location: /pruebas/blogMarino/404');
+        }
+    }elseif ($currentName != '404') {
+        header('Location: /pruebas/blogMarino/404');
+    }
+
 ?>
 
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/997c58a28f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://startbootstrap.com/templates/agency/font-awesome-4.1.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
+    <script src="./source/library/fontawesome-free-5.15.4-web/js/all.min.js"></script>
+    <script src="./source/library/bootstrap/bootstrap5.3.2.min.js"></script> 
+    <link rel="stylesheet" href="./source/library/jquery/jquery-ui-1.13.2.min.css">
+    <link rel="stylesheet" href="./source/library/bootstrap/bootstrap3.2.0.min.css"> 
+    <link rel="stylesheet" href="./source/library/fontawesome-free-5.15.4-web/css/all.min.css">
     <?php
         $currentDir = dirname($_SERVER['PHP_SELF']);
         $cssPath = $currentDir . '/css/';
@@ -63,8 +86,6 @@
 
     <?php include 'views/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/navBar.js"></script>
 
 </body>

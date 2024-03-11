@@ -23,10 +23,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style_SideBar.css">
+    <script src="../source/library/jquery/jquery-3.6.0.min.js"></script> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
+    <script src="../source/library/Tailwind/Tailwind.min.js"></script>
+    <link rel="stylesheet" href="../css/style_SideBar.css">
     <link rel="stylesheet" href="../css/style_fonts.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Manage - DEEP OCEAN</title>
 </head>
 <body>
@@ -65,7 +66,7 @@
                     Change Password
                 </button>
                 <button id="submit" class="bg-transparent hover:bg-green-500 text-green-500 font-bold py-2 px-4 border border-green-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300" type="button">
-                    Submit
+                    Save
                 </button>
             </div>
         </form>
@@ -118,7 +119,6 @@
 
     <?php include '../views/footer_manage.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/settings.js"></script>

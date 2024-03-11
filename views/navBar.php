@@ -26,13 +26,13 @@
                         <a class="page-scroll" href="<?php echo $currentDir; ?>/">Home</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "blog.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="<?php echo $currentDir; ?>/blog.php">Blog</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/blog">Blog</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "about.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="<?php echo $currentDir; ?>/about.php">About</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/about">About</a>
                     </li>
                     <li class=" <?php if ($pagina_actual == "developers.php"){ echo'active'; } ?>">
-                        <a class="page-scroll" href="<?php echo $currentDir; ?>/developers.php">Developers</a>
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/developers">Developers</a>
                     </li>
                     <?php
                     
