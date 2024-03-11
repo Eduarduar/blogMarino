@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2024 a las 00:44:42
+-- Tiempo de generación: 12-03-2024 a las 00:31:24
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,12 +34,24 @@ CREATE TABLE `categorias` (
   `tNameCategorias` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `categorias`
+-- Estructura de tabla para la tabla `config`
 --
 
-INSERT INTO `categorias` (`eCodeCategorias`, `tNameCategorias`) VALUES
-(2, 'POLLUTION');
+CREATE TABLE `config` (
+  `eCodeConfig` int(11) NOT NULL,
+  `tNameConfig` varchar(100) NOT NULL,
+  `tContentConfig` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `config`
+--
+
+INSERT INTO `config` (`eCodeConfig`, `tNameConfig`, `tContentConfig`) VALUES
+(1, 'visits', '0');
 
 -- --------------------------------------------------------
 
@@ -53,16 +65,6 @@ CREATE TABLE `images` (
   `ePosicionImages` int(11) NOT NULL,
   `ePublicacionImages` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `images`
---
-
-INSERT INTO `images` (`eCodeImages`, `tLugarImages`, `ePosicionImages`, `ePublicacionImages`) VALUES
-(1, './source/public/img/oceanoplastico.jpg', 2, 3),
-(2, './source/public/img/oceanoplastico.jpg', 2, 4),
-(3, './source/public/img/oceanoplastico.jpg', 2, 5),
-(4, './source/public/img/oceanoplastico.jpg', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -80,16 +82,6 @@ CREATE TABLE `publicaciones` (
   `eCategoriaPublicaciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `publicaciones`
---
-
-INSERT INTO `publicaciones` (`eCodePublicaciones`, `eUserPublicaciones`, `tTitlePublicaciones`, `fCreationPublicaciones`, `fUpdatePublicaciones`, `eUpdatePublicaciones`, `eCategoriaPublicaciones`) VALUES
-(3, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2),
-(4, 1, 'skibiritoiloet', '2024-02-16 21:32:05', NULL, NULL, 2),
-(5, 1, 'etesetch', '2024-02-16 21:32:05', NULL, NULL, 2),
-(6, 1, 'PLASTIC OCEAN', '2024-02-16 21:32:05', NULL, NULL, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -102,16 +94,6 @@ CREATE TABLE `texts` (
   `ePosicionTexts` int(11) NOT NULL,
   `epublicacionTexts` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `texts`
---
-
-INSERT INTO `texts` (`eCodeTexts`, `tContenidoTexts`, `ePosicionTexts`, `epublicacionTexts`) VALUES
-(1, 'Plastic floats throughout the world\'s seas. In fact, according to data from the United Nations (UN) from 2018, the ocean receives a whopping eight million tons of plastic every year. But what until now we did not even imagine was that plastic would also reach the deep sea. A clear example: at the deepest point on the planet, the one known as the Challenger Deep —located at 10,928 meters deep—, American billionaire Victor Vescovo\'s expedition discovered candy wrappers and a plastic bag this year. How did they get there? Can we do something to avoid it? Questions abound in this environmental drama.', 1, 3),
-(2, 'Plastic floats throughout the world\'s seas. In fact, according to data from the United Nations (UN) from 2018, the ocean receives a whopping eight million tons of plastic every year. But what until now we did not even imagine was that plastic would also reach the deep sea. A clear example: at the deepest point on the planet, the one known as the Challenger Deep —located at 10,928 meters deep—, American billionaire Victor Vescovo\'s expedition discovered candy wrappers and a plastic bag this year. How did they get there? Can we do something to avoid it? Questions abound in this environmental drama.', 1, 4),
-(3, 'Plastic floats throughout the world\'s seas. In fact, according to data from the United Nations (UN) from 2018, the ocean receives a whopping eight million tons of plastic every year. But what until now we did not even imagine was that plastic would also reach the deep sea. A clear example: at the deepest point on the planet, the one known as the Challenger Deep —located at 10,928 meters deep—, American billionaire Victor Vescovo\'s expedition discovered candy wrappers and a plastic bag this year. How did they get there? Can we do something to avoid it? Questions abound in this environmental drama.', 1, 5),
-(4, 'Plastic floats throughout the world\'s seas. In fact, according to data from the United Nations (UN) from 2018, the ocean receives a whopping eight million tons of plastic every year. But what until now we did not even imagine was that plastic would also reach the deep sea. A clear example: at the deepest point on the planet, the one known as the Challenger Deep —located at 10,928 meters deep—, American billionaire Victor Vescovo\'s expedition discovered candy wrappers and a plastic bag this year. How did they get there? Can we do something to avoid it? Questions abound in this environmental drama.', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -135,7 +117,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`eCodeUsuarios`, `tNameUsuarios`, `tLastNameUsuarios`, `tMailUsuarios`, `tPasswordUsuarios`, `tUserNameUsuarios`, `fCreationUsuarios`, `fUpdateUsuarios`) VALUES
-(1, 'Prueba', 'Prueba', 'Prueba@Prueba.com', '$2y$10$ClatdMwfZGS1zijoECgyPeOyNxhAEqR23XAPTsi/D3VTL8hn2jmVC', 'Admin', '2024-02-08 03:50:11', '2024-02-08 03:50:11');
+(1, 'Prueba', 'Prueba', 'Prueba@gmail.com', '$2y$10$h1hcC63aG3aAIWhutI3dwueWRu7hTMDW9GEyk3.9AxvLKAtQMgsdO', 'Admin', '2024-02-08 03:50:11', '2024-02-08 03:50:11');
 
 --
 -- Índices para tablas volcadas
@@ -146,6 +128,12 @@ INSERT INTO `usuarios` (`eCodeUsuarios`, `tNameUsuarios`, `tLastNameUsuarios`, `
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`eCodeCategorias`);
+
+--
+-- Indices de la tabla `config`
+--
+ALTER TABLE `config`
+  ADD PRIMARY KEY (`eCodeConfig`);
 
 --
 -- Indices de la tabla `images`
@@ -184,25 +172,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `eCodeCategorias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `eCodeCategorias` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `config`
+--
+ALTER TABLE `config`
+  MODIFY `eCodeConfig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `images`
 --
 ALTER TABLE `images`
-  MODIFY `eCodeImages` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `eCodeImages` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `eCodePublicaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `eCodePublicaciones` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `texts`
 --
 ALTER TABLE `texts`
-  MODIFY `eCodeTexts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `eCodeTexts` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
