@@ -55,6 +55,14 @@ class Contacto extends Conexion {
         }
         return false;
     }
+    public function addCategory($categoria){
+        $categoria = preg_replace('/[^a-zA-Z0-9\s]/', '', $categoria);
+        $query = $this->connect()->prepare("INSERT INTO categorias (tNameCategorias) VALUES (:categoria)");
+        $query->execute(['categoria' => $categoria]);
+        
+        return ['code' => '0', 'message' => 'Se agrego la categoria exitosamente'];
+    }
+
 
     public function addPost($title, $category, $idUser) {
         $query = $this->connect()->prepare("INSERT INTO publicaciones (eUserPublicaciones, tTitlePublicaciones, fCreationPublicaciones, eCategoriaPublicaciones) VALUES (:idUser, :title, CURRENT_TIMESTAMP, :category)");
@@ -209,7 +217,10 @@ class Contacto extends Conexion {
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contacto = new Contacto();
     session_start();
-
+    if (isset($_POST ['categoria'])){
+        $resp = $contacto->addCategory($_POST['categoria']);
+        echo json_encode($resp);
+    }
     if (isset($_POST['nPass']) && isset($_POST['cPass'])){
         $resp = $contacto->updatePass($_POST['nPass'], $_POST['cPass'], $_SESSION['idUser']);
         echo json_encode($resp);
