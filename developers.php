@@ -71,6 +71,7 @@
         <?php include 'views/footer.php'; ?>
 
         <script src="./js/navBar.js"></script>
+        <script src="./js/countVisits.js"></script>
 
             
     </body>

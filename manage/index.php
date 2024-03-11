@@ -12,6 +12,10 @@
 
   $UserName = $contacto->getUserName($_SESSION['idUser']);
 
+  $visits = number_format($contacto->getCountVisits(), 0, '.', ',');
+  $posts = number_format($contacto->getCountPosts(), 0, '.', ',');
+  $categories = number_format($contacto->getCountCategories(), 0, '.', ',');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +43,8 @@
                 <i class="ri-user-location-line text-4xl text-blue-500"></i>
                 <span class="text-2xl font-bold ml-2">Visits</span>
               </div>
-              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-2xl mr-10">
-                10
+              <span class="text-blue-500 text-2xl mr-10">
+                <?php echo $visits; ?>
               </span>
             </div>
           </div>
@@ -53,12 +57,12 @@
                 <i class="ri-article-line text-4xl text-yellow-400"></i>
                 <span class="text-2xl font-bold ml-2">Posts</span>
               </div>
-              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-lg  text-yellow-400">
-                10
+              <span class="text-blue-500 text-lg  text-yellow-400">
+                <?php echo $posts; ?>
               </span>
             </div>
             <div class="mx-auto">
-              <a href="#" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              <a href="./viewPosts" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
             </div>
           </div>
         </div>
@@ -70,12 +74,12 @@
                 <i class="ri-list-check text-4xl text-orange-400"></i>
                 <span class="text-2xl font-bold ml-2">Categories</span>
               </div>
-              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-lg text-orange-400">
-                10
+              <span class="text-blue-500 text-lg text-orange-400">
+                <?php echo $categories; ?>
               </span>
             </div>
             <div class="mx-auto">
-              <a href="#" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              <a href="./viewCategories" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
             </div>
           </div>
         </div>
@@ -88,5 +92,6 @@
 
     <script src="../js/popper.min.js"></script>
     <script src="../js/sidebar.js"></script>  
+    <script src="../js/countVisits.js"></script>
 </body>
 </html>

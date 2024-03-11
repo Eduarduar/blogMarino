@@ -95,6 +95,7 @@
 
     <script src="../js/popper.min.js"></script>
     <script src="../js/sidebar.js"></script>  
-    <script src="../js//addPost.js"></script>
+    <script src="../js/addPost.js"></script>
+    <script src="../js/countVisits.js"></script>
 </body>
 </html>

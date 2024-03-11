@@ -85,6 +85,7 @@
 
         <script src="./js/navBar.js"></script>
         <script src="./js/blog.js"></script>
+        <script src="./js/countVisits.js"></script>
 
             
     </body>

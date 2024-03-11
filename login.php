@@ -63,5 +63,6 @@ if (isset($_SESSION['idUser'])) {
     </div>
 
     <script src="./js/login.js"></script>
+    <script src="./js/countVisits.js"></script>
   </body>
 </html>

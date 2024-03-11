@@ -127,6 +127,57 @@ class Contacto extends Conexion {
         }
     }
 
+    public function getCountPosts() {
+        $query = $this->connect()->query("SELECT COUNT(eCodePublicaciones) as total FROM publicaciones");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $count = $contenido['total'];
+            }
+            return $count;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCountCategories() {
+        $query = $this->connect()->query("SELECT COUNT(eCodeCategorias) as total FROM categorias");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $count = $contenido['total'];
+            }
+            return $count;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCountVisits() {
+        $query = $this->connect()->query("SELECT tContentConfig FROM config WHERE eCodeConfig = 1 AND tNameConfig = 'visits'");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $count = $contenido['tContentConfig'];
+                // convertimos el valor a entero
+                $count = (int)$count;
+            }
+            return $count;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateCountVisits($count) {
+        $query = $this->connect()->query("UPDATE config SET tContentConfig = '$count' WHERE eCodeConfig = 1 AND tNameConfig = 'visits'");
+        $query->execute();
+
+        return true;
+    }
+
     public function validDataUser($userName, $email, $id) {
         $query = $this->connect()->query("SELECT tUserNameUsuarios, tMailUsuarios 
         FROM usuarios 
@@ -226,6 +277,43 @@ class Contacto extends Conexion {
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contacto = new Contacto();
     session_start();
+
+    if (isset($_POST['action'])){
+        $action = $_POST['action'];
+        switch ($action) {
+            case 'getCountPosts':
+                $countPosts = $contacto->getCountPosts();
+                if ($countPosts == false){
+                    echo json_encode(['code' => '1', 'message' => 'No hay publicaciones']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Hay publicaciones', 'datos' => $countPosts]);
+                }
+                break;
+            case 'getCountCategories':
+                $countCategories = $contacto->getCountCategories();
+                if ($countCategories == false){
+                    echo json_encode(['code' => '1', 'message' => 'No hay categorias']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Hay categorias', 'datos' => $countCategories]);
+                }
+                break;
+            case 'getCountVisits':
+                $countVisits = $contacto->getCountVisits();
+                if ($countVisits == false){
+                    echo json_encode(['code' => '1', 'message' => 'No hay visitas']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Hay visitas', 'datos' => $countVisits]);
+                }
+                break;
+            case 'updateCountVisits':
+                $count = $contacto->getCountVisits();
+                $count++;
+                $updateCountVisits = $contacto->updateCountVisits($count);
+                echo json_encode($updateCountVisits);
+                break;
+        }
+    }
+
     if (isset($_POST ['categoria'])){
         $categoria = $_POST['categoria'];
         $categoria = preg_replace('/[^a-zA-Z0-9\s]/', '', $categoria);
