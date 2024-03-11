@@ -100,7 +100,7 @@
         </div>
     </aside>
     <div id="overlay" class="overlay"></div>
-    <div class="layout scrollbar-custom ">
+    <div class="layout scrollbar-custom bg-gray-100">
         <main class="content padding-0-movile">
             <div>
                 <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">

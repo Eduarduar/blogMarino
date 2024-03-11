@@ -29,7 +29,60 @@
 
     <?php include '../views/menu_manage.php'; ?>
 
-    
+
+    <div class="container mx-auto mt-10">
+      <div class="flex flex-wrap justifi-betweem">
+        <div class="bg-white w-full lg:w-full xl:w-[808px] 2xl:w-[1208px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i class="ri-user-location-line text-4xl text-blue-500"></i>
+                <span class="text-2xl font-bold ml-2">Visits</span>
+              </div>
+              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-2xl mr-10">
+                10
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white w-full lg:w-full xl:w-[400px] 2xl:w-[600px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i class="ri-article-line text-4xl text-yellow-400"></i>
+                <span class="text-2xl font-bold ml-2">Posts</span>
+              </div>
+              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-lg  text-yellow-400">
+                10
+              </span>
+            </div>
+            <div class="mx-auto">
+              <a href="#" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white w-full lg:w-full xl:w-[400px] 2xl:w-[600px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i class="ri-list-check text-4xl text-orange-400"></i>
+                <span class="text-2xl font-bold ml-2">Categories</span>
+              </div>
+              <span href="usuarios.php" class="text-blue-500 hover:text-blue-600 text-lg text-orange-400">
+                10
+              </span>
+            </div>
+            <div class="mx-auto">
+              <a href="#" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 
     <?php include '../views/footer_manage.php'; ?>
 
