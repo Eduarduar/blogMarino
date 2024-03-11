@@ -55,14 +55,6 @@ class Contacto extends Conexion {
         }
         return false;
     }
-    public function addCategory($categoria){
-        $categoria = preg_replace('/[^a-zA-Z0-9\s]/', '', $categoria);
-        $query = $this->connect()->prepare("INSERT INTO categorias (tNameCategorias) VALUES (:categoria)");
-        $query->execute(['categoria' => $categoria]);
-        
-        return ['code' => '0', 'message' => 'Se agrego la categoria exitosamente'];
-    }
-
 
     public function addPost($title, $category, $idUser) {
         $query = $this->connect()->prepare("INSERT INTO publicaciones (eUserPublicaciones, tTitlePublicaciones, fCreationPublicaciones, eCategoriaPublicaciones) VALUES (:idUser, :title, CURRENT_TIMESTAMP, :category)");
@@ -178,11 +170,9 @@ class Contacto extends Conexion {
     public function confirmPass($pass, $id) {
         $query = $this->connect()->query("SELECT tPasswordUsuarios FROM usuarios WHERE eCodeUsuarios = $id;");
         $query->execute();
-        $hash;
         if ($query->rowCount()) {
             foreach ($query as $passU) {
                 $md5 = md5($pass);
-                $hash = $passU['tPasswordUsuarios'];
                 if (password_verify($md5, $passU['tPasswordUsuarios'])) {
                     return array('code' => '0', 'message' => 'Contraseña correcta');
                 }
@@ -212,13 +202,43 @@ class Contacto extends Conexion {
             return ['code' => '1', 'message' => 'The new password must be different from the current one'];
         }
     }
+
+    public function addCategory($categoria){
+        $query = $this->connect()->prepare("INSERT INTO categorias (tNameCategorias) VALUES (:categoria)");
+        $query->execute(['categoria' => $categoria]);
+        
+        return ['code' => '0', 'message' => 'Se agrego la categoria exitosamente'];
+    }
+
+    public function validCategory($categoria){
+        $query = $this->connect()->query("SELECT tNameCategorias FROM categorias WHERE tNameCategorias = '$categoria'");
+        $query->execute();
+
+        if ($query->rowCount()){
+            return ['code' => '1', 'message' => 'The category already exists'];
+        } else {
+            return ['code' => '0'];
+        }
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contacto = new Contacto();
     session_start();
     if (isset($_POST ['categoria'])){
-        $resp = $contacto->addCategory($_POST['categoria']);
+        $categoria = $_POST['categoria'];
+        $categoria = preg_replace('/[^a-zA-Z0-9\s]/', '', $categoria);
+        if ($categoria == ''){
+            echo json_encode(['code' => '1', 'message' => 'The category is empty']);
+            exit;
+        }
+        $validCategory = $contacto->validCategory($categoria);
+        if ($validCategory['code'] == '1'){
+            echo json_encode($validCategory);
+            exit;
+        }
+        $resp = $contacto->addCategory($categoria);
         echo json_encode($resp);
     }
     if (isset($_POST['nPass']) && isset($_POST['cPass'])){

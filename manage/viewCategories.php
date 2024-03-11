@@ -34,7 +34,7 @@
 
     <?php include '../views/menu_manage.php'; ?>
 
-    <h1 class="text-3xl font-bold leading-9 text-gray-900 text-center my-10">Posts</h1>
+    <h1 class="text-3xl font-bold leading-9 text-gray-900 text-center my-10">Categories</h1>
 
     <div class="">
         <table id="postsTable" class="min-w-full divide-y divide-gray-200 overflow-x-visible md:overflow-x-scroll">
