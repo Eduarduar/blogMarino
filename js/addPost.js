@@ -182,6 +182,72 @@ function createDOMImage(counts) {
     input.click(); // Activar el evento click del input:file
   });
 
+  // Evento para soltar un archivo encima de la imagen
+  img.on("dragover", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    img.addClass("dragover");
+  });
+
+  img.on("dragleave", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    img.removeClass("dragover");
+  });
+
+  img.on("drop", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    img.removeClass("dragover");
+
+    const files = e.originalEvent.dataTransfer.files;
+
+    // Validar que solo se haya soltado un archivo
+    if (files.length !== 1) {
+      messageAlert("Please drop only one file.", 1);
+      return;
+    }
+
+    const file = files[0];
+    const reader = new FileReader();
+
+    // Validar si se soltó una imagen
+    if (!file) {
+      return;
+    }
+
+    // Validar el tamaño del archivo
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (file.size > maxSize) {
+      messageAlert(
+        "The file is too large. Please select a file smaller than 10MB.",
+        1
+      );
+      return;
+    }
+
+    // Validar la extensión del archivo
+    const allowedExtensions = ["png", "jpg", "jpeg"];
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+    if (!allowedExtensions.includes(fileExtension)) {
+      messageAlert(
+        "Invalid file format. Please select a PNG, JPG or JPEG file.",
+        1
+      );
+      return;
+    }
+
+    // Lógica para cambiar la imagen
+    reader.onload = function (e) {
+      img.attr("src", e.target.result);
+    };
+
+    // Cambiamos el valor de input para que se pueda subir la imagen
+    input.get(0).files = files;
+
+    reader.readAsDataURL(file);
+  });
+
   // Devolver el elemento div
   return div.get(0);
 }

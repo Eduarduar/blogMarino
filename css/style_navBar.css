@@ -334,3 +334,357 @@ header {
   }
 
 }
+
+/*
+
+ body {
+  overflow-x: hidden;
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-muted {
+  color: #777;
+}
+
+.text-primary {
+  color: #1ee2e7;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+p.large {
+  font-size: 16px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+  outline: 0;
+}
+
+a {
+  color: #1ee2e7;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+  color: #17d0d5;
+}
+
+.img-centered {
+  margin: 0 auto;
+}
+
+.bg-light-gray {
+  background-color: #f7f7f7;
+}
+
+.bg-darkest-gray {
+  background-color: #222;
+}
+
+.btn-primary {
+  border-color: #1ee2e7;
+  text-transform: uppercase;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #fff;
+  background-color: #1ee2e7;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  border-color: #17d0d5;
+  color: #fff;
+  background-color: #17d0d5;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  border-color: #1ee2e7;
+  background-color: #1ee2e7;
+}
+
+.btn-primary .badge {
+  color: #1ee2e7;
+  background-color: #fff;
+}
+
+.navbar-default {
+  font-weight: bold; 
+}
+
+.navbar-default {
+  border-color: transparent;
+  background-color: #222;
+}
+
+.navbar-default .navbar-brand {
+  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+  color: #1ee2e7;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand.active {
+  color: #fec503;
+}
+
+.navbar-default .navbar-collapse {
+  border-color: rgba(255, 255, 255, 0.02);
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #1ee2e7;
+  background-color: #1ee2e7;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #1ee2e7;
+}
+
+.navbar-default .nav li a {
+  text-transform: uppercase;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
+  transition: all .3s;
+}
+
+.navbar-default .nav li a:hover,
+.navbar-default .nav li a:focus {
+  outline: 0;
+  color: #1ee2e7;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  border-radius: 0;
+  color: #000000;
+  background-color: #1ee2e7;
+  transition: all .3s;
+}
+
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #1ee2e7;
+  background-color: #00000000;
+}
+
+
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn:active:focus {
+  outline: 0;
+}
+
+::-moz-selection {
+  text-shadow: none;
+  background: #1ee2e7;
+}
+
+::selection {
+  text-shadow: none;
+  background: #1ee2e7;
+}
+
+img::selection {
+  background: 0 0;
+}
+
+img::-moz-selection {
+  background: 0 0;
+}
+
+.log-in{
+  background-color: #1ee2e7;
+  border-radius: 10px;
+  color: #383838 !important;
+  transition: .3s all;
+  margin-left: 3rem;
+}
+
+.log-in:hover, .log-in:active, .log-in:focus{
+  background-color: #00000000!important;
+  color: #1ee2e7 !important;
+}
+
+
+.log-out{
+  background-color: #d00202;
+  border-radius: 10px;
+  color: #000000 !important;
+  transition: .3s all;
+  max-width: 15rem;
+}
+
+.log-out:hover, .log-out:active, .log-out:focus{
+  background-color: #00000000!important;
+  color: #d00202 !important;
+}
+
+
+.manage{
+  background-color: #f0c503;
+  border-radius: 10px;
+  color: #000000 !important;
+  transition: .3s all;
+}
+
+.manage:hover, .manage:active, .manage:focus{
+  background-color: #00000000!important;
+  color: #f0c503 !important;
+}
+
+.log-in, .log-out, .manage {
+  margin-top: .5rem;
+  padding: 1rem .5rem !important;
+}
+
+.manage-container, .log-in-container, .log-out-container {
+  margin-left: 2rem !important;
+}
+
+.log-in-container, .log-out-container, .manage-container {
+  margin: 0 auto;
+  float: left;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.log-in-container a, .log-out-container a, .manage-container a{
+  margin-left: 1rem;
+}
+
+header {
+  max-height: 65px;
+  height: 100%;
+}
+
+
+@media (min-width: 768px) {
+
+  @media screen and (max-width: 1032px){
+    .navbar-brand {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1030px){
+    nav .container {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    .navbar-header a {
+      padding-left: 1.8rem;
+    }
+    .nav {
+      padding-right:3rem ;
+    }
+  }
+
+  
+  @media screen and (max-width: 807px){
+    a.page-scroll {
+      padding-left: 1 !important;
+      padding-right: 1rem !important;
+    }
+  }
+  
+  nav{
+    display: inline-block !important;
+    max-height: 65px;
+  }
+
+  .navbar-default {
+    padding: 25px 0;
+    border: 0;
+    background-color: transparent;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+
+  .navbar-default .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .navbar-default .navbar-nav > .active > a {
+    border-radius: 3px;
+  }
+
+  .navbar-default.navbar-shrink {
+    padding: 10px 0;
+    background-color: #222;
+  }
+
+  .navbar-default.navbar-shrink .navbar-brand {
+    font-size: 1.5em;
+  }
+
+}
+
+
+
+.navbar {
+  transition: all 0.5s;
+}
+
+.navbar.active {
+  background-color: rgba(0, 0, 0, 0.501);
+  padding: 0;
+}
+
+.collapse,
+.collapsing {
+  transition: all 0.5s;
+}
+.navbar.active .navbar-collapse.collapse.show {
+  background: #222222 !important;
+}
+
+*/
