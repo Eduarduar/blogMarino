@@ -379,7 +379,7 @@ class Contacto extends Conexion {
 
     
     public function getTextsPost($idPost) {
-        $query = $this->connect()->query("SELECT t.eCodeTexts
+        $query = $this->connect()->query("SELECT t.eCodeTexts, t.tContenidoTexts, t.ePosicionTexts
         FROM publicaciones p
         INNER JOIN texts t ON p.eCodePublicaciones = t.ePublicacionTexts
         WHERE p.eCodePublicaciones = $idPost
@@ -391,7 +391,9 @@ class Contacto extends Conexion {
             $count = 1;
             foreach ($query as $contenido) {
                 $datos['text' . $count] = [
-                    'id' => $contenido['eCodeTexts']
+                    'id' => $contenido['eCodeTexts'],
+                    'content' => $contenido['tContenidoTexts'],
+                    'position' => $contenido['ePosicionTexts']
                 ];
                 $count++;
             }
@@ -402,7 +404,7 @@ class Contacto extends Conexion {
     }
     
     public function getImagesPost($idPost) {
-        $query = $this->connect()->query("SELECT i.eCodeImages, i.tLugarImages
+        $query = $this->connect()->query("SELECT i.eCodeImages, i.tLugarImages, i.ePosicionImages
         FROM publicaciones p
         INNER JOIN images i ON p.eCodePublicaciones = i.ePublicacionImages
         WHERE p.eCodePublicaciones = $idPost
@@ -415,7 +417,8 @@ class Contacto extends Conexion {
             foreach ($query as $contenido) {
                 $datos['imagen' . $count] = [
                     'id' => $contenido['eCodeImages'],
-                    'path' => $contenido['tLugarImages']
+                    'path' => $contenido['tLugarImages'],
+                    'position' => $contenido['ePosicionImages']
                 ];
                 $count++;
             }
@@ -472,6 +475,33 @@ class Contacto extends Conexion {
         $query->execute();
 
         return ['code' => '0', 'message' => 'The post status was updated successfully'];
+    }
+
+    public function getInfoPost($id){
+        $query = $this->connect()->query("SELECT p.tTitlePublicaciones, p.eCategoriaPublicaciones
+        FROM publicaciones p
+        WHERE p.eCodePublicaciones = $id;
+        ");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $datos = [
+                    'title' => $contenido['tTitlePublicaciones'],
+                    'category' => $contenido['eCategoriaPublicaciones'],
+                ];
+            }
+            return $datos;
+        } else {
+            return false;
+        }
+    }
+
+    public function updatePost($id, $title, $category){
+        $query = $this->connect()->query("UPDATE publicaciones SET tTitlePublicaciones = '$title', eCategoriaPublicaciones = $category WHERE eCodePublicaciones = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'The post was updated successfully'];
     }
 
 }
@@ -577,6 +607,103 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $resp = $contacto->updateStatusPost($id, $estado);
                 echo json_encode($resp);
                 break;
+            case 'getPost':
+                $idPost = $_POST['id'];
+                $title = $contacto->getInfoPost($idPost);
+                $texts = $contacto->getTextsPost($idPost);
+                $images = $contacto->getImagesPost($idPost);
+                $moduloText = array();
+                $count = 1;
+                foreach ($texts as $text) {
+                    $moduloText['text' . $count] = [
+                        'type' => 'text',
+                        'position' => $text['position'],
+                        'content' => $text['content']
+                    ];
+                    $count++;
+                }
+                $moduloImage = array();
+                $count = 1;
+                foreach ($images as $image) {
+                    // formato del path de la imagen: ./source/public/img/nombreImagen.extensión
+                    // quitamos el punto del inicio del path
+                    $image['path'] = substr($image['path'], 1);
+                    // agregamos ../ para que la ruta sea ../source/public/img/nombreImagen.extensión
+                    $image['path'] = '..' . $image['path'];
+                    $moduloImage['image' . $count] = [
+                        'type' => 'image',
+                        'position' => $image['position'],
+                        'content' => $image['path']
+                    ];
+                    $count++;
+                }
+                $modulo = array_merge($moduloText, $moduloImage);
+                // reordenamos el array por la posición de los módulos
+                if (count($modulo) > 1) {
+                    usort($modulo, function($a, $b) {
+                        return $a['position'] - $b['position'];
+                    });
+                }
+                $datos = array('title' => $title['title'], 'category' => $title['category'], 'modulos' => $modulo);
+                $resp = array('code' => '0', 'message' => 'Post available', 'data' => $datos);
+                echo json_encode($resp);
+                break;
+            case 'updatePost':
+                if (!isset($_POST['id']) || !isset($_POST['title']) || !isset($_POST['category']) || !isset($_POST['modules'])){
+                    echo json_encode(['code' => '1', 'message' => 'The information is invalid']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $title = $_POST['title'];
+                $category = $_POST['category'];
+                $modulos = json_decode($_POST['modules'], true);
+            
+                $contacto->updatePost($id ,$title, $category);
+                
+                $pathImages = [];
+
+                foreach ($modulos as $modulo) {
+                    if ($modulo['type'] == 'image') {
+                        // verificamos si al inicio del path tiene una E mayúscula
+                        if (substr($modulo['content'], 0, 1) == 'E') {
+                            // guardamos el path sin la E mayúscula
+                            $pathImages[] = substr($modulo['content'], 1);
+                        }
+                    }
+                }
+
+                // eliminamos los textos
+                $contacto->deleteText($id);
+
+                $images = $contacto->getImagesPost($id);
+                // validamos que no sea un valor falso
+                if ($images != false){
+                    // si no es falso, recorremos las imágenes y las eliminamos
+                    foreach ($images as $image) {
+                        // verificamos si la ruta se encuentra en el array de las imágenes
+                        if (!in_array($image['path'], $pathImages)) { // si no se encuentra la ruta en el array
+                            $contacto->deleteImage($image['id'], $image['path']); // eliminamos la imagen
+                        }
+                    }
+                }
+                
+                foreach ($modulos as $modulo) {
+                    if ($modulo['type'] == 'image') {
+                        $modulo['content'] = substr($modulo['content'], 1);
+                        // validamos si el path de la imagen ya existe
+                        if (in_array($modulo['content'], $pathImages)) {
+                            continue;
+                        }
+                        $contacto->setImage($id, $modulo['position'] + 1, $modulo['content']);
+                    } else {
+                        $contacto->setText($id, $modulo['position'] + 1, $modulo['content']);
+                    }
+                }
+            
+                $resp = array('code' => '0', 'message' => 'the post was updated successfully');
+                echo json_encode($resp);
+                exit;
+                break;
         }
     }
 
@@ -606,7 +733,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         echo json_encode($update);
     }
 
-    if (isset($_POST['title']) && isset($_POST['category']) && isset($_POST['modules']) && isset($_SESSION['idUser'])){
+    if (isset($_POST['createPost']) && isset($_POST['title']) && isset($_POST['category']) && isset($_POST['modules']) && isset($_SESSION['idUser'])){
         $title = $_POST['title'];
         $category = $_POST['category'];
         $idUser = $_SESSION['idUser'];

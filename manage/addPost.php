@@ -50,8 +50,6 @@
                 
                     $categories = $contacto->getCategories();
 
-                    var_dump($categories);
-
                     if (!$categories) {
                         echo '<option value="0"> No categories </option>';
                     }else {

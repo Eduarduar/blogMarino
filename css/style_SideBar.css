@@ -810,6 +810,10 @@ a {
   color: #ffbf00 !important;
 }
 
+.posts-button + .sub-menu-list ul li.active a span.edit-post {
+  color: #00ff55 !important;
+}
+
 .posts-button:hover span,
 .posts-button.open span,
 .posts-button.active span,
@@ -825,6 +829,16 @@ a {
   width: 3px;
   height: 50px;
   background-color: #ff8000;
+}
+
+.posts-button + .sub-menu-list li.active a.edit-post::before {
+  content: "";
+  position: relative;
+  left: -40px;
+  top: 0;
+  width: 3px;
+  height: 50px;
+  background-color: #00ff55;
 }
 
 .categories-button + .sub-menu-list li.active a::before {

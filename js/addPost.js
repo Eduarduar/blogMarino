@@ -271,7 +271,14 @@ function uploadImage(file, fileName) {
     processData: false,
     contentType: false,
     success: function (response) {
-      console.log(response.message);
+      if (response.code != 0) {
+        // Mostrar el mensaje de éxito
+        if (!messageAlert("the image was uploaded successfully", 1)) {
+          setTimeout(() => {
+            messageAlert("the image was uploaded successfully", 1);
+          }, 3500);
+        }
+      }
     },
     error: function (error) {
       // Mostrar el mensaje de error
@@ -282,54 +289,453 @@ function uploadImage(file, fileName) {
 
 // Evento para el messageContainer
 function messageAlert(message, estado) {
-  if (messageEstado == 0) {
-    messageEstado = 1;
-    if (estado == 0) {
-      // 0 = no hay error
-      $(".messageContainer p").html(message);
-      $(".messageContainer").addClass("active");
-      setTimeout(() => {
+    if (messageEstado == 0) {
+        messageEstado = 1;
+        if (estado == 0) {
+        // 0 = no hay error
+        $(".messageContainer p").html(message);
+        $(".messageContainer").addClass("active");
+        setTimeout(() => {
         $(".messageContainer").removeClass("active");
         $(".messageContainer").addClass("hide");
-      }, 3000);
+        }, 3000);
 
-      setTimeout(() => {
+        setTimeout(() => {
         $(".messageContainer").removeClass("hide");
         $(".messageContainer p").html("‎ ");
         messageEstado = 0;
-      }, 3500);
-    } else {
-      $(".messageContainer p").html(message);
-      $(".messageContainer").addClass("active");
-      $(".messageContainer").removeClass("bg-green-500");
-      $(".messageContainer").addClass("bg-red-500");
-      setTimeout(() => {
+        }, 3500);
+        } else if (estado == 1) {
+        $(".messageContainer p").html(message);
+        $(".messageContainer").addClass("active");
+        $(".messageContainer").removeClass("bg-green-500");
+        $(".messageContainer").addClass("bg-red-500");
+        setTimeout(() => {
         $(".messageContainer").removeClass("active");
         $(".messageContainer").addClass("hide");
-      }, 3000);
+        }, 3000);
 
-      setTimeout(() => {
+        setTimeout(() => {
         $(".messageContainer").removeClass("hide");
         $(".messageContainer").removeClass("bg-red-500");
         $(".messageContainer").addClass("bg-green-500");
         $(".messageContainer p").html("‎ ");
         messageEstado = 0;
-      }, 3500);
+        }, 3500);
 
-      // Scroll to top of the page
+        // Scroll to top of the page
+        } else if (estado == 2) {
+        $(".messageContainer p").html(message);
+        $(".messageContainer").addClass("active");
+        $(".messageContainer").removeClass("bg-green-500");
+        $(".messageContainer").addClass("bg-yellow-500");
+        setTimeout(() => {
+        $(".messageContainer").removeClass("active");
+        $(".messageContainer").addClass("hide");
+        }, 3000);
+
+        setTimeout(() => {
+        $(".messageContainer").removeClass("hide");
+        $(".messageContainer").removeClass("bg-yellow-500");
+        $(".messageContainer").addClass("bg-green-500");
+        $(".messageContainer p").html("‎ ");
+        messageEstado = 0;
+        }, 3500);
+        }
+        // lo mandamos al inicio de la pagina para que vea el mensaje
+        $(".layout").animate({ scrollTop: 0 }, "medium"); 
+        return true;
+    } else {
+        return false;
     }
-    // lo mandamos al inicio de la pagina para que vea el mensaje
-    $(".layout").animate({ scrollTop: 0 }, "medium");
-    return true;
-  } else {
-    return false;
-  }
 }
 
 // Evento para el documento
 $(document).ready(function () {
   let count = new Counts();
 
+  // verificamos si se esta pasando un id por la url
+  let url = new URL(window.location.href);
+  if (url.searchParams.get("idEdit") != null) {
+    let id = url.searchParams.get("idEdit");
+    // si se esta pasando un id, significa que se esta editando un post
+    // por lo que se cambia el titulo del formulario
+    $("h1").text("Edit Post");
+    // se cambia el texto del boton de submit
+    $("#submit").text("Save Changes");
+    // cambiamos el nombre del sidebar
+    $(".menu-item.active span").text("Edit Post").addClass("edit-post");
+    // cambiamos el color del before del sidebar
+    $(".menu-item.active a").addClass("edit-post");
+    // se cambia el evento del boton de submit
+    $("#submit").on("click", function () {
+      let form = $("form")[0];
+      let modules_form = $(".container-module");
+      let title = $("#title").val();
+      let category = $("#category").val();
+
+      // Validamos el input del titulo y el select de categoria
+      if (title === "" || category === "" || category === "0") {
+        messageAlert("Please fill in the title and select a category.", 1);
+        return;
+      }
+
+      let modules = [];
+      let imageFiles = [];
+
+      for (let i = 0; i < modules_form.length; i++) {
+        let type, content, position;
+
+        if ($(modules_form[i]).hasClass("text-area-container")) {
+          type = "text";
+          content = $(modules_form[i]).find("textarea").val();
+          position = i;
+
+          if (content === "") {
+            messageAlert("Please fill in the content.", 1);
+            return;
+          }
+        } else {
+          type = "image";
+          let fileInput = $(modules_form[i]).find("input");
+          let files = fileInput[0].files;
+
+          // Validar que solo se haya seleccionado un archivo por input
+          if (files.length > 1) {
+            messageAlert("Please select only one file.", 1);
+            return;
+          }
+
+          if (files.length === 0) {
+            if ($(modules_form[i]).find("img").attr("src") === "../source/img/image.jpg") {
+              messageAlert("Please select only one file.", 1);
+              return;
+            } else {
+            // insertamos un string vacio para que no se pierda la posicion del modulo
+              let file = $(modules_form[i]).find("img").attr("src");
+              // eliminamos el primaer punto de la ruta ../source/img/image.jpg para que quede ./source/img/image.jpg
+              file = file.substring(1);
+              imageFiles.push("E" + file);
+              content = "Empty";
+              position = i;
+            }
+          } else {
+
+            let file = files[0];
+
+            if (!file) {
+              messageAlert("Please select a file.", 1);
+              return;
+            }
+            
+            imageFiles.push(file); // push ingresa el archivo al final del array
+            content = "";
+            position = i;
+          }
+        }
+
+        modules.push({ type: type, content: content, position: position });
+      }
+
+      let modulesUpsated = [];
+
+      // Validar las imágenes
+      for (let i = 0; i < imageFiles.length; i++) {
+        // validamos si el imageFiles[i] tiene un string que empieza con E al inicio
+        let filePath;
+        let file;
+        let fileName;
+        // comprobamos si imageFiles[i] es un dato de tipo string
+        if (typeof imageFiles[i] === "string") {
+          // en el caso de que sea un dato de tipo string, lo insertamos en el array de modulos
+          if (imageFiles[i].charAt(0) == "E") {
+            // si es un string vacio, no hacemos nada
+            filePath = imageFiles[i];
+          }
+        }else {
+
+          file = imageFiles[i];
+          fileName = generateRandomFileName(file.name);
+          filePath = `../source/public/img/${fileName}`;
+
+          // Validar el tamaño del archivo
+          let maxSize = 10 * 1024 * 1024; // 10MB
+          if (file.size > maxSize) {
+            messageAlert("Image size exceeds the maximum limit of 10MB.", 1);
+            return;
+          }
+    
+          // Validar la extensión del archivo
+          let allowedExtensions = ["png", "jpg", "jpeg"];
+          let fileExtension = file.name.split(".").pop().toLowerCase();
+          if (!allowedExtensions.includes(fileExtension)) {
+            messageAlert(
+              "Invalid file format. Please select a PNG, JPG or JPEG file.",
+              1
+            );
+            return;
+          }
+        }
+        // Cambiar el contenido de los módulos de tipo imagen
+        for (let i in modules) {
+          if (modules[i].type === "image") {
+            // si ya esta actualizado el modulo, no lo actualiza
+            if (modulesUpsated.includes(modules[i])) {
+              continue;
+            }
+            // validamos si el filePath tiene el identificador E al inicio
+            modules[i].content = filePath;
+            modulesUpsated.push(modules[i]);
+            break;
+          }
+        }
+  
+        // Subir la imagen al servidor
+        if (filePath.charAt(0) != "E") {
+          uploadImage(file, fileName);
+        }
+      }
+  
+      const formData = new FormData();
+      formData.append("action", "updatePost");
+      formData.append("id", id);
+      formData.append("title", title);
+      formData.append("category", category);
+      formData.append("modules", JSON.stringify(modules));
+      // Enviar la petición AJAX
+  
+      console.log(modules);
+
+      $.ajax({
+        url: "../db/peticiones/manage.php",
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (response.code == 0) {
+            // Mostrar el mensaje de éxito
+            if (!messageAlert("the post was updated successfully", 0)) {
+              setTimeout(() => {
+                messageAlert("the post was updated successfully", 0);
+              }, 3500);
+            }
+            window.location.href = "./viewPosts";
+          } else {
+            messageAlert(response.message, 2);
+            return;
+          }
+        },
+        error: function (error) {
+          console.error(error);
+        },
+      });
+  
+      // Limpiar el formulario
+      form.reset();
+      // Eliminar los contenedores de texto
+      for (let i = 1; i < modules_form.length; i++) {
+        if ($(modules_form[i]).hasClass("text-area-container")) {
+          currentScroll -= 286;
+        } else {
+          currentScroll -= 442;
+        }
+        $(modules_form[i]).remove();
+      }
+      // Eliminar los contenedores de imagen
+      $(".image-container").remove();
+      // Reiniciar el contador de contenedores
+      count = new Counts();
+    });
+
+    // obtener la informacion del post y la insertamos en el formulario
+    const formData = new FormData();
+    formData.append("action", "getPost");
+    formData.append("id", id);
+    $.ajax({
+      url: "../db/peticiones/manage.php",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        if (response.code == 0) {
+            let post = response.data;
+            let first = true;
+            $("#title").val(post.title);
+            $("#category").val(post.category);
+            $("#content0").val(post.modulos[0].content);
+            for (let key in post.modulos) {
+              if (first) {
+                first = false;
+                continue;
+              }
+              if (post.modulos[key].type == "text") {
+                const content = createDOMContent(count);
+                $(content).find("textarea").val(post.modulos[key].content);
+                $("#container-post").append(content);
+                currentScroll += 286;
+                count.addContainer();
+              } else {
+                const image = createDOMImage(count);
+                $(image).find("img").attr("src", post.modulos[key].content);
+                $("#container-post").append(image);
+                currentScroll += 442;
+                count.addContainer();
+              }
+            }
+          }
+        },
+        error: function (error) {
+          console.error(error);
+          },
+        });
+
+  } else {
+    // si no se esta pasando un id, significa que se esta creando un nuevo post
+    // Evento para el botón "Submit"
+    $("#submit").on("click", function () {
+      let form = $("form")[0];
+      let modules_form = $(".container-module");
+      let title = $("#title").val();
+      let category = $("#category").val();
+
+      // Validamos el input del titulo y el select de categoria
+      if (title === "" || category === "" || category === "0") {
+        messageAlert("Please fill in the title and select a category.", 1);
+        return;
+      }
+
+      let modules = [];
+      let imageFiles = [];
+
+      for (let i = 0; i < modules_form.length; i++) {
+        let type, content, position;
+
+        if ($(modules_form[i]).hasClass("text-area-container")) {
+          type = "text";
+          content = $(modules_form[i]).find("textarea").val();
+          position = i;
+
+          if (content === "") {
+            messageAlert("Please fill in the content.", 1);
+            return;
+          }
+        } else {
+          type = "image";
+          let fileInput = $(modules_form[i]).find("input");
+          let files = fileInput[0].files;
+
+          // Validar que solo se haya seleccionado un archivo por input
+          if (files.length !== 1) {
+            messageAlert("Please select only one file.", 1);
+            return;
+          }
+
+          let file = files[0];
+
+          if (!file) {
+            return;
+          }
+
+          imageFiles.push(file); // push ingresa el archivo al final del array
+          content = "";
+          position = i;
+        }
+
+        modules.push({ type: type, content: content, position: position });
+      }
+
+      let modulesUpsated = [];
+
+      // Validar las imágenes
+      for (let i = 0; i < imageFiles.length; i++) {
+        let file = imageFiles[i];
+        let fileName = generateRandomFileName(file.name);
+        let filePath = `../source/public/img/${fileName}`;
+
+        // Validar el tamaño del archivo
+        let maxSize = 10 * 1024 * 1024; // 10MB
+        if (file.size > maxSize) {
+          messageAlert("Image size exceeds the maximum limit of 10MB.", 1);
+          return;
+        }
+
+        // Validar la extensión del archivo
+        let allowedExtensions = ["png", "jpg", "jpeg"];
+        let fileExtension = file.name.split(".").pop().toLowerCase();
+        if (!allowedExtensions.includes(fileExtension)) {
+          messageAlert(
+            "Invalid file format. Please select a PNG, JPG or JPEG file.",
+            1
+          );
+          return;
+        }
+
+        // Cambiar el contenido de los módulos de tipo imagen
+        for (let i in modules) {
+          if (modules[i].type === "image") {
+            // si ya esta actualizado el modulo, no lo actualiza
+            if (modulesUpsated.includes(modules[i])) {
+              continue;
+            }
+            modules[i].content = filePath;
+            modulesUpsated.push(modules[i]);
+            break;
+          }
+        }
+
+        // Subir la imagen al servidor
+        uploadImage(file, fileName);
+      }
+
+      const formData = new FormData();
+      formData.append("createPost", true);
+      formData.append("title", title);
+      formData.append("category", category);
+      formData.append("modules", JSON.stringify(modules));
+      // Enviar la petición AJAX
+
+      $.ajax({
+        url: "../db/peticiones/manage.php",
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (response.code == 0) {
+            // Mostrar el mensaje de éxito
+            if (!messageAlert("post added successfully", 0)) {
+              setTimeout(() => {
+                messageAlert("post added successfully", 0);
+              }, 3500);
+            }
+          }
+        },
+        error: function (error) {},
+      });
+
+      // Limpiar el formulario
+      form.reset();
+      // Eliminar los contenedores de texto
+      for (let i = 1; i < modules_form.length; i++) {
+        if ($(modules_form[i]).hasClass("text-area-container")) {
+          currentScroll -= 286;
+        } else {
+          currentScroll -= 442;
+        }
+        $(modules_form[i]).remove();
+      }
+      // Eliminar los contenedores de imagen
+      $(".image-container").remove();
+      // Reiniciar el contador de contenedores
+      count = new Counts();
+    });
+  }
+  
   // Evento para el botón "Agregar Imagen"
   $("#addImage").on("click", function (e) {
     const image = createDOMImage(count);
@@ -355,144 +761,5 @@ $(document).ready(function () {
     currentScroll += 286;
     $(".layout").animate({ scrollTop: currentScroll }, "slow");
     currentScroll += $(".layout").scrollTop();
-  });
-
-  // Evento para el botón "Submit"
-  $("#submit").on("click", function () {
-    let form = $("form")[0];
-    let modules_form = $(".container-module");
-    let title = $("#title").val();
-    let category = $("#category").val();
-
-    // Validamos el input del titulo y el select de categoria
-    if (title === "" || category === "" || category === "0") {
-      messageAlert("Please fill in the title and select a category.", 1);
-      return;
-    }
-
-    let modules = [];
-    let imageFiles = [];
-
-    for (let i = 0; i < modules_form.length; i++) {
-      let type, content, position;
-
-      if ($(modules_form[i]).hasClass("text-area-container")) {
-        type = "text";
-        content = $(modules_form[i]).find("textarea").val();
-        position = i;
-
-        if (content === "") {
-          messageAlert("Please fill in the content.", 1);
-          return;
-        }
-      } else {
-        type = "image";
-        let fileInput = $(modules_form[i]).find("input");
-        let files = fileInput[0].files;
-
-        // Validar que solo se haya seleccionado un archivo por input
-        if (files.length !== 1) {
-          messageAlert("Please select only one file.", 1);
-          return;
-        }
-
-        let file = files[0];
-
-        if (!file) {
-          return;
-        }
-
-        imageFiles.push(file); // push ingresa el archivo al final del array
-        content = "";
-        position = i;
-      }
-
-      modules.push({ type: type, content: content, position: position });
-    }
-
-    let modulesUpsated = [];
-
-    // Validar las imágenes
-    for (let i = 0; i < imageFiles.length; i++) {
-      let file = imageFiles[i];
-      let fileName = generateRandomFileName(file.name);
-      let filePath = `../source/public/img/${fileName}`;
-
-      // Validar el tamaño del archivo
-      let maxSize = 10 * 1024 * 1024; // 10MB
-      if (file.size > maxSize) {
-        messageAlert("Image size exceeds the maximum limit of 10MB.", 1);
-        return;
-      }
-
-      // Validar la extensión del archivo
-      let allowedExtensions = ["png", "jpg", "jpeg"];
-      let fileExtension = file.name.split(".").pop().toLowerCase();
-      if (!allowedExtensions.includes(fileExtension)) {
-        messageAlert(
-          "Invalid file format. Please select a PNG, JPG or JPEG file.",
-          1
-        );
-        return;
-      }
-
-      // Cambiar el contenido de los módulos de tipo imagen
-      for (let i in modules) {
-        if (modules[i].type === "image") {
-          // si ya esta actualizado el modulo, no lo actualiza
-          if (modulesUpsated.includes(modules[i])) {
-            continue;
-          }
-          modules[i].content = filePath;
-          modulesUpsated.push(modules[i]);
-          break;
-        }
-      }
-
-      // Subir la imagen al servidor
-      uploadImage(file, fileName);
-    }
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("category", category);
-    formData.append("modules", JSON.stringify(modules));
-    // Enviar la petición AJAX
-
-    $.ajax({
-      url: "../db/peticiones/manage.php",
-      type: "POST",
-      data: formData,
-      dataType: "json",
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        if (response.code == 0) {
-          // Mostrar el mensaje de éxito
-          if (!messageAlert("post added successfully", 0)) {
-            setTimeout(() => {
-              messageAlert("post added successfully", 0);
-            }, 3500);
-          }
-        }
-      },
-      error: function (error) {},
-    });
-
-    // Limpiar el formulario
-    form.reset();
-    // Eliminar los contenedores de texto
-    for (let i = 1; i < modules_form.length; i++) {
-      if ($(modules_form[i]).hasClass("text-area-container")) {
-        currentScroll -= 286;
-      } else {
-        currentScroll -= 442;
-      }
-      $(modules_form[i]).remove();
-    }
-    // Eliminar los contenedores de imagen
-    $(".image-container").remove();
-    // Reiniciar el contador de contenedores
-    count = new Counts();
   });
 });
