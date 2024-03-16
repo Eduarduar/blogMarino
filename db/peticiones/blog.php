@@ -9,7 +9,10 @@ class Contacto extends Conexion {
         $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
         FROM publicaciones p
         INNER JOIN texts t On t.ePublicacionTexts = p.eCodePublicaciones
+        INNER JOIN categorias c ON c.eCodeCategorias = p.eCategoriaPublicaciones
         WHERE t.ePosicionTexts = 1
+        AND p.bStatusPublicaciones = 1
+        AND c.bStatusCategorias = 1
         ORDER BY p.eCodePublicaciones DESC;
         ");
         $query->execute();

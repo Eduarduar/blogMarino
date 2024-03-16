@@ -60,7 +60,7 @@ class Contacto extends Conexion {
     }
 
     public function addPost($title, $category, $idUser) {
-        $query = $this->connect()->prepare("INSERT INTO publicaciones (eUserPublicaciones, tTitlePublicaciones, fCreationPublicaciones, eCategoriaPublicaciones) VALUES (:idUser, :title, CURRENT_TIMESTAMP, :category)");
+        $query = $this->connect()->prepare("INSERT INTO publicaciones (eUserPublicaciones, tTitlePublicaciones, fCreationPublicaciones, eCategoriaPublicaciones, bStatusPublicaciones) VALUES (:idUser, :title, CURRENT_TIMESTAMP, :category, 1)");
         $query->execute(['idUser' => $idUser, 'title' => $title, 'category' => $category]);
 
         return $this->getIdLastPost();
@@ -83,9 +83,10 @@ class Contacto extends Conexion {
     }
 
     public function getPosts(){
-        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts, p.bStatusPublicaciones
+        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts, p.bStatusPublicaciones, c.tNameCategorias, c.bStatusCategorias
         FROM publicaciones p
         INNER JOIN texts t On t.ePublicacionTexts = p.eCodePublicaciones
+        INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias
         WHERE t.ePosicionTexts = 1
         ORDER BY p.eCodePublicaciones DESC;
         ");
@@ -99,7 +100,9 @@ class Contacto extends Conexion {
                     'id'            =>  $contenido['eCodePublicaciones'],
                     'title'        =>  $contenido['tTitlePublicaciones'],
                     'content'     =>  $contenido['tContenidoTexts'],
-                    'status'      =>  $contenido['bStatusPublicaciones']
+                    'status'      =>  $contenido['bStatusPublicaciones'],
+                    'category'    =>  $contenido['tNameCategorias'],
+                    'statusCategory' => $contenido['bStatusCategorias']
                 ];
                 $count++;
             }
@@ -318,7 +321,41 @@ class Contacto extends Conexion {
         }
     }
 
+    public function getPostsForCategory($id){
+        $query = $this->connect()->query("SELECT p.eCodePublicaciones
+        FROM publicaciones p
+        INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias
+        WHERE p.eCategoriaPublicaciones = $id
+        ");
+        $query->execute();
+
+        if ($query->rowCount()){
+            $count = 1;
+
+            foreach ($query as $contenido) {
+                $datos['publicacion' . $count] = [
+                    'id' =>  $contenido['eCodePublicaciones']
+                ];
+                $count++;
+            }
+            return $datos;
+        } else {
+            return false;
+        }
+    }
+
     public function deleteCategory($id){
+        // obtemos las publicaciones de la categoría
+        $posts = $this->getPostsForCategory($id);
+        // validamos que no sea un valor falso
+        if ($posts != false){
+            // si no es falso, recorremos las publicaciones y las eliminamos
+            foreach ($posts as $post) {
+                $this->deletePost($post['id']);
+            }
+        }
+
+        // eliminamos la categoría
         $query = $this->connect()->query("DELETE FROM categorias WHERE eCodeCategorias = $id");
         $query->execute();
 
@@ -340,6 +377,103 @@ class Contacto extends Conexion {
         return ['code' => '0', 'message' => 'The category name was updated successfully'];
     }
 
+    
+    public function getTextsPost($idPost) {
+        $query = $this->connect()->query("SELECT t.eCodeTexts
+        FROM publicaciones p
+        INNER JOIN texts t ON p.eCodePublicaciones = t.ePublicacionTexts
+        WHERE p.eCodePublicaciones = $idPost
+        ORDER BY t.ePosicionTexts ASC;
+        ");
+        $query->execute();
+
+        if ($query->rowCount()) {
+            $count = 1;
+            foreach ($query as $contenido) {
+                $datos['text' . $count] = [
+                    'id' => $contenido['eCodeTexts']
+                ];
+                $count++;
+            }
+            return $datos;
+        } else {
+            return false; // Or handle it differently if the content is not found
+        }
+    }
+    
+    public function getImagesPost($idPost) {
+        $query = $this->connect()->query("SELECT i.eCodeImages, i.tLugarImages
+        FROM publicaciones p
+        INNER JOIN images i ON p.eCodePublicaciones = i.ePublicacionImages
+        WHERE p.eCodePublicaciones = $idPost
+        ORDER BY i.ePosicionImages ASC;
+        ");
+        $query->execute();
+
+        if ($query->rowCount()) {
+            $count = 1;
+            foreach ($query as $contenido) {
+                $datos['imagen' . $count] = [
+                    'id' => $contenido['eCodeImages'],
+                    'path' => $contenido['tLugarImages']
+                ];
+                $count++;
+            }
+            return $datos;
+        } else {
+            return false; // Or handle it differently if the content is not found
+        }
+    }
+
+    public function deletePost($id){
+        // eliminamos los textos
+        $this->deleteText($id);
+
+        $images = $this->getImagesPost($id);
+        // validamos que no sea un valor falso
+        if ($images != false){
+            // si no es falso, recorremos las imágenes y las eliminamos
+            foreach ($images as $image) {
+                $this->deleteImage($image['id'], $image['path']);
+            }
+        }
+        // eliminamos la publicación
+        $query = $this->connect()->query("DELETE FROM publicaciones WHERE eCodePublicaciones = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'The post was successfully deleted'];
+    }
+
+    public function deleteText($id){
+        $query = $this->connect()->query("DELETE FROM texts WHERE epublicacionTexts = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'The text was successfully deleted'];
+    }
+
+    public function deleteImage($id, $path){
+        $query = $this->connect()->query("DELETE FROM images WHERE eCodeImages = $id");
+        $query->execute();
+
+        $folderImages = '../../source/public/img/';
+        // obtemos el nombre de la imagen junto con su extensión
+        $name = explode('/', $path);
+        $name = end($name); // end() obtiene el último valor de un array
+        // eliminamos la imagen
+        if (file_exists($folderImages . $name)) {
+            unlink($folderImages . $name);
+        }
+
+        return ['code' => '0', 'message' => 'The image was successfully deleted'];
+    }
+
+    public function updateStatusPost($id, $estado){
+        $query = $this->connect()->query("UPDATE publicaciones SET bStatusPublicaciones = $estado WHERE eCodePublicaciones = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'The post status was updated successfully'];
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -357,21 +491,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                         echo json_encode(['code' => '0', 'message' => 'Posts available', 'datos' => $countPosts]);
                     }
                     break;
-                case 'getCountCategories':
-                    $countCategories = $contacto->getCountCategories();
-                    if ($countCategories == false){
-                        echo json_encode(['code' => '1', 'message' => 'No categories available']);
-                    } else {
-                        echo json_encode(['code' => '0', 'message' => 'Categories available', 'datos' => $countCategories]);
-                    }
-                    break;
-                case 'getCountVisits':
-                    $countVisits = $contacto->getCountVisits();
-                    if ($countVisits == false){
-                        echo json_encode(['code' => '1', 'message' => 'No visits available']);
-                    } else {
-                        echo json_encode(['code' => '0', 'message' => 'Visits available', 'datos' => $countVisits]);
-                    }
+            case 'getCountCategories':
+                $countCategories = $contacto->getCountCategories();
+                if ($countCategories == false){
+                    echo json_encode(['code' => '1', 'message' => 'No categories available']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Categories available', 'datos' => $countCategories]);
+                }
+                break;
+            case 'getCountVisits':
+                $countVisits = $contacto->getCountVisits();
+                if ($countVisits == false){
+                    echo json_encode(['code' => '1', 'message' => 'No visits available']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Visits available', 'datos' => $countVisits]);
+                }
                 break;
             case 'updateCountVisits':
                 $count = $contacto->getCountVisits();
@@ -414,6 +548,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $id = $_POST['id'];
                 $estado = $_POST['estado'];
                 $resp = $contacto->updateStatusCategory($id, $estado);
+                echo json_encode($resp);
+                break;
+            case 'getPosts':
+                $posts = $contacto->getPosts();
+                if ($posts == false){
+                    echo json_encode(['code' => '1', 'message' => 'No posts available']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'Posts available', 'data' => $posts]);
+                }
+                break;
+            case 'deletePost':
+                if (!isset($_POST['id'])){
+                    echo json_encode(['code' => '1', 'message' => 'The post is empty']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $resp = $contacto->deletePost($id);
+                echo json_encode($resp);
+                break;
+            case 'changeStatusPost':
+                if (!isset($_POST['id']) || !isset($_POST['status'])){
+                    echo json_encode(['code' => '1', 'message' => 'The post is empty']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $estado = $_POST['status'];
+                $resp = $contacto->updateStatusPost($id, $estado);
                 echo json_encode($resp);
                 break;
         }

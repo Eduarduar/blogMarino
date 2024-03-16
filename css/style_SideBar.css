@@ -132,7 +132,7 @@
   color: #7d84ab;
 }
 .layout .sidebar .menu .menu-item a .menu-icon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   width: 35px;
   min-width: 35px;
   height: 35px;
@@ -147,7 +147,7 @@
   display: inline-block;
 }
 .layout .sidebar .menu .menu-item a .menu-title {
-  font-size: 0.9em;
+  font-size: 1.2em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
