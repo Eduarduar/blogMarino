@@ -796,22 +796,18 @@ a {
   color: #01a440 !important;
 }
 
+.categories-button:hover span,
+.categories-button.active span {
+  color: #ff8000 !important;
+}
+
 .dashboard-button:hover span,
 .dashboard-button.active span {
   color: #00aeff !important;
 }
 
-.categories-button + .sub-menu-list ul li.active a span {
-  color: #ff8000 !important;
-}
 .posts-button + .sub-menu-list ul li.active a span {
   color: #ffbf00 !important;
-}
-.categories-button:hover span,
-.categories-button.open span,
-.categories-button.active span,
-.categories-button + .sub-menu-list ul li:hover a span {
-  color: #ff8000 !important;
 }
 
 .posts-button:hover span,

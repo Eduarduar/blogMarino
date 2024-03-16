@@ -35,16 +35,16 @@
 </div>
 
 <div class="w-90 mx-auto">
-    <h1 class="text-3xl font-bold text-center my-5">Add Post</h1>
+    <h1 class="text-4xl font-bold text-center my-5">Add Post</h1>
     <form class="max-w-[1000px] mx-auto" id="container-post">
         <div class="flex flex-col md:flex-row">
-            <div class="mb-4 w-full md:w-3/5 md:mb-0 md:mx-0">
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-1 pl-2 min-h-10 border" maxlength="100" placeholder="Write a title" required>
+            <div class="mb-6 w-full md:w-3/5 md:mb-0 md:mx-0">
+                <label for="title" class="block text-lg font-medium text-gray-700">Title</label>
+                <input type="text" id="title" name="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 pl-3 min-h-12 border" maxlength="100" placeholder="Write a title" required>
             </div>
-            <div class="mb-4 w-full md:w-2/5 md:ml-5">
-                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                <select id="category" name="category" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            <div class="mb-6 w-full md:w-2/5 md:ml-5">
+                <label for="category" class="block text-lg font-medium text-gray-700">Category</label>
+                <select id="category" name="category" class="mt-1 block w-full py-3 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
 
                 <?php
                 
@@ -66,24 +66,24 @@
                 </select>
             </div>
         </div>
-        <div class="mt-5 text-area-container container-module">
-            <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-            <textarea id="content0" name="content0" class="p-2 mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm min-h-[200px] text-lg textarea" maxlength="1000" placeholder="Write something..." required></textarea>
+        <div class="mt-6 text-area-container container-module">
+            <label for="content" class="block text-lg font-medium text-gray-700">Content</label>
+            <textarea id="content0" name="content0" class="p-3 mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm min-h-[200px] text-lg textarea" maxlength="1000" placeholder="Write something..." required></textarea>
         </div>
     </form>
     <!-- barra de separación -->
-    <hr class="my-5">
-    <div class="flex flex-col justify-center mt-5">
+    <hr class="my-6">
+    <div class="flex flex-col justify-center mt-6">
         <div class="container-buttons mx-auto">
-            <button id="addContent" class="hover:bg-green-700 font-bold lg:py-4 lg:px-8 rounded border border-green-500 text-green-600 hover:text-white transition duration-300 mr-2 py-2 px-4 text-sm" type="button">
+            <button id="addContent" class="hover:bg-green-700 font-bold lg:py-4 lg:px-8 rounded border border-green-500 text-green-600 hover:text-white transition duration-300 mr-2 py-3 px-5 text-lg" type="button">
                 Add Text
             </button>
-            <button id="addImage" class="hover:bg-blue-700 font-bold lg:py-4 lg:px-8 rounded border border-blue-500 text-blue-600 hover:text-white transition duration-300 ml-2 py-2 px-4 text-sm" type="button">
+            <button id="addImage" class="hover:bg-blue-700 font-bold lg:py-4 lg:px-8 rounded border border-blue-500 text-blue-600 hover:text-white transition duration-300 ml-2 py-3 px-5 text-lg" type="button">
                 Add Image
             </button>
         </div>
         <div class="cotainer-button-sumit mx-auto">
-            <button id="submit" class="hover:bg-[#31b0d5] font-bold lg:py-4 lg:px-8 rounded border border-[#31b0d5] text-[#31b0d5] hover:text-white transition duration-300 mt-5 py-2 px-4 text-sm sumit-button" type="button">
+            <button id="submit" class="hover:bg-[#31b0d5] font-bold lg:py-4 lg:px-8 rounded border border-[#31b0d5] text-[#31b0d5] hover:text-white transition duration-300 mt-6 py-3 px-5 text-lg sumit-button" type="button">
                 Post
             </button>
         </div>

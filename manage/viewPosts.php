@@ -34,16 +34,17 @@
 
     <?php include '../views/menu_manage.php'; ?>
 
-    <h1 class="text-3xl font-bold leading-9 text-gray-900 text-center my-10">Posts</h1>
+    <h1 class="text-5xl font-bold leading-9 text-gray-900 text-center my-10">Posts</h1>
 
-    <div class="">
+    <div class="overflow-x-scroll lg:overflow-x-visible">
         <table id="postsTable" class="min-w-full divide-y divide-gray-200 overflow-x-visible md:overflow-x-scroll">
             <thead>
                 <tr>
-                    <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                    <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Content</th>
-                    <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Content</th>
+                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -63,10 +64,11 @@
 
                 ?>
                 <tr class="<?php echo $fondo; ?>">
-                    <td class="<?php echo $fondo; ?> px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["id"]; ?></td>
-                    <td class="<?php echo $fondo; ?> px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["title"]; ?></td>
-                    <td class="<?php echo $fondo; ?> px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo substr($post["content"], 0, 100) . '...'; ?></td>
-                    <td class="<?php echo $fondo; ?> px-6 py-4 whitespace-no-wrap flex flex-wrap space-between w-1/4 sm:w-auto">
+                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["id"]; ?></td>
+                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["title"]; ?></td>
+                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo substr($post["content"], 0, 100) . '...'; ?></td>
+                    <td class="<?php echo $fondo; if ($post["status"] == 1){echo ' text-green-500';}else{echo ' text-red-500';} ?> text-lg font-bold px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php if ($post["status"] == 1){echo 'VISIBLE';}else{echo 'HIDDEN';} ?></td>
+                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap  space-between items-center w-1/4 sm:w-auto">
                         <button data-id="<?php echo $post["id"]; ?>" class="hover:bg-blue-500 bg-transparent border-blue-500 text-blue-500 border hover:text-white font-bold py-1 px-4 rounded mr-2 mb-2 text-xl transition duration-300 max-w-[54px] max-h-[41px]"><i class="ri-edit-box-line"></i></button>
                         <button data-id="<?php echo $post["id"]; ?>" class="hover:bg-red-500 bg-transparent border-red-500 text-red-500 border hover:text-white font-bold py-1 px-4 rounded text-xl transition duration-300 max-w-[54px] max-h-[41px]"><i class="ri-delete-bin-line"></i></button>
                     </td>

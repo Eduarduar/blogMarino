@@ -36,7 +36,7 @@ function createDOMContent(counts) {
 
   // Crear un elemento label
   const label = $("<label>")
-    .addClass("block text-sm font-medium text-gray-700")
+    .addClass("block text-lg font-medium text-gray-700")
     .text("Content")
     .attr("for", "content");
 
@@ -109,7 +109,7 @@ function createDOMImage(counts) {
   // Crear un elemento botón de eliminar
   const deleteButton = $("<button>")
     .addClass(
-      "hover:bg-red-700 font-bold lg:py-4 lg:px-8 rounded border border-red-500 text-red-600 hover:text-white transition duration-300 mt-2 py-2 px-4 text-sm"
+      "hover:bg-red-700 font-bold lg:py-4 lg:px-8 rounded border border-red-500 text-red-600 hover:text-white transition duration-300 mt-2 py-2 px-4 text-lg"
     )
     .attr("type", "button")
     .text("Delete Image");
