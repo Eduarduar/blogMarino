@@ -1,4 +1,5 @@
 let messageEstado = 0;
+let colorEstado = 0;
 
 class Validacion {
   #inputCategory;
@@ -57,12 +58,22 @@ function addCategoryTable(data, est, table) {
   let id = data.id,
     nombre = data.nombre,
     estado = est;
+  
+  let color = '';
+  if (colorEstado == 0) {
+    colorEstado = 1;
+    color = 'bg-gray-100';
+  } else {
+    colorEstado = 0;
+    color = 'bg-white';
+  }
+
   const row = $("<tr></tr>").addClass("odd").attr("data-id", id);
-  const idCell = $("<td></td>").addClass("text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto").text(id);
-  const nombreCell = $("<td></td>").addClass("text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto").text(nombre);
-  const estadoCell = $("<td></td>").addClass("font-bold text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto").text(estado);
+  const idCell = $("<td></td>").addClass(`${color} text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto`).text(id);
+  const nombreCell = $("<td></td>").addClass(`${color} text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto`).text(nombre);
+  const estadoCell = $("<td></td>").addClass(`${color} font-bold text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto`).text(estado);
   const inputEdit = $("<input></input>").addClass("text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto bg-yellow-200").val(nombre);
-  const buttonCell = $("<td></td>").addClass("text-lg px-6 py-4 whitespace-no-wrap space-between w-1/4 sm:w-auto");
+  const buttonCell = $("<td></td>").addClass(`${color} text-lg px-6 py-4 whitespace-no-wrap space-between w-1/4 sm:w-auto`);
 
   const editButton = $("<button></button>")
     .attr("data-id", id)
@@ -250,9 +261,6 @@ function addCategoryTable(data, est, table) {
   // Attach event listeners to buttons
   attachEventListeners();
 }
-
-// ejemplo de uso de la función addCategoryTable
-// addCategoryTable({id: 1, nombre: "categoria 1"}, "VISIBLE");
 
 // Evento para el messageContainer
 function messageAlert(message, estado) {

@@ -15,84 +15,41 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../source/library/jquery/jquery-3.6.0.min.js"></script> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
-    <link rel="stylesheet" href="../source/library/datatables/datatables.min.css"/>
-    <script src="../source/library/datatables/datatables.min.js"></script>
-    <script src="../source/library/bootstrap/bootstrap5.3.2.min.js"></script>
-    <script src="../source/library/Tailwind/Tailwind.min.js"></script>
-    <link rel="stylesheet" href="../css/style_pagetables.css">
-    <link rel="stylesheet" href="../css/style_default.css">
-    <link rel="stylesheet" href="../css/style_SideBar.css">
-    <link rel="stylesheet" href="../css/style_fonts.css">
-    <title>Manage - DEEP OCEAN</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../source/library/jquery/jquery-3.6.0.min.js"></script> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
+        <link rel="stylesheet" href="../source/library/datatables/datatables.min.css"/>
+        <script src="../source/library/datatables/datatables.min.js"></script>
+        <script src="../source/library/bootstrap/bootstrap5.3.2.min.js"></script>
+        <script src="../source/library/Tailwind/Tailwind.min.js"></script>
+        <link rel="stylesheet" href="../css/style_pagetables.css">
+        <link rel="stylesheet" href="../css/style_default.css">
+        <link rel="stylesheet" href="../css/style_SideBar.css">
+        <link rel="stylesheet" href="../css/style_fonts.css">
+        <title>Manage - DEEP OCEAN</title>
+    </head>
+    <body>
 
-    <?php include '../views/menu_manage.php'; ?>
+        <?php include '../views/menu_manage.php'; ?>
 
-    <h1 class="text-5xl font-bold leading-9 text-gray-900 text-center my-10">Posts</h1>
+        <div id="messageContainer" class="absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-[300%] bg-green-500 bg-opacity-90 box-border shadow-lg rounded-lg transition-all duration-500 z-3 px-5 py-2 messageContainer">
+            <p id="message" class="text-white text-center text-xl">‎ </p>
+        </div>
 
-    <div class="overflow-x-scroll lg:overflow-x-visible">
-        <table id="postsTable" class="min-w-full divide-y divide-gray-200 overflow-x-visible md:overflow-x-scroll">
-            <thead>
-                <tr>
-                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Content</th>
-                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th class="text-lg px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                <?php
-                    $posts = $contacto->getPosts();
-                    if ($posts != false){
-                        $toggleBG = true;
-                        $fondo = "";
-                        foreach($posts as $post){
-                            if ($toggleBG){
-                                $toggleBG = false;
-                                $fondo = "bg-gray-100";
-                            } else {
-                                $toggleBG = true;
-                                $fondo = "";
-                            }
+        <h1 class="text-5xl font-bold leading-9 text-gray-900 text-center my-10">Posts</h1>
 
-                ?>
-                <tr class="<?php echo $fondo; ?>">
-                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["id"]; ?></td>
-                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo $post["title"]; ?></td>
-                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php echo substr($post["content"], 0, 100) . '...'; ?></td>
-                    <td class="<?php echo $fondo; if ($post["status"] == 1){echo ' text-green-500';}else{echo ' text-red-500';} ?> text-lg font-bold px-6 py-4 whitespace-no-wrap w-1/4 sm:w-auto"><?php if ($post["status"] == 1){echo 'VISIBLE';}else{echo 'HIDDEN';} ?></td>
-                    <td class="<?php echo $fondo; ?> text-lg px-6 py-4 whitespace-no-wrap  space-between items-center w-1/4 sm:w-auto">
-                        <button data-id="<?php echo $post["id"]; ?>" class="hover:bg-blue-500 bg-transparent border-blue-500 text-blue-500 border hover:text-white font-bold py-1 px-4 rounded mr-2 mb-2 text-xl transition duration-300 max-w-[54px] max-h-[41px]"><i class="ri-edit-box-line"></i></button>
-                        <button data-id="<?php echo $post["id"]; ?>" class="hover:bg-red-500 bg-transparent border-red-500 text-red-500 border hover:text-white font-bold py-1 px-4 rounded text-xl transition duration-300 max-w-[54px] max-h-[41px]"><i class="ri-delete-bin-line"></i></button>
-                    </td>
-                </tr>
-                <?php
-                        }
-                    }
-                ?>
-            </tbody>
-        </table>
-    </div>
+        <div class="overflow-x-scroll lg:overflow-x-visible" id="container-table"></div>
 
 
-    <?php include '../views/footer_manage.php'; ?>
+        <?php include '../views/footer_manage.php'; ?>
 
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/sidebar.js"></script>  
-    <script src="../js/countVisits.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#postsTable').DataTable();
-        });
-    </script>
-</body>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/sidebar.js"></script>  
+        <script src="../js/viewPosts.js"></script>
+        <script src="../js/countVisits.js"></script>
+    </body>
 </html>
 
 
