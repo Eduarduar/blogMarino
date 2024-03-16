@@ -27,7 +27,9 @@ class Contacto extends Conexion {
     }
 
     public function getCategories() {
-        $query = $this->connect()->query("SELECT * FROM categorias");
+        $query = $this->connect()->query("SELECT c.eCodeCategorias, c.tNameCategorias, c.bStatusCategorias
+        FROM categorias c
+        ");
         $query->execute();
 
         if ($query->rowCount()){
@@ -35,7 +37,8 @@ class Contacto extends Conexion {
             foreach($query as $contenido){
                 $datos['category'. $count] = [
                     'id' => $contenido['eCodeCategorias'],
-                    'nombre' => $contenido['tNameCategorias']
+                    'nombre' => $contenido['tNameCategorias'],
+                    'estado' => $contenido['bStatusCategorias']
                 ];
                 $count++;
             }
@@ -80,7 +83,7 @@ class Contacto extends Conexion {
     }
 
     public function getPosts(){
-        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
+        $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts, p.bStatusPublicaciones
         FROM publicaciones p
         INNER JOIN texts t On t.ePublicacionTexts = p.eCodePublicaciones
         WHERE t.ePosicionTexts = 1
@@ -95,7 +98,8 @@ class Contacto extends Conexion {
                 $datos['publicacion' . $count] = [
                     'id'            =>  $contenido['eCodePublicaciones'],
                     'title'        =>  $contenido['tTitlePublicaciones'],
-                    'content'     =>  $contenido['tContenidoTexts']
+                    'content'     =>  $contenido['tContenidoTexts'],
+                    'status'      =>  $contenido['bStatusPublicaciones']
                 ];
                 $count++;
             }
@@ -193,7 +197,7 @@ class Contacto extends Conexion {
                 }
             }
         } else {
-            return ['code' => '0', 'message' => 'El usuario no se repite'];
+            return ['code' => '0', 'message' => 'The user does not repeat himself'];
         }
 
     }
@@ -214,7 +218,7 @@ class Contacto extends Conexion {
             ");
             $query->execute();
     
-            return ['code' => '0', 'message' => 'Se actualizó la información correctamente'];
+            return ['code' => '0', 'message' => 'Information was updated correctly'];
         }
     }
 
@@ -225,7 +229,7 @@ class Contacto extends Conexion {
             foreach ($query as $passU) {
                 $md5 = md5($pass);
                 if (password_verify($md5, $passU['tPasswordUsuarios'])) {
-                    return array('code' => '0', 'message' => 'Contraseña correcta');
+                    return array('code' => '0', 'message' => 'Correct password');
                 }
             }
         }
@@ -248,17 +252,59 @@ class Contacto extends Conexion {
             ");
             $query->execute();
     
-            return ['code' => '0', 'message' => 'Se actualizó la contraseña correctamente'];
+            return ['code' => '0', 'message' => 'Password updated successfully'];
         }else{
             return ['code' => '1', 'message' => 'The new password must be different from the current one'];
         }
     }
 
+    public function getIdLastCategory() {
+        $query = $this->connect()->query("SELECT eCodeCategorias FROM categorias ORDER BY eCodeCategorias DESC LIMIT 1");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach($query as $contenido){
+                return $contenido['eCodeCategorias'];
+            }
+        }
+        return false;
+    }
+
+    public function getCategory($id) {
+        $query = $this->connect()->query("SELECT c.tNameCategorias, c.bStatusCategorias FROM categorias c WHERE c.eCodeCategorias = $id;");
+        $query->execute();
+
+        if ($query->rowCount()){
+            foreach ($query as $contenido) {
+                $datos = [
+                    'id' => $id,
+                    'nombre' => $contenido['tNameCategorias'],
+                    'estado' => $contenido['bStatusCategorias']
+                ];
+            }
+            return $datos;
+        } else {
+            return false;
+        }
+    }
+
     public function addCategory($categoria){
-        $query = $this->connect()->prepare("INSERT INTO categorias (tNameCategorias) VALUES (:categoria)");
+        $query = $this->connect()->prepare("INSERT INTO categorias (tNameCategorias, bStatusCategorias) VALUES (:categoria, 1)");
         $query->execute(['categoria' => $categoria]);
-        
-        return ['code' => '0', 'message' => 'Se agrego la categoria exitosamente'];
+
+        // Obtenemos el id de la última categoría insertada
+        $id = $this->getIdLastCategory();
+        // validamos que no sea un valor falso
+        if ($id == false){
+            return ['code' => '2', 'message' => 'To see the category reload the page'];
+        }
+        // obtenemos la categoría que acabamos de insertar
+        $categoria = $this->getCategory($id);
+        // validamos que no sea un valor falso
+        if ($categoria == false){
+            return ['code' => '2', 'message' => 'To see the category reload the page'];
+        }
+        return ['code' => '0', 'message' => 'The category was inserted correctly', 'datos' => $categoria];
     }
 
     public function validCategory($categoria){
@@ -272,6 +318,28 @@ class Contacto extends Conexion {
         }
     }
 
+    public function deleteCategory($id){
+        $query = $this->connect()->query("DELETE FROM categorias WHERE eCodeCategorias = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'Category was successfully deleted'];
+    }
+
+    public function updateStatusCategory($id, $estado){
+        $query = $this->connect()->query("UPDATE categorias SET bStatusCategorias = $estado WHERE eCodeCategorias = $id");
+        $query->execute();
+
+        return ['code' => '0', 'message' => 'The category status was updated successfully'];
+    }
+
+    public function updateNameCategory($id, $nombre){
+        $nombre = preg_replace('/[^a-zA-Z0-9\s]/', '', $nombre);
+        $query = $this->connect()->prepare("UPDATE categorias SET tNameCategorias = :nombre WHERE eCodeCategorias = :id");
+        $query->execute(['nombre' => $nombre, 'id' => $id]);
+
+        return ['code' => '0', 'message' => 'The category name was updated successfully'];
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -282,34 +350,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $action = $_POST['action'];
         switch ($action) {
             case 'getCountPosts':
-                $countPosts = $contacto->getCountPosts();
-                if ($countPosts == false){
-                    echo json_encode(['code' => '1', 'message' => 'No hay publicaciones']);
-                } else {
-                    echo json_encode(['code' => '0', 'message' => 'Hay publicaciones', 'datos' => $countPosts]);
-                }
-                break;
-            case 'getCountCategories':
-                $countCategories = $contacto->getCountCategories();
-                if ($countCategories == false){
-                    echo json_encode(['code' => '1', 'message' => 'No hay categorias']);
-                } else {
-                    echo json_encode(['code' => '0', 'message' => 'Hay categorias', 'datos' => $countCategories]);
-                }
-                break;
-            case 'getCountVisits':
-                $countVisits = $contacto->getCountVisits();
-                if ($countVisits == false){
-                    echo json_encode(['code' => '1', 'message' => 'No hay visitas']);
-                } else {
-                    echo json_encode(['code' => '0', 'message' => 'Hay visitas', 'datos' => $countVisits]);
-                }
+                    $countPosts = $contacto->getCountPosts();
+                    if ($countPosts == false){
+                        echo json_encode(['code' => '1', 'message' => 'No posts available']);
+                    } else {
+                        echo json_encode(['code' => '0', 'message' => 'Posts available', 'datos' => $countPosts]);
+                    }
+                    break;
+                case 'getCountCategories':
+                    $countCategories = $contacto->getCountCategories();
+                    if ($countCategories == false){
+                        echo json_encode(['code' => '1', 'message' => 'No categories available']);
+                    } else {
+                        echo json_encode(['code' => '0', 'message' => 'Categories available', 'datos' => $countCategories]);
+                    }
+                    break;
+                case 'getCountVisits':
+                    $countVisits = $contacto->getCountVisits();
+                    if ($countVisits == false){
+                        echo json_encode(['code' => '1', 'message' => 'No visits available']);
+                    } else {
+                        echo json_encode(['code' => '0', 'message' => 'Visits available', 'datos' => $countVisits]);
+                    }
                 break;
             case 'updateCountVisits':
                 $count = $contacto->getCountVisits();
                 $count++;
                 $updateCountVisits = $contacto->updateCountVisits($count);
                 echo json_encode($updateCountVisits);
+                break;
+            case 'getCategories':
+                $categories = $contacto->getCategories();
+                if ($categories == false){
+                    echo json_encode(['code' => '1', 'message' => 'No categories available']);
+                } else {
+                    echo json_encode(['code' => '0', 'message' => 'There are categories', 'data' => $categories]);
+                }
+                break;
+            case 'deleteCategory':
+                if (!isset($_POST['id'])){
+                    echo json_encode(['code' => '1', 'message' => 'The category is empty']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $resp = $contacto->deleteCategory($id);
+                echo json_encode($resp);
+                break;
+            case 'updateNameCategory':
+                if (!isset($_POST['id']) || !isset($_POST['nombre'])){
+                    echo json_encode(['code' => '1', 'message' => 'The category is empty']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $nombre = $_POST['nombre'];
+                $resp = $contacto->updateNameCategory($id, $nombre);
+                echo json_encode($resp);
+                break;
+            case 'updateStatusCategory':
+                if (!isset($_POST['id']) || !isset($_POST['estado'])){
+                    echo json_encode(['code' => '1', 'message' => 'The category is empty']);
+                    exit;
+                }
+                $id = $_POST['id'];
+                $estado = $_POST['estado'];
+                $resp = $contacto->updateStatusCategory($id, $estado);
+                echo json_encode($resp);
                 break;
         }
     }
@@ -357,7 +462,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
         }
     
-        $resp = array('code' => '0', 'message' => 'Se insertó la publicación correctamente');
+        $resp = array('code' => '0', 'message' => 'Post inserted successfully');
     
         echo json_encode($resp);
         exit;
@@ -382,28 +487,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
-                if ($fileSize < 10000000) { // 10MB son 10000000 bytes
+                if ($fileSize < 10000000) { // 10MB is 10000000 bytes
                     if (move_uploaded_file($fileTmpName, $fileDestination)) {
-                        $resp = array('code' => '0', 'message' => 'Se subió la imagen correctamente');
+                        $resp = array('code' => '0', 'message' => 'The image was uploaded successfully');
                         echo json_encode($resp);
                         exit;
                     } else {
-                        $resp = array('code' => '1', 'message' => 'No se pudo subir la imagen');
+                        $resp = array('code' => '1', 'message' => 'Failed to upload the image');
                         echo json_encode($resp);
                         exit;
                     }
                 } else {
-                    $resp = array('code' => '1', 'message' => 'La imagen es muy grande');
+                    $resp = array('code' => '1', 'message' => 'The image is too large');
                     echo json_encode($resp);
                     exit;
                 }
             } else {
-                $resp = array('code' => '1', 'message' => 'Ocurrió un error al subir la imagen');
+                $resp = array('code' => '1', 'message' => 'An error occurred while uploading the image');
                 echo json_encode($resp);
                 exit;
             }
         } else {
-            $resp = array('code' => '1', 'message' => 'No se puede subir archivos de este tipo');
+            $resp = array('code' => '1', 'message' => 'Cannot upload files of this type');
             echo json_encode($resp);
             exit;
         }

@@ -53,27 +53,13 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="menu-item sub-menu category-button-container <?php if ($pagina_actual == 'addCategory.php' OR $pagina_actual == 'viewCategories.php'){ echo 'open';} ?>">
-                            <a href="#" class="categories-button <?php if ($pagina_actual == 'addCategory.php' OR $pagina_actual == 'viewCategories.php'){ echo 'active';} ?>">
+                        <li class="menu-item">
+                            <a href="./categories" class="categories-button <?php if ($pagina_actual == 'categories.php'){ echo 'active';} ?>">
                                 <span class="menu-icon">
                                     <i class="ri-list-check"></i>
                                 </span>
                                 <span class="menu-title">Categories</span>
                             </a>
-                            <div class="sub-menu-list">
-                                <ul>
-                                    <li class="menu-item <?php if ($pagina_actual == 'addCategory.php'){ echo 'active';} ?>">
-                                        <a href="<?php echo $currentDir; ?>/addCategory">
-                                            <span class="menu-title">Add Category</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item <?php if ($pagina_actual == 'viewCategories.php'){ echo 'active';} ?>">
-                                        <a href="<?php echo $currentDir; ?>/viewCategories.php">
-                                            <span class="menu-title">View Categories</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
                         <li class="menu-item">
