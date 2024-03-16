@@ -9,7 +9,10 @@ class Contacto extends Conexion {
         $query = $this->connect()->query("SELECT p.tTitlePublicaciones, p.fCreationPublicaciones, p.fUpdatePublicaciones, u.tNameUsuarios, u.tLastNameUsuarios
         FROM publicaciones p
         INNER JOIN usuarios u ON p.eUserPublicaciones = u.eCodeUsuarios
-        WHERE eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones)");
+        INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias
+        WHERE eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones p INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias WHERE c.bStatusCategorias = 1 AND p.bStatusPublicaciones = 1)
+        AND c.bStatusCategorias = 1 AND p.bStatusPublicaciones = 1
+        ");
         $query->execute();
 
         if ($query->rowCount()) {
@@ -35,7 +38,8 @@ class Contacto extends Conexion {
         $query = $this->connect()->query("SELECT t.tContenidoTexts, t.ePosicionTexts 
                 FROM publicaciones p
                 INNER JOIN texts t ON p.eCodePublicaciones = t.epublicacionTexts
-                WHERE p.eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones)");
+                WHERE p.eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones p INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias WHERE c.bStatusCategorias = 1 AND p.bStatusPublicaciones = 1)
+                ");
         $query->execute();
     
         if ($query->rowCount()) {
@@ -57,7 +61,7 @@ class Contacto extends Conexion {
         $query = $this->connect()->query("SELECT i.tLugarImages, i.ePosicionImages 
                 FROM publicaciones p
                 INNER JOIN images i ON p.eCodePublicaciones = i.ePublicacionImages
-                WHERE p.eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones)");
+                WHERE p.eCodePublicaciones = (SELECT MAX(eCodePublicaciones) FROM publicaciones p INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias WHERE c.bStatusCategorias = 1 AND p.bStatusPublicaciones = 1)");
         $query->execute();
 
         if ($query->rowCount()) {
@@ -79,7 +83,10 @@ class Contacto extends Conexion {
         $query = $this->connect()->query("SELECT p.eCodePublicaciones, p.tTitlePublicaciones, t.tContenidoTexts
         FROM publicaciones p
         INNER JOIN texts t ON t.ePublicacionTexts = p.eCodePublicaciones
+        INNER JOIN categorias c ON p.eCategoriaPublicaciones = c.eCodeCategorias
         WHERE t.ePosicionTexts = 1
+        AND p.bStatusPublicaciones = 1
+        AND c.bStatusCategorias = 1
         ORDER BY p.eCodePublicaciones DESC
         LIMIT 5 OFFSET 1;
         ");
