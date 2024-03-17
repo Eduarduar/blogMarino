@@ -46,84 +46,27 @@
             <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                    <!-- <li data-target="#carousel" data-slide-to="1"></li>
-                    <li data-target="#carousel" data-slide-to="2"></li>
-                    <li data-target="#carousel" data-slide-to="3"></li>
-                    <li data-target="#carousel" data-slide-to="4"></li>
-                    <li data-target="#carousel" data-slide-to="5"></li> -->
                 </ol>
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                         <div class="video-overlay"></div>
                         <video src="./source/video/video_carrusel.mp4" autoplay muted loop></video>
-                    <!-- <div class="item"><img src="./source/img/vidamarina.jpg" alt=""></div>
-                    <div class="item"><img src="./source/img/imagen3.jpg" alt=""></div>
-                    <div class="item"><img src="./source/img/imagen4.jpg" alt=""></div>
-                    <div class="item"><img src="./source/img/imagen5.jpg" alt=""></div>
-                    <div class="item"><img src="./source/img/imagen6.webp" alt=""></div> -->
                 </div>
-                <!-- Carousel nav -->
-                <!-- <a class="carousel-control left" href="#carousel" id="prev" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#carousel" id="next" data-slide="next">&rsaquo;</a> -->
             </div>
             <div class="container-titleCarousel">
                 <h2 class="titleCarousel">DEEP OCEAN</h2>
                 <p class="subtitleCarousel">The best place to know about the ocean</p>
             </div>
         </section>
+        <h1 class="lastestPost">Lastest Post</h1>
         
-
-        <!-- Lastest Post -->
-        <section>
-
-            <h1 class="lastestPost">Lastest Post</h1>
-
-            <?php
         
-                include './views/publicacion.php';
+        <?php
         
-            ?>
-        </section>
+            include 'views/publicacion.php';
+        
+        ?>
 
-
-        <!-- Cards -->
-        <section class="cards">
-
-            <?php
-            
-                $publicaciones = $contacto->obtenerUltimasPublicaciones();
-
-                if ($publicaciones != false){
-                    foreach ($publicaciones as $publicacion) {
-                        ?>
-                        
-                                    <div class="basic-card basic-card-light">
-                                        <div class="card-content">
-                                            <span class="card-title"> <?php echo $publicacion['tTitlePublicaciones']; ?> </span>
-                                            <p class="card-text">
-                                                <?php echo $publicacion['tContenidoTexts']; ?>
-                                            </p>
-                                        </div>
-
-                                        <div class="card-link">
-                                            <a href="<?php echo "post?post=" . $publicacion['eCodePublicaciones'] ?>" title="Read Full"><span>Read Full</span></a>
-                                        </div>
-                                    </div>
-                        
-                        <?php
-                    }
-                }
-                
-            
-            ?>
-            
-            <div class="basic-card basic-card-light more">
-                <a class="card-content" href="./blog.php" >
-                    <span class="card-title">More<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                </a>
-            </div>
-
-        </section>
 
         <!-- Footer -->
 

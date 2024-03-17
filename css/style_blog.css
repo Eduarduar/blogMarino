@@ -1,4 +1,8 @@
 
+body{
+    background: #e6e6e6;
+}
+
 .container-search {
     margin: 0 auto;
     margin-top: 10rem;
@@ -19,7 +23,11 @@
 .basic-card {
     width:300px;
     position: relative;
+    max-height: 300px;
+    overflow: hidden;
     margin: 1rem;
+    background: white;
+    border-radius: 20px;
     
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
@@ -34,6 +42,23 @@
 .basic-card .card-title {
     font-size: 25px;
     font-family: 'Open Sans', sans-serif;
+    max-height: 70px; /* Modificado: 2 renglones * 30px (aprox.) */
+    max-width: 90% !important;
+    width: 90% !important;
+    overflow: hidden;
+    white-space: normal; /* Modificado: permitir saltos de línea */
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Modificado: 2 renglones */
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+    color: #252525;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .basic-card .card-text {
@@ -43,6 +68,7 @@
 .basic-card .card-link {
     padding: 25px;
     width: -webkit-fill-available;
+    margin-top: auto;
 }
 
 .basic-card .card-link a {
