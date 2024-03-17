@@ -17,7 +17,7 @@
         <!--https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js-->
         <script src="./source/library/bootstrap/bootstrap5.3.2.min.js"></script> 
         <!-- //kit.fontawesome.com/997c58a28f.js -->
-        <script src="./source/library/fontawesome-free-5.15.4-web/js/all.min.js"></script> 
+        <script src="./source/library/fontawesome/fontawesome.js"></script> 
         <!-- Ahora: https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css  original: //code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css -->
         <link rel="stylesheet" href="./source/library/jquery/jquery-ui-1.13.2.min.css">
         <!-- //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css --> 
