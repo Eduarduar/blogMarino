@@ -1,16 +1,28 @@
 img {
-    max-width: 1140px;
-    margin-top: 3rem;
+    max-width: 90%;
     margin-bottom: 3rem;
+    transition: all 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+body{
+    background: #e6e6e6;
+    /* background-image: url('https://i.pinimg.com/originals/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg'); */
+    /* background-image: url('https://img.freepik.com/vector-premium/fondo-vector-patrones-fisuras-regreso-escuela_153454-5033.jpg?w=360'); */
+    background-size: repeat;
 }
 
 .text-public {
     margin: 0 auto;
-    margin-top: 2rem;
-    padding: 5rem;
-    padding-top: 2rem;
+    padding: 4rem;
+    padding-top: 1rem;
     text-align: justify;
     max-width: 800px;
+    font-size: large;
+    font-weight: 500;
 }
 
 .title-public {
@@ -20,23 +32,102 @@ img {
     font-weight: bold;
 }
 
-@media screen and (max-width: 1140px){
-    img {
+.container-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    margin-top: 2rem;
+    max-width: 100vw !important;
+    margin-bottom: 2rem;
+}
+
+main {
+    margin: 0;
+    max-width: 50%;
+}
+
+aside {
+    margin-top: 2rem;
+    max-width: 380px;
+    max-height: 1250px;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.10);
+    text-decoration: none;
+    color: black;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #c7c7c7;
+    border-radius: 5px;
+    max-width: 100%;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.card-content:hover {
+    background-color: #f2f2f2;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+
+@media screen and (max-width: 1300px) {
+    .container-sections {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100vw !important;
+    }
+    main {
         max-width: 100%;
+    }
+    aside {
+        max-width: 100%;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    
+    .card {
+        max-width: 700px;
+        width: 100%;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .text-public {
-        padding: 2rem;
-    }
-    .title-public {
-        font-size: 20pt;
-    }
-
-    img {
-        max-width: 100%;
+@media screen and (max-width: 808px) {
+    .card {
+        max-width: 90%;
     }
     
-
 }

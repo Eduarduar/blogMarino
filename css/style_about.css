@@ -45,6 +45,7 @@ section {
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 2rem;
   padding: 10px 20px;
 }
 .about {
@@ -54,9 +55,11 @@ section {
   flex-wrap: wrap;
 }
 .about-image {
+  display: flex;
   flex: 1;
-  margin-right: 40px;
   overflow: visible;
+  align-items: center;
+  justify-content: center;
 }
 .about-image img {
   max-width: 1140px;
@@ -67,10 +70,11 @@ section {
   transition: 0.5s ease;
 }
 .about-image:hover img {
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 .about-content {
   flex: 1;
+  margin-bottom: 2rem;
 }
 .about-content h2 {
   font-size: 23px;
