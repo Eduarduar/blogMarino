@@ -34,6 +34,9 @@
                     <li class=" <?php if ($pagina_actual == "developers.php"){ echo'active'; } ?>">
                         <a class="page-scroll" href="<?php echo $currentDir; ?>/developers">Developers</a>
                     </li>
+                    <li class=" <?php if ($pagina_actual == "contact.php"){ echo'active'; } ?>">
+                        <a class="page-scroll" href="<?php echo $currentDir; ?>/contact">Contact</a>
+                    </li>
                     <?php
                     
                         if (isset($_SESSION['idUser'])) {
