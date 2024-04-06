@@ -27,16 +27,23 @@ $mail = new PHPMailer(true);
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
         //Recipients
-        $mail->setFrom('rafaelalex6949@gmail.com', 'Rafael Alexandro Vuelvas Perez');
+        $mail->setFrom('rafaelalex6949@gmail.com', 'Support DEEP OCEAN');
         $mail->addAddress('rafaelalexandro6949@gmail.com');     //Add a recipient
     
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Contact DEEP OCEAN';
-        $mail->Body    = "Correo: " . $email . "<br/>Mensaje: " . $message;
+        $mail->Subject = 'Support DEEP OCEAN';
+        $mail->Body    = "Correo de Contacto: " . $email . "<br/>Mensaje: " . $message;
     
         $mail->send();
         echo '<script>alert("Message has been sent")</script>';
+
+        // Configurar y enviar el correo de agradecimiento
+        $mail->clearAddresses(); // Limpiar los destinatarios anteriores
+        $mail->addAddress($email); // El correo electrónico del usuario que contactó al soporte
+        $mail->Subject = 'Thank you for contacting DEEP OCEAN support.';
+        $mail->Body    = "Thank you for contacting us. We have received your message and will get back to you as soon as possible.";
+        $mail->send();
     } catch (Exception $e) {
         echo '<script>alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}")</script>';
     }    
