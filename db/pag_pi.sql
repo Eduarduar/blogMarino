@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2024 a las 15:41:36
+-- Tiempo de generación: 17-04-2024 a las 23:49:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -50,6 +50,25 @@ INSERT INTO `categorias` (`eCodeCategorias`, `tNameCategorias`, `bStatusCategori
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `codes`
+--
+
+CREATE TABLE `codes` (
+  `eCodeCodes` int(11) NOT NULL,
+  `tCodeCodes` varchar(100) NOT NULL,
+  `eUserCodes` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `codes`
+--
+
+INSERT INTO `codes` (`eCodeCodes`, `tCodeCodes`, `eUserCodes`) VALUES
+(5, 'FW75CehvgKNtZAVm96Xs0focqydb2wpknUrzx4EBQMuLTia31JRjDGPlISOYH8', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `config`
 --
 
@@ -64,7 +83,7 @@ CREATE TABLE `config` (
 --
 
 INSERT INTO `config` (`eCodeConfig`, `tNameConfig`, `tContentConfig`) VALUES
-(1, 'visits', '8');
+(1, 'visits', '9');
 
 -- --------------------------------------------------------
 
@@ -187,6 +206,13 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`eCodeCategorias`);
 
 --
+-- Indices de la tabla `codes`
+--
+ALTER TABLE `codes`
+  ADD PRIMARY KEY (`eCodeCodes`),
+  ADD KEY `eUserCodes` (`eUserCodes`);
+
+--
 -- Indices de la tabla `config`
 --
 ALTER TABLE `config`
@@ -232,6 +258,12 @@ ALTER TABLE `categorias`
   MODIFY `eCodeCategorias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `codes`
+--
+ALTER TABLE `codes`
+  MODIFY `eCodeCodes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `config`
 --
 ALTER TABLE `config`
@@ -264,6 +296,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `codes`
+--
+ALTER TABLE `codes`
+  ADD CONSTRAINT `codes_ibfk_1` FOREIGN KEY (`eUserCodes`) REFERENCES `usuarios` (`eCodeUsuarios`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `images`
