@@ -41,7 +41,7 @@ if (isset($_SESSION['idUser'])) {
         </div>
         <div class="mt-4">
           <input type="checkbox" class="form-checkbox rounded-full appearance-none border-2 border-gray-300 w-5 h-5 transition-colors duration-300 ease-in-out ml-1" name="accept_terms" required="" style="position: relative; top: 3px;">
-            <label class="ml-2 text-white text-[1rem]">Accept <a target="_blank" href="#" class="underline">Terms and Conditions</a></label>
+            <label class="ml-2 text-white text-[1rem]">Accept <a target="_blank" href="./source/pdf/termsAndConditions.pdf" class="underline">Terms and Conditions</a></label>
         </div>
         <div class="container-button">
           <i class="log" href="">
