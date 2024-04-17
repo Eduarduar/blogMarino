@@ -40,6 +40,32 @@
                 include './views/publicacion.php';
 
             ?>
+
+            <style>
+                section {
+                    
+                }
+
+                #disqus_thread {
+                    width: 80%; /* Ajusta el ancho según tu preferencia */
+                    display: flex;
+                    justify-content: center; /* Centra el contenido horizontalmente */
+                    align-items: center; /* Centra el contenido verticalmente */
+                    margin: 0 auto; /* Centra el contenido horizontalmente */
+                }
+            </style>
+
+            <div id="disqus_thread" style=""></div>
+                <script>
+                    (function() { 
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://deep-ocean.disqus.com/embed.js'; // Reemplaza YOUR_SHORTNAME con tu shortname de Disqus
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Por favor habilita JavaScript para ver los <a href="https://disqus.com/?ref_noscript">comentarios powered by Disqus.</a></noscript>
+            </div>
         </section>
 
         <!-- Footer -->
@@ -50,4 +76,5 @@
         <script src="./js/countVisits.js"></script>
 
     </body>
+    <script id="dsq-count-scr" src="//deep-ocean.disqus.com/count.js" async></script>
 </html>
