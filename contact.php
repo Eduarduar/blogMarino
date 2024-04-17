@@ -66,3 +66,4 @@
         
         include 'sendmail.php';
     }
+?>
