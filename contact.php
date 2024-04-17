@@ -28,27 +28,27 @@
     </header>
     <br><br><br><br>
     <!-- Contact -->
-    <div>
-        <form method="post">
-            <div class="w-full max-w-xs mx-auto">
-                <h2 class="mb-6 text-center text-3xl font-extrabold text-gray-900">
-                    Contact Us
+    <div class="mt-24">     <!-- mx-auto container flex flex-col items-center justify-center h-screen -->
+        <form method="post" class="container mx-auto">
+            <div class="w-2/4 mx-auto">
+                <h2 class="mb-6 text-center text-5xl font-bold text-gray-900">
+                    CONCTACT US
                 </h2>
                 <div class="space-y-6">
                     <div>
                         <label for="name" class="sr-only">Full Name</label>
-                        <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Full Name">
+                        <input id="name" name="name" type="text" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Full Name">
                     </div>
                     <div>
                         <label for="email" class="sr-only">Email address</label>
-                        <input id="email" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        <input id="email" name="email" type="email" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Email address">
                     </div>
                     <div>
                         <label for="message" class="sr-only">Message</label>
-                        <textarea id="message" name="message" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Your message"></textarea>
+                        <textarea id="message" name="message" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your message"></textarea>
                     </div>
-                    <div>
-                        <input type="submit" name="send" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"></input>
+                    <div class="flex flex-row justify-center">
+                        <input type="submit" name="send" class="bg-transparent hover:bg-blue-500 text-blue-500 font-bold py-3 px-6 border border-blue-500 rounded focus:outline-none focus:shadow-outline hover:text-white transition duration-300 mr-4"></input>
                     </div>
                 </div>
             </div>
