@@ -42,9 +42,6 @@
             ?>
 
             <style>
-                section {
-                    
-                }
 
                 #disqus_thread {
                     width: 80%; /* Ajusta el ancho según tu preferencia */
@@ -55,7 +52,7 @@
                 }
             </style>
 
-            <div id="disqus_thread" style=""></div>
+            <div id="disqus_thread"></div>
                 <script>
                     (function() { 
                         var d = document, s = d.createElement('script');
