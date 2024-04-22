@@ -30,7 +30,7 @@ if (isset($_SESSION['idUser'])) {
         </a>
       </div>
       <h2 class="text-[2rem]">Recovery Password</h2>
-      <form method="POST" action="./login" class="form">
+      <form class="form">
         <div class="user-box">
           <input type="text" class="email" name="email" required="">
           <label>Email</label>

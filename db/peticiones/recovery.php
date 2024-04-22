@@ -55,6 +55,44 @@ class Contacto extends Conexion {
         }
     }
 
+    public function confirmCode($code) {
+        $query = $this->connect()->prepare("SELECT c.tCodeCodes
+        FROM codes c
+        INNER JOIN usuarios u
+        ON c.eUserCodes = u.eCodeUsuarios
+        WHERE c.tCodeCodes = :code
+        ");
+        $query->execute(['code' => $code]);
+
+        if ($query->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updatePassword($password) {
+        $query = $this->connect()->prepare("UPDATE usuarios SET tPasswordUsuarios = :password WHERE eCodeUsuarios = 1");
+        $query->execute(['password' => $password]);
+
+        if ($query->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteCode($code) {
+        $query = $this->connect()->prepare("DELETE FROM codes WHERE tCodeCodes = :code");
+        $query->execute(['code' => $code]);
+
+        if ($query->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 
@@ -86,7 +124,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     $resp = array('code' => '1', 'message' => "The email is not registered");
                 }
                 break;
-            break;
+            case 'confirmCode':
+                if ($contacto->confirmCode($_POST['code'])){
+                    $resp = array('code' => '0', 'message' => "Code confirmed", 'data' => true);
+                } else {
+                    $resp = array('code' => '0', 'message' => "The code is incorrect", 'data' => false);
+                }
+                break;
+            case 'changePassword':
+                $pass = preg_replace('/[^a-zA-Z0-9\s]/', '', $_POST['password']);
+                $md5 = md5($pass);
+                $hash = password_hash($md5, PASSWORD_DEFAULT, ['cost' => 10]);
+                if ($contacto->updatePassword($hash)){
+                    $contacto->deleteCode($_POST['code']);
+                    $resp = array('code' => '0', 'message' => "Password updated successfully");
+                } else {
+                    $resp = array('code' => '1', 'message' => "An error has occurred, try again later");
+                }
+                break;
         }
         echo json_encode($resp);
     }

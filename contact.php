@@ -32,7 +32,7 @@
         <form method="post" class="container mx-auto">
             <div class="w-2/4 mx-auto">
                 <h2 class="mb-6 text-center text-5xl font-bold text-gray-900">
-                    CONCTACT US
+                    CONTACT US
                 </h2>
                 <div class="space-y-6">
                     <div>
