@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                         $correoDelUsuario = $_POST['email']; // aqui tienes el correo por si lo ocupas
 
                         // aqui inserta tu codigo para enviar el correo
+                        include("sendmail.php");
 
                     } else {
                         $resp = array('code' => '1', 'message' => "An error has occurred, try again later");
