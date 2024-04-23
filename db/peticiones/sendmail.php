@@ -87,7 +87,7 @@ $mail = new PHPMailer(true);
             <body>
             <div class="container">
                 <div class="header">
-                <img src="https://drive.google.com/file/d/1J2A62YcrxlMh12RKp35CN_vhdOPZDAbE/view?usp=sharing" class="header-image">
+                <img src="https://drive.google.com/uc?export=view&id=1J2A62YcrxlMh12RKp35CN_vhdOPZDAbE" class="header-image">
                 <h1>Support Deep Ocean</h1>
                 </div>
                 <div class="main-content">
@@ -95,7 +95,7 @@ $mail = new PHPMailer(true);
                 <p>Hello $nombreDeUsuario,<br>We have received a request to recover your password.<br>Click the button below to recover your password.<br><a href="http://localhost/pruebas/blogMarino/resetpassword?code=$code" style="background-color: #0979b0; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block;">Recover Password</a><br>If you did not request this change, please ignore this email.<br>Best regards,<br>Support DEEP OCEAN.</p>
                 </div>
                 <div class="footer">
-                <p>FCopyright © 0000 All Rights Reserved by [NAME].</p>
+                <p>Copyright © 0000 All Rights Reserved by [NAME].</p>
                 </div>
             </div>
             </body>
