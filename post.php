@@ -12,6 +12,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
         <script src="./source/library/bootstrap/bootstrap5.3.2.min.js"></script> 

@@ -11,6 +11,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- //code.jquery.com/jquery-3.6.0.min.js -->
         <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
@@ -29,7 +30,7 @@
         <link rel="stylesheet" href="./css/style_default.css">
         <link rel="stylesheet" href="./css/style_publicacion.css">
         <link rel="stylesheet" href="./css/style_footer.css">
-        <link rel="stylesheet" href="./css/style_index.css">
+        <link rel="stylesheet" href="./css/style_index.css">   
         <title>Home - DEEP OCEAN</title>
     </head>
     <body id="page-top">
@@ -50,7 +51,7 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                         <div class="video-overlay"></div>
-                        <video src="./source/video/video_carrusel.mp4" autoplay muted loop></video>
+                        <video src="./source/video/video_carrusel.mp4" autoplay muted loop class="h-full"></video>
                 </div>
             </div>
             <div class="container-titleCarousel">
@@ -58,7 +59,7 @@
                 <p class="subtitleCarousel">The best place to know about the ocean</p>
             </div>
         </section>
-        <h1 class="lastestPost">Lastest Post</h1>
+        <h1 class="font-bold text-6xl py-8 bg-gray-300 text-center justify-center m-0">Lastest Post</h1>
         
         
         <?php
@@ -71,6 +72,8 @@
         <!-- Footer -->
 
         <?php include 'views/footer.php'; ?>
+
+        <div class=""></div>
 
         <script src="./js/navBar.js"></script>
         <script src="./js/index.js"></script>

@@ -2,7 +2,7 @@
 <div class="container-sections">
     <main>
         <!-- Lastest Post -->
-        <section>
+        <section class="md:mx-12">
             <?php
                 if (isset($_GET["post"])) {
                     $idPost = $_GET["post"];
@@ -23,7 +23,7 @@
                         echo "<h1 class='title-public'>" . strtoupper(htmlspecialchars($titulo['titulo'])) . "</h1>";
                         echo "
                         <div class='heading'>
-                            <p>" . htmlspecialchars($titulo['autor']) . " - " . htmlspecialchars($titulo['fecha']) . "</p>
+                            <p class=''>" . htmlspecialchars($titulo['autor']) . " - " . htmlspecialchars($titulo['fecha']) . "</p>
                         </div>";
                     } else {
                         echo "<h1>Publicación no encontrada</h1>";
@@ -67,9 +67,9 @@
 
                         foreach ($contenido as $modulo) {
                             if ($modulo['tipo'] == 'texto') {
-                                echo "<p class='text-public'>" . htmlspecialchars($modulo['contenido']) . "</p>";
+                                echo "<p class='text-public p-8'>" . htmlspecialchars($modulo['contenido']) . "</p>";
                             }else {
-                                echo "<img src='" . htmlspecialchars($modulo['contenido']) . "'/>";
+                                echo "<img src='" . htmlspecialchars($modulo['contenido']) . "' class='max-w-full'/>";
                             }
                         }
                         
