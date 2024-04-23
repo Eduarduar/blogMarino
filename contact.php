@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./source/library/jquery/jquery-3.6.0.min.js"></script> 
@@ -14,7 +15,6 @@
     <link rel="stylesheet" href="./source/library/jquery/jquery-ui-1.13.2.min.css">
     <link rel="stylesheet" href="./source/library/bootstrap/bootstrap3.2.0.min.css"> 
     <link rel="stylesheet" href="./source/library/fontawesome-free-5.15.4-web/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style_navBar.css">
     <link rel="stylesheet" href="./css/style_default.css">
     <link rel="stylesheet" href="./css/style_footer.css">
@@ -30,7 +30,7 @@
     <!-- Contact -->
     <div class="mt-24">     <!-- mx-auto container flex flex-col items-center justify-center h-screen -->
         <form method="post" class="container mx-auto">
-            <div class="w-2/4 mx-auto">
+            <div class="w-3/4 md:w-2/4 mx-auto">
                 <h2 class="mb-6 text-center text-5xl font-bold text-gray-900">
                     CONTACT US
                 </h2>
