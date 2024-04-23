@@ -79,8 +79,8 @@ $mail = new PHPMailer(true);
             }
             img {
                 max-width: 100%;
-                height: 50px;
-                width: 50px;
+                height: 100px;
+                width: 100px;
             }
             </style>
             </head>
@@ -92,7 +92,7 @@ $mail = new PHPMailer(true);
                 </div>
                 <div class="main-content">
                 <h2>Reset Password</h2>
-                <p>Hello $nombreDeUsuario,<br>We have received a request to recover your password.<br>Click the button below to recover your password.<br><a href="http://localhost/pruebas/blogMarino/resetpassword?code=$code" style="background-color: #0979b0; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block;">Recover Password</a><br>If you did not request this change, please ignore this email.<br>Best regards,<br>Support DEEP OCEAN.</p>
+                <p>Hello $nombreDeUsuario,<br>We have received a request to recover your password.<br><br>Click the button below to recover your password.<br><br><a href="http://localhost/pruebas/blogMarino/resetpassword?code=$code" style="background-color: #0979b0; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block;">Recover Password</a><br><br>If you did not request this change, please ignore this email.<br>Best regards,<br>Support DEEP OCEAN.</p>
                 </div>
                 <div class="footer">
                 <p>Copyright © 0000 All Rights Reserved by [NAME].</p>
