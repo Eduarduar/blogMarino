@@ -1,6 +1,6 @@
 
 <div class="container-sections">
-    <main>
+    <main style="width: 1000px;">
         <!-- Lastest Post -->
         <section class="md:mx-12">
             <?php

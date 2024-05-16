@@ -34,52 +34,73 @@
     <?php include '../views/menu_manage.php'; ?>
 
 
-    <div class="container mx-auto mt-10">
-      <div class="flex flex-wrap justifi-betweem">
-        <div class="bg-white w-full lg:w-full xl:w-[808px] 2xl:w-[1208px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
+    <div class="container mx-auto mt-10 flex flex-col">
+
+      <div class="w-full hidden lg:block h-[50vh] bg-[url(../source/img/vidamarina.jpg)] mb-2 rounded-lg">
+
+        <div class="w-full h-full bg-[rgba(0,0,0,0.5)] flex flex-col">
+
+          <div class="w-full flex flex-row items-end justify-center h-1/2">
+              <span class="text-gray-200 text-[2.5rem] font-bold">Hello, welcome back</span>
+          </div>
+
+          <div class="w-full flex flex-row items-start justify-center h-1/2">
+            <span class="text-[#00aeff] text-[2.5rem] font-bold text-start"><?php echo $UserName['nombre']; ?></span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="flex flex-wrap justifi-betweem flex-col md:flex-row">
+        <div class="bg-white w-full p-4 rounded-lg shadow-lg">
           <div class="flex flex-col">
             <div class="flex items-center justify-between">
               <div class="flex items-center">
                 <i class="ri-user-location-line text-4xl text-blue-500"></i>
                 <span class="text-2xl font-bold ml-2">Visits</span>
               </div>
-              <span class="text-blue-500 text-2xl mr-10">
+              <span class="text-blue-500 text-2xl font-bold mr-10">
                 <?php echo $visits; ?>
               </span>
             </div>
           </div>
         </div>
 
-        <div class="bg-white w-full lg:w-full xl:w-[400px] 2xl:w-[600px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
-          <div class="flex flex-col">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <i class="ri-article-line text-4xl text-yellow-400"></i>
-                <span class="text-2xl font-bold ml-2">Posts</span>
+        <div class="w-full lg:w-1/2 p-2">
+          <div class="bg-white w-full p-4 rounded-lg shadow-lg">
+            <div class="flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <i class="ri-article-line text-4xl text-yellow-400"></i>
+                  <span class="text-2xl font-bold ml-2">Posts</span>
+                </div>
+                <span class="text-2xl font-bold text-yellow-400">
+                  <?php echo $posts; ?>
+                </span>
               </div>
-              <span class="text-blue-500 text-lg  text-yellow-400">
-                <?php echo $posts; ?>
-              </span>
-            </div>
-            <div class="mx-auto">
-              <a href="./viewPosts" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              <div class="mx-auto">
+                <a href="./viewPosts" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white w-full lg:w-full xl:w-[400px] 2xl:w-[600px]  p-4 rounded-lg shadow-lg mt-2 ml-2">
-          <div class="flex flex-col">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <i class="ri-list-check text-4xl text-orange-400"></i>
-                <span class="text-2xl font-bold ml-2">Categories</span>
+        <div class="w-full lg:w-1/2 p-2">
+          <div class="bg-white w-full p-4 rounded-lg shadow-lg">
+            <div class="flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <i class="ri-list-check text-4xl text-orange-400"></i>
+                  <span class="text-2xl font-bold ml-2">Categories</span>
+                </div>
+                <span class="text-2xl font-bold text-orange-400">
+                  <?php echo $categories; ?>
+                </span>
               </div>
-              <span class="text-blue-500 text-lg text-orange-400">
-                <?php echo $categories; ?>
-              </span>
-            </div>
-            <div class="mx-auto">
-              <a href="./viewCategories" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              <div class="mx-auto">
+                <a href="./categories" class="text-xl font-bold underline decoration-1 ml-2">More details</a>
+              </div>
             </div>
           </div>
         </div>
