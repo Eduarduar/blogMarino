@@ -49,7 +49,7 @@
         </section>
 
             <!-- Cards -->
-        <section class="cards h-screen">
+        <section class="cards">
 
         <?php
 
